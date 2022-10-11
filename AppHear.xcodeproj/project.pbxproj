@@ -62,11 +62,12 @@
 		96F0925528F55BAB00EA7B49 /* AppHear */ = {
 			isa = PBXGroup;
 			children = (
-				96F0927028F59CC500EA7B49 /* Info.plist */,
+				96F0927328F59FE000EA7B49 /* ViewModel */,
+				96F0927228F59FD800EA7B49 /* View */,
+				96F0927128F59FD200EA7B49 /* Model */,
 				96F0925628F55BAB00EA7B49 /* AppHearApp.swift */,
-				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
-				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
+				96F0927028F59CC500EA7B49 /* Info.plist */,
 				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
 				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
 				96F0926B28F59B7000EA7B49 /* Fonts */,
@@ -90,6 +91,29 @@
 				96F0926D28F59C6800EA7B49 /* Nunito-VariableFont_wght.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		96F0927128F59FD200EA7B49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		96F0927228F59FD800EA7B49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
+				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		96F0927328F59FE000EA7B49 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
