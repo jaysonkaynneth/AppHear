@@ -13,6 +13,9 @@
 		96F0925E28F55BAC00EA7B49 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96F0925D28F55BAC00EA7B49 /* Preview Assets.xcassets */; };
 		96F0926028F55BAC00EA7B49 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925F28F55BAC00EA7B49 /* Persistence.swift */; };
 		96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */; };
+		96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926928F568EE00EA7B49 /* LibraryView.swift */; };
+		96F0926E28F59C6800EA7B49 /* Nunito-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96F0926C28F59C6800EA7B49 /* Nunito-Italic-VariableFont_wght.ttf */; };
+		96F0926F28F59C6800EA7B49 /* Nunito-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96F0926D28F59C6800EA7B49 /* Nunito-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,10 @@
 		96F0925D28F55BAC00EA7B49 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		96F0925F28F55BAC00EA7B49 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		96F0926228F55BAC00EA7B49 /* AppHear.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppHear.xcdatamodel; sourceTree = "<group>"; };
+		96F0926928F568EE00EA7B49 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		96F0926C28F59C6800EA7B49 /* Nunito-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		96F0926D28F59C6800EA7B49 /* Nunito-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		96F0927028F59CC500EA7B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +62,14 @@
 		96F0925528F55BAB00EA7B49 /* AppHear */ = {
 			isa = PBXGroup;
 			children = (
+				96F0927028F59CC500EA7B49 /* Info.plist */,
 				96F0925628F55BAB00EA7B49 /* AppHearApp.swift */,
 				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
-				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
+				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
+				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
 				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
+				96F0926B28F59B7000EA7B49 /* Fonts */,
 				96F0925C28F55BAC00EA7B49 /* Preview Content */,
 			);
 			path = AppHear;
@@ -71,6 +81,15 @@
 				96F0925D28F55BAC00EA7B49 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		96F0926B28F59B7000EA7B49 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				96F0926C28F59C6800EA7B49 /* Nunito-Italic-VariableFont_wght.ttf */,
+				96F0926D28F59C6800EA7B49 /* Nunito-VariableFont_wght.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +150,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F0926F28F59C6800EA7B49 /* Nunito-VariableFont_wght.ttf in Resources */,
 				96F0925E28F55BAC00EA7B49 /* Preview Assets.xcassets in Resources */,
+				96F0926E28F59C6800EA7B49 /* Nunito-Italic-VariableFont_wght.ttf in Resources */,
 				96F0925B28F55BAC00EA7B49 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +167,7 @@
 				96F0926028F55BAC00EA7B49 /* Persistence.swift in Sources */,
 				96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */,
 				96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */,
+				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,
 				96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +300,7 @@
 				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppHear/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -307,6 +330,7 @@
 				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppHear/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
