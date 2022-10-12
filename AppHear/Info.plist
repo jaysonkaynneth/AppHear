@@ -6,22 +6,22 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Nunito-Black.tff</string>
-		<string>Nunito-BlackItalic.tff</string>
-		<string>Nunito-Bold.tff</string>
-		<string>Nunito-BoldItalic.tff</string>
-		<string>Nunito-ExtraBold.tff</string>
-		<string>Nunito-ExtraBoldItalic.tff</string>
-		<string>Nunito-ExtraLight.tff</string>
-		<string>Nunito-ExtraLightItalic.tff</string>
-		<string>Nunito-Italic.tff</string>
-		<string>Nunito-Light.tff</string>
-		<string>Nunito-LightItalic.tff</string>
-		<string>Nunito-Medium.tff</string>
-		<string>Nunito-MediumItalic.tff</string>
-		<string>Nunito-Regular.tff</string>
-		<string>Nunito-SemiBold.tff</string>
-		<string>Nunito-SemiBoldItalic.tff</string>
+		<string>Nunito-Black.ttf</string>
+		<string>Nunito-BlackItalic.ttf</string>
+		<string>Nunito-Bold.ttf</string>
+		<string>Nunito-BoldItalic.ttf</string>
+		<string>Nunito-ExtraBold.ttf</string>
+		<string>Nunito-ExtraBoldItalic.ttf</string>
+		<string>Nunito-ExtraLight.ttf</string>
+		<string>Nunito-ExtraLightItalic.ttf</string>
+		<string>Nunito-Italic.ttf</string>
+		<string>Nunito-Light.ttf</string>
+		<string>Nunito-LightItalic.ttf</string>
+		<string>Nunito-Medium.ttf</string>
+		<string>Nunito-MediumItalic.ttf</string>
+		<string>Nunito-Regular.ttf</string>
+		<string>Nunito-SemiBold.ttf</string>
+		<string>Nunito-SemiBoldItalic.ttf</string>
 	</array>
 </dict>
 </plist>
