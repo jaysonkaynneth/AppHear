@@ -13,9 +13,15 @@ struct LibraryView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Text("Whats Up!").font(.custom("Nunito-VariableFont_wght", size: 17)).fontWeight(.regular).foregroundColor(Color.black)
+                Text("Whats Up!").font(Font.custom("Nunito Black", size: 17))
+                
                 Text("Whats Up!")
             }.navigationTitle("All Recordings")
+                .onAppear{for family in UIFont.familyNames.sorted() {
+                    let names = UIFont.fontNames(forFamilyName: family)
+                    print("Family: \(family) Font names: \(names)")
+                    }
+                }
         }
     }
 }
