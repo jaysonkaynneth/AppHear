@@ -18,4 +18,7 @@ extension CGColor {
     public static var buttonShadow: CGColor {
         return CGColor(red: 180.0/255.0, green: 180.0/255.0 , blue: 180.0/255.0, alpha: 0.8)
     }
+    public static var appHearBlue: CGColor {
+        return CGColor(red: 66.0/255.0, green: 84.0/255.0 , blue: 182.0/255.0, alpha: 1.0)
+    }
 }

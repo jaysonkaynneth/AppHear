@@ -37,11 +37,13 @@ struct ContentView: View {
                 ZStack(){
                     Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 50)
+                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 40)
                     
-                    VStack{
-                        Image("recordings-icon").resizable().frame(width: 40, height: 45, alignment: .leading)
-                    }
+                    VStack(alignment: .leading){
+                        Image("recordings-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
+                        Text("All Recordings").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                        Text("3 Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                    }.padding(.leading, 15)
                 }.frame(width: 165, height: 142)
                 
                 Spacer()
@@ -49,8 +51,14 @@ struct ContentView: View {
                 ZStack(){
                     Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.trailing, 20)
-                }
+                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.trailing, 40)
+                    
+                    VStack(alignment: .leading){
+                        Image("delete-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
+                        Text("Recently Deleted").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                        Text("2 Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                    }.padding(.trailing,40)
+                }.frame(width: 165, height: 142)
             }
             
             Spacer()
