@@ -59,10 +59,28 @@ struct ContentView: View {
                         Text("2 Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                     }.padding(.trailing,40)
                 }.frame(width: 165, height: 142)
-            }
+            }.offset(y: -130)
+            
+            
+            HStack(alignment: .top) {
+                ZStack(){
+                    Rectangle().fill(LinearGradient(gradient: Gradient(colors: [Color(cgColor: .gradient1), Color(cgColor: .gradient2)]), startPoint: .bottomLeading, endPoint: .topTrailing)).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 40)
+                    
+                    VStack(alignment: .center){
+                        Image("new-folder-icon").resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
+                        Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
+                    }.padding(.leading, 40)
+                }.frame(width: 165, height: 142)
+                
+                Spacer()
+                
+            }.offset(y: -120)
             
             Spacer()
-            Spacer()
+            
+            Image("bottom-bar").resizable().frame(width: 390, height: 144, alignment: .center)
             
         }.ignoresSafeArea().background(Color(cgColor: .screenColor))
     }
