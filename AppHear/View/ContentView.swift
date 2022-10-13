@@ -35,15 +35,21 @@ struct ContentView: View {
             
             HStack(alignment: .top) {
                 ZStack(){
-                    Rectangle().foregroundColor(.gray).opacity(0.5).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).padding(.trailing, 5)
+                    Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 50)
                     
                     VStack{
                         Image("recordings-icon").resizable().frame(width: 40, height: 45, alignment: .leading)
                     }
                 }.frame(width: 165, height: 142)
                 
+                Spacer()
+                
                 ZStack(){
-                    Rectangle().foregroundColor(.gray).opacity(0.5).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).padding(.leading, 5)
+                    Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.trailing, 20)
                 }
             }
             

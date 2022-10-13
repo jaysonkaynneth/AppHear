@@ -12,4 +12,10 @@ extension CGColor {
     public static var screenColor: CGColor {
         return CGColor(red: 253.0/255.0, green: 250.0/255.0 , blue: 251.0/255.0, alpha: 1.0)
     }
+    public static var buttonBorder: CGColor {
+        return CGColor(red: 217.0/255.0, green: 217.0/255.0 , blue: 217.0/255.0, alpha: 0.5)
+    }
+    public static var buttonShadow: CGColor {
+        return CGColor(red: 180.0/255.0, green: 180.0/255.0 , blue: 180.0/255.0, alpha: 0.8)
+    }
 }
