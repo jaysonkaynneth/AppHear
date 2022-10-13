@@ -13,7 +13,7 @@ struct AppHearApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LibraryView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
