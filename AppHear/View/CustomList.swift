@@ -12,12 +12,12 @@ struct CustomList: View {
     @State var date = Date()
     @State var emoji: String
         
-//        static let dateFormatter: DateFormatter = {
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "dd-mm-yyyy"
-//            formatter.dateStyle = .long
-//            return formatter
-//        }()
+        static let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-mm-yyyy"
+            formatter.dateStyle = .long
+            return formatter
+        }()
     
 //    var newDate: String
 //    let dateFormatter: DateFormatter
@@ -37,8 +37,8 @@ struct CustomList: View {
                     Text(name)
                         .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
                         .font(.custom("Nunito-ExtraBold", size: 25))
-//                    Text("\(date, format: Date.FormatStyle().year().month().day())")
-                    Text("\(date)")
+                    Text("\(date, format: Date.FormatStyle().year().month().day())")
+//                    Text("\(date)")
                         .foregroundColor(Color(red: 139/255, green: 139/255, blue: 139/255, opacity: 1.0))
                         .font(.custom("Nunito-ExtraBold", size: 19))
                 }
