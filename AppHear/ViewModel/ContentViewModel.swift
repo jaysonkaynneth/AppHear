@@ -12,6 +12,10 @@ class ContentViewModel: ObservableObject {
         
     func createFolder(){
              print("Hello world")
-        }
+    }
+    
+    func startRecording(){
+             print("MAMMA MIA MAMMA MIA!")
+    }
 }
 
