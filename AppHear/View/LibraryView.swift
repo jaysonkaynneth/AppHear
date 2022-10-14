@@ -22,17 +22,19 @@ struct LibraryView: View {
         Recording(name: "Algorithm Design", date: Date(), emoji: "😮")
     ]
     
+
     var body: some View {
         NavigationView{
-            VStack{
+                VStack{
                     ForEach(recordings){ item in
                         CustomList(name: item.name, date: item.date, emoji: item.emoji)
                     }
-                Spacer()
-            }.navigationTitle("All Recordings")
-                .padding()
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search File") {
-                }
+                    Spacer()
+                }.navigationTitle("All Recordings")
+                    .padding()
+                    .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search File") {
+                    }
+            
             
 //                .background(Image("PatokanLibrary")
 //                    .resizable()
