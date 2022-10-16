@@ -14,14 +14,19 @@ struct LibraryView: View {
     
     
     private let recordings: [Recording] = [
-        Recording(name: "Fisika", date: Date(), emoji: "😀"),
-        Recording(name: "Data Mining", date: Date(), emoji: "🫶"),
-        Recording(name: "Algorithm Design", date: Date(), emoji: "😮"),
-        Recording(name: "Mat", date: Date(), emoji: "😀"),
-        Recording(name: "Biologi", date: Date(), emoji: "😀"),
-        Recording(name: "Mat murni", date: Date(), emoji: "😀"),
-        Recording(name: "Mat minat", date: Date(), emoji: "😀"),
-        Recording(name: "Mat Wajib", date: Date(), emoji: "😀"),
+        Recording(name: "Data Mining", date: Date(), emoji: "💻"),
+        Recording(name: "Algorithm Design", date: Date(), emoji: "🐖"),
+        Recording(name: "Mat", date: Date(), emoji: "♾"),
+        Recording(name: "Biologi", date: Date(), emoji: "🤪"),
+        Recording(name: "Mat murni", date: Date(), emoji: "💖"),
+        Recording(name: "Mat minat", date: Date(), emoji: "👨🏻‍🚀"),
+        Recording(name: "Mat Wajib", date: Date(), emoji: "🍔"),
+        Recording(name: "If", date: Date(), emoji: "💪🏻"),
+        Recording(name: "We never try", date: Date(), emoji: "💪🏻"),
+        Recording(name: "How will we know", date: Date(), emoji: "💪🏻"),
+        Recording(name: "baby how far", date: Date(), emoji: "💪🏻"),
+        Recording(name: "this thing can go", date: Date(), emoji: "💪🏻")
+        
     ]
     
     
