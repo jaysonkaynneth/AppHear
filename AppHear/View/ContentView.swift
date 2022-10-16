@@ -36,7 +36,8 @@ struct ContentView: View {
                 Spacer()
                 
                 HStack(alignment: .top) {
-                    NavigationLink(destination: LibraryView()) {
+                    NavigationLink(destination: LibraryView() .navigationBarHidden(true)   
+                        .navigationBarTitle("") ) {
                         ZStack(){
                             Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
                                 RoundedRectangle(cornerRadius: 20)
@@ -52,7 +53,9 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: LibraryView()) {
+                    NavigationLink(destination: LibraryView()
+                        .navigationBarHidden(true)
+                        .navigationBarTitle("")) {
                         ZStack(){
                             Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
                                 RoundedRectangle(cornerRadius: 20)
