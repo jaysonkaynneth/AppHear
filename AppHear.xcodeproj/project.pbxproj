@@ -11,6 +11,7 @@
 		1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */; };
 		9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605725928F8911F0029C3A3 /* CustomList.swift */; };
 		962B394828FBBFFC009F95D3 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962B394728FBBFFC009F95D3 /* RecordView.swift */; };
+		962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962B394928FC1D63009F95D3 /* VizualizerView.swift */; };
 		96353D1F28F6A24800518F3B /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D0F28F6A24700518F3B /* Nunito-ExtraLight.ttf */; };
 		96353D2028F6A24800518F3B /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1028F6A24700518F3B /* Nunito-ExtraBoldItalic.ttf */; };
 		96353D2128F6A24800518F3B /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1128F6A24700518F3B /* Nunito-ExtraBold.ttf */; };
@@ -41,6 +42,7 @@
 		1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		9605725928F8911F0029C3A3 /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
 		962B394728FBBFFC009F95D3 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		962B394928FC1D63009F95D3 /* VizualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizualizerView.swift; sourceTree = "<group>"; };
 		96353D0F28F6A24700518F3B /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
 		96353D1028F6A24700518F3B /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		96353D1128F6A24700518F3B /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		1F787BF828F7B49300DAD59B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9605725928F8911F0029C3A3 /* CustomList.swift */,
 				1F787BF928F7B4A600DAD59B /* Color.swift */,
 			);
 			path = Extensions;
@@ -112,8 +115,8 @@
 				96F0927128F59FD200EA7B49 /* Model */,
 				96F0925628F55BAB00EA7B49 /* AppHearApp.swift */,
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
-				96F0927028F59CC500EA7B49 /* Info.plist */,
 				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
+				96F0927028F59CC500EA7B49 /* Info.plist */,
 				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
 				96F0926B28F59B7000EA7B49 /* Fonts */,
 				96F0925C28F55BAC00EA7B49 /* Preview Content */,
@@ -164,8 +167,8 @@
 			children = (
 				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
 				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
-				9605725928F8911F0029C3A3 /* CustomList.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
+				962B394928FC1D63009F95D3 /* VizualizerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */,
 				96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */,
 				1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */,
+				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
 				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,
 				9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */,
 				96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */,

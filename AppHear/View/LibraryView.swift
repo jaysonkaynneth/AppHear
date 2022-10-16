@@ -50,7 +50,7 @@ struct LibraryView: View {
                         Image("back-chevron")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 12.0, height: 16.0)
+                            .frame(width: 12, height: 16)
                             .clipped(antialiased: true)
                     }
                         Spacer()
