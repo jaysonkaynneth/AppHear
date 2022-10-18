@@ -22,9 +22,3 @@ struct VizualizerView: View {
         }
     }
 }
-
-struct VizualizerView_Previews: PreviewProvider {
-    static var previews: some View {
-        VizualizerView(value: 200)
-    }
-}

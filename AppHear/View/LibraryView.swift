@@ -89,15 +89,15 @@ struct LibraryView: View {
                                 Image("library-trash")
                                     .resizable()
                                     .scaledToFit()
+                                
                             }
                             .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
                             
                             Button {
                                 print("Saved")
                             } label: {
-                                Image("library-folder")
-                                    .resizable()
-                                    .frame(width: 100.0, height: 100.0)
+                                    Image("library-folder").resizable()
+                                        .frame(width: 100,height: 100)
                             }
                             .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
                         }

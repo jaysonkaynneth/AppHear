@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import Speech
 
 struct RecordView: View {
+    
+    @State private var recording = false
+    
+    @ObservedObject private var mic = MicMonitor(numberOfSamples: 30)
+    
+    private var speechManager = SpeechRecManager()
+    
     var body: some View {
         VStack{
             HStack{
@@ -23,7 +31,7 @@ struct RecordView: View {
                     .multilineTextAlignment(.center)
                 
                 Button {
-                    print("Delete")
+                   //
                 } label: {
                     Image("id-lang-icon")
                         .resizable()
@@ -33,7 +41,7 @@ struct RecordView: View {
                     
                 } .padding(.leading, 40)
                 Button {
-                    print("Delete")
+                   
                 } label: {
                     Image("save-icon")
                         .resizable()
@@ -54,21 +62,65 @@ struct RecordView: View {
                     .scaledToFit()
                     .padding()
             }
-            Button {
-                print("Delete")
-            } label: {
-                Image("purple-record-dummy")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 337, height: 76.5)
+            HStack {
+                visualizerView()
+                Button {
+                    addItem()
+                } label: {
+                    Image(recording ? "pause" : "purple-record")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 76, height: 76.5)
+                }
+                visualizerView()
+                  
             }
+        }.navigationBarHidden(true)
+            .navigationBarTitle("")
+    }
+    
+    private func soundLevel(level: Float) -> CGFloat {
+        let level = max(0.2, CGFloat(level) + 50 / 2)
+        return CGFloat(level * (100 / 25))
+    }
 
+    private func visualizerView() -> some View {
+        VStack {
+            HStack(spacing: 4) {
+                ForEach(mic.soundSample, id: \.self) { (level) in
+                    VizualizerView(value: self.soundLevel(level: level))
+                }
+            }
         }
     }
+    
+    private func addItem() {
+        if speechManager.isRecording {
+            self.recording = false
+            mic.stopMonitoring()
+            speechManager.stopRecording()
+        } else {
+            self.recording = true
+            mic.startMonitoring()
+            speechManager.start { (speechText) in
+                guard let text = speechText, !text.isEmpty else {
+                    self.recording = false
+                    return
+                }
+            }
+        }
+        speechManager.isRecording.toggle()
+    }
 }
+
+
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
         RecordView()
     }
 }
+
+//Button(action: viewModel.startRecording) {
+//
+//}

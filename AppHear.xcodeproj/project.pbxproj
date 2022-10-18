@@ -28,6 +28,7 @@
 		96353D2C28F6A24800518F3B /* Nunito-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1C28F6A24800518F3B /* Nunito-LightItalic.ttf */; };
 		96353D2D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf */; };
 		96353D2E28F6A24800518F3B /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */; };
+		9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */; };
 		96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925628F55BAB00EA7B49 /* AppHearApp.swift */; };
 		96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925828F55BAB00EA7B49 /* ContentView.swift */; };
 		96F0925B28F55BAC00EA7B49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96F0925A28F55BAC00EA7B49 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		96F0926028F55BAC00EA7B49 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925F28F55BAC00EA7B49 /* Persistence.swift */; };
 		96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */; };
 		96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926928F568EE00EA7B49 /* LibraryView.swift */; };
+		96F9EF4728FD4BD400634CFB /* MicrophoneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,7 @@
 		96353D1C28F6A24800518F3B /* Nunito-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-LightItalic.ttf"; sourceTree = "<group>"; };
 		96353D1D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
+		9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		96F0925328F55BAB00EA7B49 /* AppHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F0925628F55BAB00EA7B49 /* AppHearApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHearApp.swift; sourceTree = "<group>"; };
 		96F0925828F55BAB00EA7B49 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		96F0926228F55BAC00EA7B49 /* AppHear.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppHear.xcdatamodel; sourceTree = "<group>"; };
 		96F0926928F568EE00EA7B49 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		96F0927028F59CC500EA7B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,8 @@
 		96F0927128F59FD200EA7B49 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
+				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +281,8 @@
 				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
 				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,
 				9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */,
+				96F9EF4728FD4BD400634CFB /* MicrophoneManager.swift in Sources */,
+				9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */,
 				96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */,
 				1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */,
 			);
@@ -409,6 +417,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Permission to use mic";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -439,6 +449,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Permission to use mic";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

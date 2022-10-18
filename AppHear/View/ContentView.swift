@@ -91,13 +91,23 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                ZStack {
-                    Image("bottom-bar").resizable().frame(width: 390, height: 144, alignment: .center).offset(y: 4)
-                    Button(action: viewModel.startRecording) {
-                        Image("record").resizable().frame(width: 84, height: 84, alignment: .center)
+                    ZStack {
+                        Image("bottom-bar").resizable().frame(width: 390, height: 144, alignment: .center).offset(y: 4)
+                        NavigationLink {
+                            RecordView()
+                                .navigationBarHidden(true)
+                                .navigationBarTitle("")
+                        } label: {
+                            Image("record").resizable().frame(width: 84, height: 84, alignment: .center)
+                        }
+
+                        
+//                        Image("bottom-bar").resizable().frame(width: 390, height: 144, alignment: .center).offset(y: 4)
+//                        Button(action: viewModel.startRecording) {
+//                            Image("record").resizable().frame(width: 84, height: 84, alignment: .center)
+//                        }
+                        
                     }
-                }
-                
             }.ignoresSafeArea().background(Color(cgColor: .screenColor))
         }
     }
