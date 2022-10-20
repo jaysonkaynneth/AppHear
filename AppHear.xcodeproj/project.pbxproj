@@ -29,6 +29,7 @@
 		96353D2D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf */; };
 		96353D2E28F6A24800518F3B /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */; };
 		9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */; };
+		96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */; };
 		96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925628F55BAB00EA7B49 /* AppHearApp.swift */; };
 		96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925828F55BAB00EA7B49 /* ContentView.swift */; };
 		96F0925B28F55BAC00EA7B49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96F0925A28F55BAC00EA7B49 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		96353D1D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
 		9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
+		96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		96F0925328F55BAB00EA7B49 /* AppHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F0925628F55BAB00EA7B49 /* AppHearApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHearApp.swift; sourceTree = "<group>"; };
 		96F0925828F55BAB00EA7B49 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
 				962B394928FC1D63009F95D3 /* VizualizerView.swift */,
+				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */,
 				96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */,
 				1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */,
+				96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
