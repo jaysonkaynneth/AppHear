@@ -44,7 +44,6 @@ struct LibraryView: View {
                     HStack {
                         Button{
                             self.presentationMode.wrappedValue.dismiss()
-                            
                         }
                     label: {
                         Image("back-chevron")
@@ -123,24 +122,3 @@ struct Recording: Identifiable {
     var date: Date
     var emoji: String
 }
-
-struct LibraryView_Previews: PreviewProvider {
-    static var previews: some View {
-        LibraryView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
-//
-//extension UINavigationController {
-//    override open func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithTransparentBackground()
-//        appearance.backgroundImage = UIImage(named: "library-nav-bar")
-//        appearance.largeTitleTextAttributes = [.font : UIFont(name: "Nunito-ExtraBold", size: 34)!]
-//
-//        navigationBar.standardAppearance = appearance
-//        navigationBar.compactAppearance = appearance
-//        navigationBar.scrollEdgeAppearance = appearance
-//    }
-//}
