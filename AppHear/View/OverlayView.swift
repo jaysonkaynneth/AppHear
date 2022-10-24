@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct OverlayView: View {
+    
+    @State private var isPresented = false
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
@@ -23,8 +26,9 @@ struct OverlayView: View {
                         .scaledToFit()
                         .frame(width: 197, height: 68)
                     HStack {
-                        NavigationLink {
-                            RecordView()
+                        Button {
+                            isPresented.toggle()
+                   
                         } label: {
                             Image("id-lang-icon")
                                 .resizable()
@@ -33,9 +37,11 @@ struct OverlayView: View {
                                 .padding(.leading)
                                 .padding(.bottom)
                         }
+                        .fullScreenCover(isPresented: $isPresented, content: RecordView.init)
                         
-                        NavigationLink {
-                            RecordView()
+                        Button {
+                            isPresented.toggle()
+                   
                         } label: {
                             Image("en-lang-icon")
                                 .resizable()
@@ -44,7 +50,7 @@ struct OverlayView: View {
                                 .padding(.leading, 50)
                                 .padding(.bottom)
                         }
-                    }
+                        .fullScreenCover(isPresented: $isPresented, content: RecordView.init)                    }
                 }
                 
                 ZStack {

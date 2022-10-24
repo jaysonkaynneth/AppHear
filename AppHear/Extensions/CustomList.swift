@@ -11,44 +11,34 @@ struct CustomList: View {
     @State var name: String
     @State var date = Date()
     @State var emoji: String
-        
-//        static let dateFormatter: DateFormatter = {
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "dd-mm-yyyy"
-//            formatter.dateStyle = .long
-//            return formatter
-//        }()
     
     var body: some View {
-        
-        ZStack(alignment: .leading){
-//            RoundedRectangle(cornerRadius: 10.0)
-//                .fill(Color.white)
-//                .frame(height: 70)
-//                .shadow(radius: 5)
-//            Image("library-card")
-//                .resizable()
-//                .scaledToFit()
-            HStack {
-                VStack(alignment: .leading){
-                    Text(name)
-                        .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
-                        .font(.custom("Nunito-ExtraBold", size: 18))
-                        
-//                    Text("\(date, format: Date.FormatStyle().year().month().day())")
-                    Text(Date().dateFormat)
-                        .foregroundColor(Color(red: 139/255, green: 139/255, blue: 139/255, opacity: 1.0))
-                        .font(.custom("Nunito-ExtraBold", size: 13))
-                }
-                Spacer()
-                
-                Text(emoji)
-                    .foregroundColor(.black)
-                    .font(.system(size: 33))
-            }.padding()
+        NavigationLink {
+            PlaybackView()
+                .navigationBarHidden(true)
+                .navigationBarTitle("")
+        } label: {
+            ZStack(alignment: .leading){
+                HStack {
+                    VStack(alignment: .leading){
+                        Text(name)
+                            .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
+                            .font(.custom("Nunito-ExtraBold", size: 18))
+                            
+                        Text(Date().dateFormat)
+                            .foregroundColor(Color(red: 139/255, green: 139/255, blue: 139/255, opacity: 1.0))
+                            .font(.custom("Nunito-ExtraBold", size: 13))
+                    }
+                    Spacer()
+                    
+                    Text(emoji)
+                        .foregroundColor(.black)
+                        .font(.system(size: 33))
+                }.padding()
+            }
+            .padding(.leading)
+            .padding(.trailing)
         }
-        .padding(.leading)
-        .padding(.trailing)
     }
     
 }

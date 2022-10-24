@@ -10,6 +10,8 @@ import Speech
 
 struct RecordView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @State private var recording = false
     
     @ObservedObject private var mic = MicMonitor(numberOfSamples: 30)
@@ -19,19 +21,23 @@ struct RecordView: View {
     var body: some View {
         VStack{
             HStack{
-                Image("down-chevron")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 16)
-                    .clipped(antialiased: true)
-                    .padding(.trailing, 50)
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image("down-chevron")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 16)
+                        .clipped(antialiased: true)
+                        .padding(.trailing, 50)
+                }
                 Text("04/10/22 09:41")
                     .font(.custom("Nunito-ExtraBold", size: 22))
                     .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
                     .multilineTextAlignment(.center)
                 
                 Button {
-                   //
+                    //ACTION
                 } label: {
                     Image("id-lang-icon")
                         .resizable()
@@ -41,7 +47,7 @@ struct RecordView: View {
                     
                 } .padding(.leading, 40)
                 Button {
-                   
+                    //ACTION
                 } label: {
                     Image("save-icon")
                         .resizable()
@@ -50,6 +56,7 @@ struct RecordView: View {
                         .clipped(antialiased: true)
                 }
             }.padding(.top)
+            
             ZStack{
                 Image("rec-textbox")
                     .resizable()
@@ -89,7 +96,7 @@ struct RecordView: View {
             HStack(spacing: 4) {
                 ForEach(mic.soundSample, id: \.self) { (level) in
                     VizualizerView(value: self.soundLevel(level: level))
-                }
+                }.frame(height: 76)
             }
         }
     }
@@ -114,12 +121,6 @@ struct RecordView: View {
 }
 
 
-
-struct RecordView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecordView()
-    }
-}
 
 //Button(action: viewModel.startRecording) {
 //
