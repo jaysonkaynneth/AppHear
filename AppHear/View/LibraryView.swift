@@ -8,38 +8,111 @@
 import SwiftUI
 
 struct LibraryView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var searchText = ""
     
-    init() {
-            //Use this if NavigationBarTitle is with Large Font
-            UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Nunito-ExtraBold", size: 34)!]
-        }
     
     private let recordings: [Recording] = [
-        Recording(name: "Fisika", date: Date(), emoji: "😀"),
-        Recording(name: "Data Mining", date: Date(), emoji: "🫶"),
-        Recording(name: "Algorithm Design", date: Date(), emoji: "😮")
+        Recording(name: "Data Mining", date: Date(), emoji: "💻"),
+        Recording(name: "Algorithm Design", date: Date(), emoji: "🐖"),
+        Recording(name: "Mat", date: Date(), emoji: "♾"),
+        Recording(name: "Biologi", date: Date(), emoji: "🤪"),
+        Recording(name: "Mat murni", date: Date(), emoji: "💖"),
+        Recording(name: "Mat minat", date: Date(), emoji: "👨🏻‍🚀"),
+        Recording(name: "Mat Wajib", date: Date(), emoji: "🍔"),
+        Recording(name: "If", date: Date(), emoji: "💪🏻"),
+        Recording(name: "We never try", date: Date(), emoji: "💪🏻"),
+        Recording(name: "How will we know", date: Date(), emoji: "💪🏻"),
+        Recording(name: "baby how far", date: Date(), emoji: "💪🏻"),
+        Recording(name: "this thing can go", date: Date(), emoji: "💪🏻")
+        
     ]
     
-
+    
     var body: some View {
-        NavigationView{
-                VStack{
-                    ForEach(recordings){ item in
-                        CustomList(name: item.name, date: item.date, emoji: item.emoji)
-                    }
+        NavigationView {
+            ZStack {
+                VStack {
+                    Image("library-nav-bar")
+                        .resizable()
+                        .scaledToFit()
+                        .ignoresSafeArea(.all)
                     Spacer()
-                }.navigationTitle("All Recordings")
-                    .padding()
-                    .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search File") {
+                }
+                VStack{
+                    HStack {
+                        Button{
+                            self.presentationMode.wrappedValue.dismiss()
+                            
+                        }
+                    label: {
+                        Image("back-chevron")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 12, height: 16)
+                            .clipped(antialiased: true)
                     }
-            
-            
-//                .background(Image("PatokanLibrary")
-//                    .resizable()
-//                    .edgesIgnoringSafeArea(.all)
-//                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Text("All Recordings")
+                            .font(.custom("Nunito-ExtraBold", size: 28))
+                            .foregroundColor(.white)
+                        Spacer()
+                        
+                    }
+                    ZStack {
+                        Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 354, height: 39).cornerRadius(19.5)
+                        HStack{
+                            Image(systemName: "magnifyingglass").foregroundColor(.white).padding(.leading)
+                            Text("Search File").font(.custom("Nunito-Regular", size: 15)).foregroundColor(.white)
+                            Spacer()
+                        }
+                    }
+                    List{
+                        ForEach(recordings){ item in
+                            CustomList(name: item.name, date: item.date, emoji: item.emoji)
+                        }
+                        .listRowBackground(Image("library-card")
+                            .resizable()
+                            .scaledToFit()
+                            .ignoresSafeArea(.all)
+                            .aspectRatio(contentMode: .fit))
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button {
+                                print("Delete")
+                            } label: {
+                                Image("library-trash")
+                                    .resizable()
+                                    .scaledToFit()
+                                
+                            }
+                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
+                            
+                            Button {
+                                print("Saved")
+                            } label: {
+                                    Image("library-folder").resizable()
+                                        .frame(width: 100,height: 100)
+                            }
+                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
+                        }
+                    }
+                    .padding(.top, 3)
+                    .frame( maxWidth: .infinity)
+                    .edgesIgnoringSafeArea(.all)
+                    .listStyle(GroupedListStyle())
+                    .scrollContentBackground(.hidden)
+                }
+                .padding(.trailing)
+                .padding(.leading)
+            }
+            .navigationBarHidden(true)
+            .navigationBarTitle("")
         }
     }
 }
@@ -56,3 +129,18 @@ struct LibraryView_Previews: PreviewProvider {
         LibraryView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+//
+//extension UINavigationController {
+//    override open func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithTransparentBackground()
+//        appearance.backgroundImage = UIImage(named: "library-nav-bar")
+//        appearance.largeTitleTextAttributes = [.font : UIFont(name: "Nunito-ExtraBold", size: 34)!]
+//
+//        navigationBar.standardAppearance = appearance
+//        navigationBar.compactAppearance = appearance
+//        navigationBar.scrollEdgeAppearance = appearance
+//    }
+//}
