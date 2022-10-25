@@ -14,7 +14,7 @@ struct AppHearApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: ContentViewModel())
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

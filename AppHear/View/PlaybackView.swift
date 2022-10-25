@@ -19,6 +19,7 @@ struct PlaybackView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @State private var currentValue = 0.0
     @State private var recording = false
     @State private var time: Double = 0
     
@@ -70,11 +71,15 @@ struct PlaybackView: View {
                     }
                 }
                 
-                Slider(value: $time, in: 0...15802)
-                    .padding(.leading)
-                    .padding(.trailing)
+                SliderView(value: $currentValue,
+                            sliderRange: 0...15802)
+                    .frame(width: 350, height:8)
+                    .padding(.top)
+                    
+                
+                
                 HStack{
-                    Text("\(time, specifier: "%.f")")
+                    Text("\(currentValue, specifier: "%.f")")
                         .padding(.leading)
                     Spacer()
                     Text("1:58:02") .font(.custom("Nunito-Medium", size: 12))
