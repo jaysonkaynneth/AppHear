@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import CoreData
 import Speech
 
 struct RecordView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \File.create, ascending: true)], animation: .default) private var files: FetchedResults<File>
     
     @State private var recording = false
     
-    @ObservedObject private var mic = MicMonitor(numberOfSamples: 30)
+    @ObservedObject private var mic = MicMonitor(numberOfSamples: 50)
     
     private var speechManager = SpeechRecManager()
     
@@ -63,32 +66,43 @@ struct RecordView: View {
                     .scaledToFit()
                     .shadow(radius: 10)
                     .padding()
-                Image("rec-empty")
-                    .resizable()
-                    .frame(width: 210, height: 268)
-                    .scaledToFit()
-                    .padding()
+                
+                List {
+                    ForEach(files) { file in
+                        Text(file.text ?? "-")
+                    }
+                }
+              
+                
+//                Image("")
+//                    .resizable()
+//                    .frame(width: 210, height: 268)
+//                    .scaledToFit()
+//                    .padding()
             }
-            HStack {
+            ZStack {
                 visualizerView()
+                Rectangle()
+                    .fill(.white)
+                    .frame(width: 88, height: 150)
                 Button {
-                    addItem()
+                    startRecording()
                 } label: {
                     Image(recording ? "pause" : "purple-record")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 76, height: 76.5)
+                        
                 }
-                visualizerView()
-                  
+//                visualizerView()
             }
         }.navigationBarHidden(true)
             .navigationBarTitle("")
     }
     
     private func soundLevel(level: Float) -> CGFloat {
-        let level = max(0.2, CGFloat(level) + 50 / 2)
-        return CGFloat(level * (100 / 25))
+        let level = max(0.2, CGFloat(level) + 25)
+        return CGFloat(level * 4)
     }
 
     private func visualizerView() -> some View {
@@ -101,7 +115,7 @@ struct RecordView: View {
         }
     }
     
-    private func addItem() {
+    private func startRecording() {
         if speechManager.isRecording {
             self.recording = false
             mic.stopMonitoring()
@@ -113,6 +127,20 @@ struct RecordView: View {
                 guard let text = speechText, !text.isEmpty else {
                     self.recording = false
                     return
+                }
+                DispatchQueue.main.async {
+                    withAnimation {
+                        let newItem = File(context: viewContext)
+                        newItem.id = UUID()
+                        newItem.text = text
+                        newItem.create = Date()
+                        
+                        do {
+                            try viewContext.save()
+                        } catch {
+                            print(error)
+                        }
+                    }
                 }
             }
         }

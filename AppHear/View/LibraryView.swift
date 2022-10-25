@@ -72,7 +72,14 @@ struct LibraryView: View {
                     }
                     List{
                         ForEach(recordings){ item in
-                            CustomList(name: item.name, date: item.date, emoji: item.emoji)
+                            DisclosureGroup(
+                            content: {
+                                CustomList(name: item.name, date: item.date, emoji: item.emoji)
+                            },
+                            label: {
+                                CustomList(name: item.name, date: item.date, emoji: item.emoji)
+                            }
+                        ).tint(.white)
                         }
                         .listRowBackground(Image("library-card")
                             .resizable()
