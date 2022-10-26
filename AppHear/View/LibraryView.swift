@@ -79,7 +79,7 @@ struct LibraryView: View {
                             label: {
                                 CustomList(name: item.name, date: item.date, emoji: item.emoji)
                             }
-                        ).tint(.white)
+                        ).tint(.clear)
                         }
                         .listRowBackground(Image("library-card")
                             .resizable()
