@@ -63,7 +63,7 @@ struct LibraryView: View {
                         
                     }
                     ZStack {
-                        Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 354, height: 39).cornerRadius(19.5)
+                        Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 354, height: 39).cornerRadius(19)
                         HStack{
                             Image(systemName: "magnifyingglass").foregroundColor(.white).padding(.leading)
                             Text("Search File").font(.custom("Nunito-Regular", size: 15)).foregroundColor(.white)
@@ -79,7 +79,7 @@ struct LibraryView: View {
                             label: {
                                 CustomList(name: item.name, date: item.date, emoji: item.emoji)
                             }
-                        ).tint(.white)
+                        ).tint(.clear)
                         }
                         .listRowBackground(Image("library-card")
                             .resizable()
