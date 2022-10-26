@@ -98,7 +98,7 @@ struct ContentView: View {
                     Spacer()
                         
                         ZStack {
-                                Image("bottom-bar").resizable().frame(width: 390, height: 144, alignment: .center).offset(y: 4)
+                            Image("bottom-bar").resizable().scaledToFit()
                             
                                 Button {
                                     overlay.toggle()
