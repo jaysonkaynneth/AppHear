@@ -7,9 +7,11 @@
 
 import Foundation
 import Speech
+import SwiftUI
 
 class SpeechRecManager {
     public var isRecording = false
+    @State var transcript = "Transcript will be shown here"
     private var audioEngine: AVAudioEngine!
     private var inputNode: AVAudioInputNode!
     private var audioSession: AVAudioSession!
@@ -41,15 +43,17 @@ class SpeechRecManager {
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         recognitionRequest?.shouldReportPartialResults = true
         recognizer.recognitionTask(with: recognitionRequest!) { (result, error) in
+            var isFinal = false
             guard error == nil else {
                 print("error \(error!.localizedDescription)")
                 return
             }
-            guard let result = result else {
-                return
+            if result != nil{
+                self.transcript = result?.bestTranscription.formattedString ?? "No transcript was made"
+                isFinal = (result?.isFinal)!
             }
-            if result.isFinal {
-                completion(result.bestTranscription.formattedString)
+            if isFinal {
+                self.stopRecording()
             }
         }
         
@@ -77,9 +81,9 @@ class SpeechRecManager {
         recognitionRequest = nil
         audioEngine.stop()
         inputNode.removeTap(onBus: 0)
-        
-        try? audioSession.setActive(false)
+//        try? audioSession.setActive(false)
         audioSession = nil
+        print(transcript)
     }
 }
 
