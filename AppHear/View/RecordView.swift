@@ -42,7 +42,7 @@ struct RecordView: View {
                 Button {
                     //ACTION
                 } label: {
-                    Image("id-lang-icon")
+                    Image("connection-icon")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 23, height: 21)
