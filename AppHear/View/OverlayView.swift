@@ -10,6 +10,8 @@ import SwiftUI
 struct OverlayView: View {
     
     @State private var isPresented = false
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
     var body: some View {
         ZStack {
@@ -28,7 +30,6 @@ struct OverlayView: View {
                     HStack {
                         Button {
                             isPresented.toggle()
-                   
                         } label: {
                             Image("id-lang-icon")
                                 .resizable()
@@ -47,7 +48,7 @@ struct OverlayView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 34, height: 31)
-                                .padding(.leading, 50)
+                                .padding(.leading, 60)
                                 .padding(.bottom)
                         }
                         .fullScreenCover(isPresented: $isPresented, content: RecordView.init)                    }
@@ -58,7 +59,9 @@ struct OverlayView: View {
                     Rectangle().fill(.clear).frame(width: 390, height: 144, alignment: .center).offset(y: 4)
                 }
             }
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
+        .preferredColorScheme(.light)
     }
 }
 

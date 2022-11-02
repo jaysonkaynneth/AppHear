@@ -18,6 +18,8 @@ import Speech
 struct PlaybackView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
     @State private var currentValue = 0.0
     @State private var recording = false
@@ -143,7 +145,7 @@ struct PlaybackView: View {
             }
             .navigationBarHidden(true)
         .navigationBarTitle("")
-        }
+        }.preferredColorScheme(.light)
     }
 }
 
