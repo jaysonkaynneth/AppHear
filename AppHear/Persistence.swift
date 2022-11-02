@@ -7,16 +7,13 @@
 
 import CoreData
 
-struct PersistenceController {
-    static let shared = PersistenceController()
-    
-    let container: NSPersistentContainer
+class Persistence: ObservableObject {
+    let container = NSPersistentContainer(name: "AppHear")
     
     init() {
-        container = NSPersistentContainer(name: "AppHear")
-        container.loadPersistentStores { (_, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved Error \(error), \(error.userInfo)")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                print("Core Data failed to load: \(error.localizedDescription)")
             }
         }
     }

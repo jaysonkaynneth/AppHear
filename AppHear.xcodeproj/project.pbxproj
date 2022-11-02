@@ -127,7 +127,6 @@
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
 				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
 				96F0927028F59CC500EA7B49 /* Info.plist */,
-				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
 				96F0926B28F59B7000EA7B49 /* Fonts */,
 				96F0925C28F55BAC00EA7B49 /* Preview Content */,
 			);
@@ -168,6 +167,7 @@
 		96F0927128F59FD200EA7B49 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct LibraryView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State private var searchText = ""
     
     
@@ -120,6 +121,7 @@ struct LibraryView: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
+        .preferredColorScheme(.light)
     }
 }
 

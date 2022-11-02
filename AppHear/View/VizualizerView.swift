@@ -10,6 +10,7 @@ import SwiftUI
 struct VizualizerView: View {
     var value: CGFloat
     let numberOfSamples: Int = 30
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         ZStack {
@@ -19,5 +20,6 @@ struct VizualizerView: View {
             
                 .frame(width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 10) / CGFloat(numberOfSamples), height: value)
         }
+        .preferredColorScheme(.light)
     }
 }
