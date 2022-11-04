@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import Speech
+import AVFoundation
 
 struct RecordView: View {
     
@@ -25,6 +26,8 @@ struct RecordView: View {
     @State private var showingExporter = false
     @State var confirmedText: AttributedString = ""
     
+    @State var audioRecorder : AVAudioRecorder!
+
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
     
@@ -171,6 +174,8 @@ struct RecordView: View {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             isRecording = false
+            self.audioRecorder.stop()
+            self.audioRecorder = nil
         } else {
             self.startRecording()
         }
@@ -252,6 +257,16 @@ struct RecordView: View {
             recognitionTask = nil
         }
         
+        let audioURL = getAudioURL()
+            print(audioURL.absoluteString)
+        
+        let settings = [
+                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                AVSampleRateKey: 12000,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            ]
+        
         // Create instance of audio session to record voice
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -286,6 +301,7 @@ struct RecordView: View {
             if error != nil || isFinal {
                 
                 self.audioEngine.stop()
+                self.audioRecorder = nil
                 inputNode.removeTap(onBus: 0)
                 
                 self.recognitionRequest = nil
@@ -305,12 +321,30 @@ struct RecordView: View {
         self.audioEngine.prepare()
         
         do {
-            try self.audioEngine.start()
-        } catch {
-            print("audioEngine couldn't start because of an error.")
-        }
+                audioRecorder = try AVAudioRecorder(url: audioURL, settings: settings)
+                audioRecorder.record()
+                try self.audioEngine.start()
+            } catch {
+                print("fail starting audio recorder")
+            }
+        
+//        do {
+//            try self.audioEngine.start()
+//        } catch {
+//            print("audioEngine couldn't start because of an error.")
+//        }
         
         transcript = "Recording speech.."
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+
+    func getAudioURL() -> URL {
+        return getDocumentsDirectory().appendingPathComponent("Audio.m4a")
     }
     
     //INI TEMPORARY YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

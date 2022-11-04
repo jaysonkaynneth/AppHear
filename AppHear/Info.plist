@@ -4,6 +4,9 @@
 <dict>
 	<key>ATSApplicationFontsPath</key>
 	<string></string>
+	<key>NSDocumentsFolderUsageDescription
+NSDocumentsFolderUsageDescription</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Nunito-Black.ttf</string>
