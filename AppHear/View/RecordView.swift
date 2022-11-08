@@ -25,7 +25,6 @@ struct RecordView: View {
     @State private var isRecording: Bool = false
     @State private var showingExporter = false
     @State var confirmedText: AttributedString = ""
-    
     @State var audioRecorder : AVAudioRecorder!
 
     let audioEngine = AVAudioEngine()
@@ -66,10 +65,13 @@ struct RecordView: View {
                 } .padding(.leading, 40)
                 Button {
                     //ACTION
-                    
+                    let audioURL = getAudioURL()
                     let inputNode = audioEngine.inputNode
                     let file =  File(context: moc)
+                    
                     file.transcript = (transcript)
+                    file.audio = audioURL.absoluteString
+                    
                     try? moc.save()
                     self.audioEngine.stop()
                     inputNode.removeTap(onBus: 0)
@@ -250,8 +252,7 @@ struct RecordView: View {
     }
     
     func startRecording() {
-        
-        // Clear all previous session data and cancel task
+
         if recognitionTask != nil {
             recognitionTask?.cancel()
             recognitionTask = nil
@@ -267,7 +268,6 @@ struct RecordView: View {
                 AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
             ]
         
-        // Create instance of audio session to record voice
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category.record, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
@@ -344,7 +344,8 @@ struct RecordView: View {
     }
 
     func getAudioURL() -> URL {
-        return getDocumentsDirectory().appendingPathComponent("Audio.m4a")
+        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
     }
     
     //INI TEMPORARY YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

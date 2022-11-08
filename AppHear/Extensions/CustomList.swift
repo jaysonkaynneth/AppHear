@@ -14,7 +14,7 @@ struct CustomList: View {
     
     var body: some View {
         NavigationLink {
-            PlaybackView()
+            PlaybackView(audioURL: <#URL#>)
                 .navigationBarHidden(true)
                 .navigationBarTitle("")
         } label: {

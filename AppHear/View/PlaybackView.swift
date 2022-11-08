@@ -14,6 +14,8 @@
 
 import SwiftUI
 import Speech
+import AVKit
+import AVFoundation
 
 struct PlaybackView: View {
     
@@ -22,8 +24,22 @@ struct PlaybackView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
     @State private var currentValue = 0.0
-    @State private var recording = false
+    @State private var isPlaying = false
     @State private var time: Double = 0
+    
+    let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    
+    //try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    
+    var audioURL: URL
+    
+    //FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    
+    @StateObject private var soundPlayerManager = SoundPlayerManager()
+    @ObservedObject var audioPlayer = AudioPlayerManager()
+    
+   
+    
     
     var body: some View {
         NavigationView {
@@ -62,7 +78,7 @@ struct PlaybackView: View {
                         .resizable()
                         .scaledToFit()
                         .shadow(radius: 10)
-                
+                    
                     VStack{
                         Image("text-placeholder")
                             .resizable()
@@ -74,10 +90,10 @@ struct PlaybackView: View {
                 }
                 
                 SliderView(value: $currentValue,
-                            sliderRange: 0...15802)
-                    .frame(width: 350, height:8)
-                    .padding(.top)
-                    
+                           sliderRange: 0...15802)
+                .frame(width: 350, height:8)
+                .padding(.top)
+                
                 
                 
                 HStack{
@@ -87,7 +103,7 @@ struct PlaybackView: View {
                     Text("1:58:02") .font(.custom("Nunito-Medium", size: 12))
                         .padding(.trailing)
                 }
-        
+                
                 HStack {
                     
                     Button {
@@ -112,9 +128,17 @@ struct PlaybackView: View {
                     .padding(.trailing)
                     
                     Button {
-                        recording.toggle()
+//                        soundPlayerManager.playSound(sound: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+                        isPlaying.toggle()
+                        if isPlaying == true{
+                            self.audioPlayer.play(audio: self.audioURL)
+//                            soundPlayerManager.audioPlayer?.play()
+                        } else {
+                            self.audioPlayer.pause()
+//                            soundPlayerManager.audioPlayer?.pause()
+                        }
                     } label: {
-                        Image(recording ? "pause" : "play")
+                        Image(isPlaying ? "pause" : "play")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 64, height: 64)
@@ -123,7 +147,7 @@ struct PlaybackView: View {
                     .padding(.trailing)
                     
                     Button {
-                        
+                        //ACTION
                     } label: {
                         Image("forward")
                             .resizable()
@@ -133,7 +157,7 @@ struct PlaybackView: View {
                     .padding(.leading)
                     Spacer()
                     Button {
-                        
+                        //ACTION
                     } label: {
                         Image("yellow-trash")
                             .resizable()
@@ -144,20 +168,8 @@ struct PlaybackView: View {
                 }
             }
             .navigationBarHidden(true)
-        .navigationBarTitle("")
+            .navigationBarTitle("")
         }.preferredColorScheme(.light)
     }
 }
-
-
-
-struct PlaybackView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlaybackView()
-    }
-}
-
-//Button(action: viewModel.startRecording) {
-//
-//}
 

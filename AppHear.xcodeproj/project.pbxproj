@@ -31,6 +31,8 @@
 		96353D2E28F6A24800518F3B /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */; };
 		967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E4B7929015D74001C4CCE /* OverlayView.swift */; };
 		9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */; };
+		969EE1D42919052800A909B7 /* SoundPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969EE1D32919052800A909B7 /* SoundPlayerManager.swift */; };
+		96D98C7E2917CD7A00613624 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D98C7D2917CD7A00613624 /* AudioPlayerManager.swift */; };
 		96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */; };
 		96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925628F55BAB00EA7B49 /* AppHearApp.swift */; };
 		96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925828F55BAB00EA7B49 /* ContentView.swift */; };
@@ -67,6 +69,9 @@
 		96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
 		967E4B7929015D74001C4CCE /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
+		969EE1D32919052800A909B7 /* SoundPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayerManager.swift; sourceTree = "<group>"; };
+		969EE1D529190C9B00A909B7 /* AppHear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppHear.entitlements; sourceTree = "<group>"; };
+		96D98C7D2917CD7A00613624 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 		96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		96F0925328F55BAB00EA7B49 /* AppHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F0925628F55BAB00EA7B49 /* AppHearApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHearApp.swift; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 		96F0925528F55BAB00EA7B49 /* AppHear */ = {
 			isa = PBXGroup;
 			children = (
+				969EE1D529190C9B00A909B7 /* AppHear.entitlements */,
 				1F787BF828F7B49300DAD59B /* Extensions */,
 				96F0927328F59FE000EA7B49 /* ViewModel */,
 				96F0927228F59FD800EA7B49 /* View */,
@@ -192,6 +198,8 @@
 				1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */,
 				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
+				96D98C7D2917CD7A00613624 /* AudioPlayerManager.swift */,
+				969EE1D32919052800A909B7 /* SoundPlayerManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -282,6 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D98C7E2917CD7A00613624 /* AudioPlayerManager.swift in Sources */,
+				969EE1D42919052800A909B7 /* SoundPlayerManager.swift in Sources */,
 				96F0926028F55BAC00EA7B49 /* Persistence.swift in Sources */,
 				962B394828FBBFFC009F95D3 /* RecordView.swift in Sources */,
 				96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */,
@@ -422,10 +432,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AppHear/AppHear.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = LDU59D27D5;
+				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -454,10 +465,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AppHear/AppHear.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = LDU59D27D5;
+				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
