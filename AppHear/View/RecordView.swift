@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 import Speech
 import AVFoundation
+import CloudKit
 
 struct RecordView: View {
     
@@ -27,6 +28,7 @@ struct RecordView: View {
     @State var confirmedText: AttributedString = ""
     
     @State var audioRecorder : AVAudioRecorder!
+    @State var isDirty = true
 
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
@@ -78,6 +80,8 @@ struct RecordView: View {
                     
                     recording = false
                     isRecording = false
+                    
+                    doSubmission()
                 } label: {
                     Image("save-icon")
                         .resizable()
@@ -345,6 +349,25 @@ struct RecordView: View {
 
     func getAudioURL() -> URL {
         return getDocumentsDirectory().appendingPathComponent("Audio.m4a")
+    }
+    
+    func doSubmission () {
+        let audioRecord = CKRecord(recordType: "AudioFiles")
+        audioRecord["transcript"] = transcript as CKRecordValue
+
+        let audioURL = getAudioURL()
+        let audioAsset = CKAsset(fileURL: audioURL)
+        audioRecord["audio"] = audioAsset
+        
+        CKContainer.default().publicCloudDatabase.save(audioRecord) { record, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                } else {
+        
+                }
+            }
+        }
     }
     
     //INI TEMPORARY YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
