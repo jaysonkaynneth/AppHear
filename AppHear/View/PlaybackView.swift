@@ -26,19 +26,29 @@ struct PlaybackView: View {
     @State private var currentValue = 0.0
     @State private var isPlaying = false
     @State private var time: Double = 0
+    @State var storedURL: URL?
     
+    let playerManager = AudioManager.shared
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-    
-    //try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     
     var audioURL: URL
     
-    //FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    //    FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
     @StateObject private var soundPlayerManager = SoundPlayerManager()
     @ObservedObject var audioPlayer = AudioPlayerManager()
     
-   
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        print(documentsDirectory)
+        return documentsDirectory
+    }
+    
+    func getAudioURL() -> URL {
+        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+    }
     
     
     var body: some View {
@@ -128,15 +138,33 @@ struct PlaybackView: View {
                     .padding(.trailing)
                     
                     Button {
-//                        soundPlayerManager.playSound(sound: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+                        //                        soundPlayerManager.playSound(sound:  "/Users/jason/Library/Developer/CoreSimulator/Devices/88214EA9-0BA9-450B-A3E4-B43A94F32336/data/Containers/Data/Application/ECFC18F5-E309-4726-94F6-751EB192D16C/Documents/audio.m4a")
                         isPlaying.toggle()
                         if isPlaying == true{
                             self.audioPlayer.play(audio: self.audioURL)
-//                            soundPlayerManager.audioPlayer?.play()
+                            //                            soundPlayerManager.audioPlayer?.play()
+                            guard let path = Bundle.main.path(forResource: "selectSE", ofType: "mp3") else {
+                                print("Sound file not found")
+                                return
+                            }
+                            let url = URL(fileURLWithPath: path)
+                            do {
+                                let fileData = try Data(contentsOf: url)
+                                storedURL = getAudioURL()
+                                
+                                print("File Writing on View -> Success \(storedURL?.absoluteString ?? "nil") ")
+                            } catch {
+                                print("Data.init(contentsOf:) failed: \(error)")
+                            }
+                            
+                            playerManager.play(url: storedURL!) //<-
+                            print("end of code")
                         } else {
                             self.audioPlayer.pause()
-//                            soundPlayerManager.audioPlayer?.pause()
+                            //                            soundPlayerManager.audioPlayer?.pause()
                         }
+                        
+                        
                     } label: {
                         Image(isPlaying ? "pause" : "play")
                             .resizable()
@@ -172,4 +200,5 @@ struct PlaybackView: View {
         }.preferredColorScheme(.light)
     }
 }
+
 
