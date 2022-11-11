@@ -16,6 +16,8 @@ import SwiftUI
 import Speech
 import AVKit
 import AVFoundation
+import PartialSheet
+
 
 struct PlaybackView: View {
     
@@ -26,8 +28,15 @@ struct PlaybackView: View {
     @State private var currentValue = 0.0
     @State private var isPlaying = false
     @State private var time: Double = 0
+    @State private var transcript = AttributedString("")
+    @State private var isSheetPresented = false
     @State var storedURL: URL?
+    @StateObject var dictionaryManager : DictionaryManager = DictionaryManager()
     @ObservedObject var audioPlayer = AudioPlayerManager()
+    
+    //For testing only
+    var kalimat = "Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket."
+    //
     
     let playerManager = AudioManager.shared
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -63,7 +72,7 @@ struct PlaybackView: View {
                     
                     Text("Typography S1")
                         .font(.custom("Nunito-ExtraBold", size: 22))
-                        .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
+                        .foregroundColor(Color(CGColor.appHearBlue))
                         .multilineTextAlignment(.center)
                     Spacer()
                     Button {
@@ -84,11 +93,14 @@ struct PlaybackView: View {
                         .shadow(radius: 10)
                     
                     VStack{
-                        Image("text-placeholder")
-                            .resizable()
-                            .frame(width: 290, height: 165)
-                            .scaledToFit()
-                            .padding(.top, 50)
+                        
+                        ScrollView{
+                            Text(transcript)
+                                .onTapGesture {location in
+                                    dictionaryManager.extractWord(location: location, transcript: kalimat)
+                                }
+                        }.frame(width: 290)
+                            .padding(.top,20)
                         Spacer()
                     }
                 }
@@ -186,7 +198,20 @@ struct PlaybackView: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }.preferredColorScheme(.light)
+            .partialSheet(isPresented: $dictionaryManager.isSheetPresented, content: {
+                DictionaryModalView(fetchedWord: dictionaryManager.tappedWord.trimTrailingPunctuation())
+            })
+            .onAppear{
+                var attString = AttributedString(kalimat)
+                var containerForAttString = AttributeContainer()
+                containerForAttString.font = .system(size: 14)
+                containerForAttString.foregroundColor = Color(CGColor.appHearBlue)
+                attString.mergeAttributes(containerForAttString)
+                transcript = attString
+            }
     }
 }
+
+
 
 

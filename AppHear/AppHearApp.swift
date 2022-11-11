@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 @main
 struct AppHearApp: App {
@@ -15,6 +16,7 @@ struct AppHearApp: App {
         WindowGroup {
             ContentView(viewModel: ContentViewModel())
                 .environment(\.managedObjectContext, persistence.container.viewContext)
+                .attachPartialSheetToRoot()
         }
     }
 }
