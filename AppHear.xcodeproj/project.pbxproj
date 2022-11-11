@@ -31,6 +31,8 @@
 		96353D2E28F6A24800518F3B /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */; };
 		967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E4B7929015D74001C4CCE /* OverlayView.swift */; };
 		9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */; };
+		969A2CFB291A5D74006914A1 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A2CFA291A5D74006914A1 /* AudioManager.swift */; };
+		96E066F7291CED8A00C928BE /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E066F6291CED8A00C928BE /* AudioPlayerManager.swift */; };
 		96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */; };
 		96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925628F55BAB00EA7B49 /* AppHearApp.swift */; };
 		96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925828F55BAB00EA7B49 /* ContentView.swift */; };
@@ -70,6 +72,8 @@
 		96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
 		967E4B7929015D74001C4CCE /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
+		969A2CFA291A5D74006914A1 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		96E066F6291CED8A00C928BE /* AudioPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerManager.swift; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/AudioPlayerManager.swift"; sourceTree = "<group>"; };
 		96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		96F0925328F55BAB00EA7B49 /* AppHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F0925628F55BAB00EA7B49 /* AppHearApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHearApp.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */,
 				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
+				96E066F6291CED8A00C928BE /* AudioPlayerManager.swift */,
+				969A2CFA291A5D74006914A1 /* AudioManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -302,6 +308,8 @@
 				96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */,
 				1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */,
 				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
+				96E066F7291CED8A00C928BE /* AudioPlayerManager.swift in Sources */,
+				969A2CFB291A5D74006914A1 /* AudioManager.swift in Sources */,
 				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,
 				9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */,
 				96F9EF4728FD4BD400634CFB /* MicrophoneManager.swift in Sources */,
@@ -440,7 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = LDU59D27D5;
+				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -473,7 +481,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = LDU59D27D5;
+				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;

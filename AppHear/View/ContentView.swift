@@ -103,7 +103,10 @@ struct ContentView: View {
                     List{
                         ForEach(files) { files in
                             HStack{
-                                Text(files.transcript ?? "no feedback")
+                                Text(files.transcript ?? "no transcript")
+                                
+                                Text(files.audio ?? "no transcript")
+
                             }
                                 .onTapGesture {
                                     print("Tapped cell")
