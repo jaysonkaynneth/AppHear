@@ -33,7 +33,6 @@
 		967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E4B7929015D74001C4CCE /* OverlayView.swift */; };
 		9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */; };
 		969A2CFB291A5D74006914A1 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A2CFA291A5D74006914A1 /* AudioManager.swift */; };
-		96E066F7291CED8A00C928BE /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E066F6291CED8A00C928BE /* AudioPlayerManager.swift */; };
 		96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */; };
 		96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925628F55BAB00EA7B49 /* AppHearApp.swift */; };
 		96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925828F55BAB00EA7B49 /* ContentView.swift */; };
@@ -43,6 +42,9 @@
 		96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */; };
 		96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926928F568EE00EA7B49 /* LibraryView.swift */; };
 		96F9EF4728FD4BD400634CFB /* MicrophoneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */; };
+		EA8E4D55291E2C2300AB3B97 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = EA8E4D54291E2C2300AB3B97 /* ActivityIndicatorView */; };
+		EA8E4D58291E2DC200AB3B97 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = EA8E4D57291E2DC200AB3B97 /* PartialSheet */; };
+		EA8E4D5B291E32EB00AB3B97 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +75,6 @@
 		967E4B7929015D74001C4CCE /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		969A2CFA291A5D74006914A1 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		96E066F6291CED8A00C928BE /* AudioPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerManager.swift; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/AudioPlayerManager.swift"; sourceTree = "<group>"; };
 		96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		96F0925328F55BAB00EA7B49 /* AppHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F0925628F55BAB00EA7B49 /* AppHearApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHearApp.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		96F0926928F568EE00EA7B49 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		96F0927028F59CC500EA7B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneManager.swift; sourceTree = "<group>"; };
+		EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8E4D58291E2DC200AB3B97 /* PartialSheet in Frameworks */,
+				EA8E4D55291E2C2300AB3B97 /* ActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +205,8 @@
 				1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */,
 				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
-				96E066F6291CED8A00C928BE /* AudioPlayerManager.swift */,
 				969A2CFA291A5D74006914A1 /* AudioManager.swift */,
+				EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,6 +227,10 @@
 			dependencies = (
 			);
 			name = AppHear;
+			packageProductDependencies = (
+				EA8E4D54291E2C2300AB3B97 /* ActivityIndicatorView */,
+				EA8E4D57291E2DC200AB3B97 /* PartialSheet */,
+			);
 			productName = AppHear;
 			productReference = 96F0925328F55BAB00EA7B49 /* AppHear.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +259,10 @@
 				Base,
 			);
 			mainGroup = 96F0924A28F55BAB00EA7B49;
+			packageReferences = (
+				EA8E4D53291E2C2300AB3B97 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				EA8E4D56291E2DC200AB3B97 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+			);
 			productRefGroup = 96F0925428F55BAB00EA7B49 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,7 +312,6 @@
 				96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */,
 				1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */,
 				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
-				96E066F7291CED8A00C928BE /* AudioPlayerManager.swift in Sources */,
 				969A2CFB291A5D74006914A1 /* AudioManager.swift in Sources */,
 				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,
 				9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */,
@@ -311,6 +322,7 @@
 				96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */,
 				1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */,
 				96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */,
+				EA8E4D5B291E32EB00AB3B97 /* AudioPlayerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +456,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Permission to use mic";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Permission;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -477,7 +489,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Permission to use mic";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Permission;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -519,6 +531,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA8E4D53291E2C2300AB3B97 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		EA8E4D56291E2DC200AB3B97 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA8E4D54291E2C2300AB3B97 /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA8E4D53291E2C2300AB3B97 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
+		EA8E4D57291E2DC200AB3B97 /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA8E4D56291E2DC200AB3B97 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */ = {
