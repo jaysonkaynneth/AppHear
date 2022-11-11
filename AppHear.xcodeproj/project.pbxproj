@@ -40,6 +40,8 @@
 		96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */; };
 		96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926928F568EE00EA7B49 /* LibraryView.swift */; };
 		96F9EF4728FD4BD400634CFB /* MicrophoneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */; };
+		EA8E4D55291E2C2300AB3B97 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = EA8E4D54291E2C2300AB3B97 /* ActivityIndicatorView */; };
+		EA8E4D58291E2DC200AB3B97 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = EA8E4D57291E2DC200AB3B97 /* PartialSheet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8E4D58291E2DC200AB3B97 /* PartialSheet in Frameworks */,
+				EA8E4D55291E2C2300AB3B97 /* ActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +218,10 @@
 			dependencies = (
 			);
 			name = AppHear;
+			packageProductDependencies = (
+				EA8E4D54291E2C2300AB3B97 /* ActivityIndicatorView */,
+				EA8E4D57291E2DC200AB3B97 /* PartialSheet */,
+			);
 			productName = AppHear;
 			productReference = 96F0925328F55BAB00EA7B49 /* AppHear.app */;
 			productType = "com.apple.product-type.application";
@@ -242,6 +250,10 @@
 				Base,
 			);
 			mainGroup = 96F0924A28F55BAB00EA7B49;
+			packageReferences = (
+				EA8E4D53291E2C2300AB3B97 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				EA8E4D56291E2DC200AB3B97 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+			);
 			productRefGroup = 96F0925428F55BAB00EA7B49 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -507,6 +519,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA8E4D53291E2C2300AB3B97 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		EA8E4D56291E2DC200AB3B97 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA8E4D54291E2C2300AB3B97 /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA8E4D53291E2C2300AB3B97 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
+		EA8E4D57291E2DC200AB3B97 /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA8E4D56291E2DC200AB3B97 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */ = {
