@@ -14,6 +14,8 @@
 
 import SwiftUI
 import Speech
+import CloudKit
+import AVFoundation
 
 struct PlaybackView: View {
     
@@ -24,6 +26,9 @@ struct PlaybackView: View {
     @State private var currentValue = 0.0
     @State private var recording = false
     @State private var time: Double = 0
+    
+    @State var audiofiles = [AudioFiles]()
+    @State var audioPlayer: AVAudioPlayer!
     
     var body: some View {
         NavigationView {
@@ -147,7 +152,69 @@ struct PlaybackView: View {
         .navigationBarTitle("")
         }.preferredColorScheme(.light)
     }
+    
+    func loadAudio() {
+        let pred = NSPredicate(value: true)
+        let sort = NSSortDescriptor(key: "creationDate", ascending: false)
+        let query = CKQuery(recordType: "AudioFiles", predicate: pred)
+        query.sortDescriptors = [sort]
+
+        let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = ["transcript"]
+        operation.resultsLimit = 50
+
+        var newAudio = [AudioFiles]()
+
+        operation.recordMatchedBlock = { record in
+            print(record)
+            var audio = AudioFiles()
+            audio.recordID = record.recordID
+            audio.transcript = record["transcript"]
+            newAudio.append(audio)
+            audiofiles = newAudio
+            
+        }
+        
+//        let yourContainer = CKContainer(identifier: "iCloud.samsantech.AppHear")
+//        yourContainer.fetchUserRecordID { (userID, error) -> Void in
+//             if let userID = userID {
+//                 let reference = CKRecord.Reference(recordID: userID, action: .none)
+//                 let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
+//                 let query = CKQuery(recordType: "AudioFiles", predicate: predicate)
+//             }
+//        }
+        
+        CKContainer.default().publicCloudDatabase.add(operation)
+    }
+    
+    func fetchAudioAsset(with recordID: CKRecord.ID) {
+
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) {(record, err) in
+
+            DispatchQueue.main.async {
+                if let err = err {
+                    print(err.localizedDescription)
+                    return
+                }
+
+                if record != nil { return }
+                guard let audioAsset = record?["audio"] as? CKAsset else { return }
+                guard let audioURL = audioAsset.fileURL else { return }
+
+                do {
+            
+                    audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
 }
+
+
 
 
 
@@ -156,6 +223,8 @@ struct PlaybackView_Previews: PreviewProvider {
         PlaybackView()
     }
 }
+
+
 
 //Button(action: viewModel.startRecording) {
 //

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2CF7A8291A5E2E003A2048 /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */; };
 		1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BF928F7B4A600DAD59B /* Color.swift */; };
 		1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */; };
 		9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605725928F8911F0029C3A3 /* CustomList.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		1F2CF7A6291A2D2A003A2048 /* AppHear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppHear.entitlements; sourceTree = "<group>"; };
+		1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
 		1F787BF928F7B4A600DAD59B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		9605725928F8911F0029C3A3 /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
+				1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2CF7A8291A5E2E003A2048 /* AudioFiles.swift in Sources */,
 				96F0926028F55BAC00EA7B49 /* Persistence.swift in Sources */,
 				962B394828FBBFFC009F95D3 /* RecordView.swift in Sources */,
 				96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */,

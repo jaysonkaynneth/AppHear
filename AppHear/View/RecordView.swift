@@ -364,10 +364,11 @@ struct RecordView: View {
                 if let error = error {
                     print("Error: \(error.localizedDescription)")
                 } else {
-        
+                    print("\(String(describing: record?.recordID))")
                 }
             }
         }
+        
     }
     
     //INI TEMPORARY YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
