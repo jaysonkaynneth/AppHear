@@ -27,21 +27,15 @@ struct PlaybackView: View {
     @State private var isPlaying = false
     @State private var time: Double = 0
     @State var storedURL: URL?
+    @ObservedObject var audioPlayer = AudioPlayerManager()
     
     let playerManager = AudioManager.shared
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-    
     var audioURL: URL
-    
-    //    FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    
-    @StateObject private var soundPlayerManager = SoundPlayerManager()
-    @ObservedObject var audioPlayer = AudioPlayerManager()
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
-        print(documentsDirectory)
         return documentsDirectory
     }
     
@@ -138,13 +132,10 @@ struct PlaybackView: View {
                     .padding(.trailing)
                     
                     Button {
-                        //                        soundPlayerManager.playSound(sound:  "/Users/jason/Library/Developer/CoreSimulator/Devices/88214EA9-0BA9-450B-A3E4-B43A94F32336/data/Containers/Data/Application/ECFC18F5-E309-4726-94F6-751EB192D16C/Documents/audio.m4a")
                         isPlaying.toggle()
                         if isPlaying == true{
                             self.audioPlayer.play(audio: self.audioURL)
-                            //                            soundPlayerManager.audioPlayer?.play()
-                            guard let path = Bundle.main.path(forResource: "selectSE", ofType: "mp3") else {
-                                print("Sound file not found")
+                            guard let path = Bundle.main.path(forResource: "", ofType: "") else {
                                 return
                             }
                             let url = URL(fileURLWithPath: path)
@@ -156,12 +147,9 @@ struct PlaybackView: View {
                             } catch {
                                 print("Data.init(contentsOf:) failed: \(error)")
                             }
-                            
-                            playerManager.play(url: storedURL!) //<-
-                            print("end of code")
+                            playerManager.play(url: storedURL!)
                         } else {
                             self.audioPlayer.pause()
-                            //                            soundPlayerManager.audioPlayer?.pause()
                         }
                         
                         
