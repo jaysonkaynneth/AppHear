@@ -12,9 +12,21 @@ struct CustomList: View {
     @State var date = Date()
     @State var emoji: String
     
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        print(documentsDirectory)
+        return documentsDirectory
+    }
+    
+    func getAudioURL() -> URL {
+        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+    }
+    
     var body: some View {
         NavigationLink {
-            PlaybackView()
+            PlaybackView(audioURL: getAudioURL())
                 .navigationBarHidden(true)
                 .navigationBarTitle("")
         } label: {

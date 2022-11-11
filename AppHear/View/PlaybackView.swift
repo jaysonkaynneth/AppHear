@@ -15,6 +15,7 @@
 import SwiftUI
 import Speech
 import CloudKit
+import AVKit
 import AVFoundation
 
 struct PlaybackView: View {
@@ -24,8 +25,26 @@ struct PlaybackView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
     @State private var currentValue = 0.0
-    @State private var recording = false
+    @State private var isPlaying = false
     @State private var time: Double = 0
+    @State var storedURL: URL?
+    @ObservedObject var audioPlayer = AudioPlayerManager()
+    
+    let playerManager = AudioManager.shared
+    let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    var audioURL: URL
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func getAudioURL() -> URL {
+        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+    }
+    
     
     @State var audiofiles = [AudioFiles]()
     @State var audioPlayer: AVAudioPlayer!
@@ -67,7 +86,7 @@ struct PlaybackView: View {
                         .resizable()
                         .scaledToFit()
                         .shadow(radius: 10)
-                
+                    
                     VStack{
                         Image("text-placeholder")
                             .resizable()
@@ -79,10 +98,10 @@ struct PlaybackView: View {
                 }
                 
                 SliderView(value: $currentValue,
-                            sliderRange: 0...15802)
-                    .frame(width: 350, height:8)
-                    .padding(.top)
-                    
+                           sliderRange: 0...15802)
+                .frame(width: 350, height:8)
+                .padding(.top)
+                
                 
                 
                 HStack{
@@ -92,7 +111,7 @@ struct PlaybackView: View {
                     Text("1:58:02") .font(.custom("Nunito-Medium", size: 12))
                         .padding(.trailing)
                 }
-        
+                
                 HStack {
                     
                     Button {
@@ -117,9 +136,29 @@ struct PlaybackView: View {
                     .padding(.trailing)
                     
                     Button {
-                        recording.toggle()
+                        isPlaying.toggle()
+                        if isPlaying == true{
+                            self.audioPlayer.play(audio: self.audioURL)
+                            guard let path = Bundle.main.path(forResource: "", ofType: "") else {
+                                return
+                            }
+                            let url = URL(fileURLWithPath: path)
+                            do {
+                                let fileData = try Data(contentsOf: url)
+                                storedURL = getAudioURL()
+                                
+                                print("File Writing on View -> Success \(storedURL?.absoluteString ?? "nil") ")
+                            } catch {
+                                print("Data.init(contentsOf:) failed: \(error)")
+                            }
+                            playerManager.play(url: storedURL!)
+                        } else {
+                            self.audioPlayer.pause()
+                        }
+                        
+                        
                     } label: {
-                        Image(recording ? "pause" : "play")
+                        Image(isPlaying ? "pause" : "play")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 64, height: 64)
@@ -128,7 +167,7 @@ struct PlaybackView: View {
                     .padding(.trailing)
                     
                     Button {
-                        
+                        //ACTION
                     } label: {
                         Image("forward")
                             .resizable()
@@ -138,7 +177,7 @@ struct PlaybackView: View {
                     .padding(.leading)
                     Spacer()
                     Button {
-                        
+                        //ACTION
                     } label: {
                         Image("yellow-trash")
                             .resizable()
@@ -149,7 +188,7 @@ struct PlaybackView: View {
                 }
             }
             .navigationBarHidden(true)
-        .navigationBarTitle("")
+            .navigationBarTitle("")
         }.preferredColorScheme(.light)
     }
     
