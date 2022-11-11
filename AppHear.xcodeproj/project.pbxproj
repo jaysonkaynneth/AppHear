@@ -202,8 +202,8 @@
 				1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */,
 				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
-				969A2CFA291A5D74006914A1 /* AudioManager.swift */,
 				EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */,
+				969A2CFA291A5D74006914A1 /* AudioManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
