@@ -43,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F2CF7A6291A2D2A003A2048 /* AppHear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppHear.entitlements; sourceTree = "<group>"; };
 		1F787BF928F7B4A600DAD59B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		9605725928F8911F0029C3A3 /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		96F0925528F55BAB00EA7B49 /* AppHear */ = {
 			isa = PBXGroup;
 			children = (
+				1F2CF7A6291A2D2A003A2048 /* AppHear.entitlements */,
 				1F787BF828F7B49300DAD59B /* Extensions */,
 				96F0927328F59FE000EA7B49 /* ViewModel */,
 				96F0927228F59FD800EA7B49 /* View */,
@@ -127,7 +129,6 @@
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
 				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
 				96F0927028F59CC500EA7B49 /* Info.plist */,
-				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
 				96F0926B28F59B7000EA7B49 /* Fonts */,
 				96F0925C28F55BAC00EA7B49 /* Preview Content */,
 			);
@@ -168,6 +169,7 @@
 		96F0927128F59FD200EA7B49 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -422,10 +424,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AppHear/AppHear.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = LDU59D27D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -454,10 +457,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AppHear/AppHear.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = LDU59D27D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;

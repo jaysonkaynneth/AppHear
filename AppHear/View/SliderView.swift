@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SliderView: View {
     
+    @Environment(\.managedObjectContext) var moc
     @Binding var value: Double
-    
     @State var lastCoordinateValue: CGFloat = 0.0
     var sliderRange: ClosedRange<Double> = 0...100
     
@@ -20,7 +20,6 @@ struct SliderView: View {
             let radius = read.size.height * 0.5
             let minValue = read.size.width * 0.0001
             let maxValue = (read.size.width * 1) - size
-            
             let scale = (maxValue - minValue) / (sliderRange.upperBound - sliderRange.lowerBound)
             let lower = sliderRange.lowerBound
             let sliderVal = (self.value - lower) * scale + minValue

@@ -12,6 +12,8 @@ struct ContentView: View {
     
     @ObservedObject var viewModel: ContentViewModel
     @State private var overlay = false
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
     var body: some View {
         NavigationView {
@@ -83,10 +85,14 @@ struct ContentView: View {
                                     RoundedRectangle(cornerRadius: 20)
                                         .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 40)
                                 
+                            
+                                
                                 VStack(alignment: .center){
                                     Image("new-folder-icon").resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
                                     Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
+                                        
                                 }.padding(.leading, 40)
+                                
                             }.frame(width: 165, height: 142)
                         }
                         
@@ -94,7 +100,16 @@ struct ContentView: View {
                         
                     }.offset(y: -120)
                         
-                    
+                    List{
+                        ForEach(files) { files in
+                            HStack{
+                                Text(files.transcript ?? "no feedback")
+                            }
+                                .onTapGesture {
+                                    print("Tapped cell")
+                                }
+                        }.onDelete(perform: deleteItems)
+                    }
                     Spacer()
                         
                         ZStack {
@@ -109,8 +124,9 @@ struct ContentView: View {
                     
                 }.ignoresSafeArea().background(Color(cgColor: .screenColor))
             }.overlay(secretOverlay)
-        }
+        }.preferredColorScheme(.light)
     }
+    
     
     @ViewBuilder private var secretOverlay: some View {
         ZStack{
@@ -121,7 +137,23 @@ struct ContentView: View {
             }
         }
     }
+    
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { files[$0] }.forEach(moc.delete)
+
+            do {
+                try moc.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
 }
+
+
 
 
 
