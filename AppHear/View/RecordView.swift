@@ -28,6 +28,8 @@ struct RecordView: View {
     @State var confirmedText: AttributedString = ""
     @State var audioRecorder : AVAudioRecorder!
     @State var isDirty = true
+    
+    @State var recordTitle = ""
 
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
@@ -48,12 +50,16 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 12, height: 16)
                         .clipped(antialiased: true)
-                        .padding(.trailing, 50)
                 }
-                Text("04/10/22 09:41")
+                
+                TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
                     .font(.custom("Nunito-ExtraBold", size: 22))
-                    .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
+                    .foregroundColor(Color(cgColor: .appHearBlue))
                     .multilineTextAlignment(.center)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .frame(width: 240, height: 38, alignment: .center)
+                    .padding(.leading, 20)
                 
                 Button {
                     //ACTION
@@ -64,7 +70,7 @@ struct RecordView: View {
                         .frame(width: 23, height: 21)
                         .clipped(antialiased: true)
                     
-                } .padding(.leading, 40)
+                }
                 Button {
                     //ACTION
                     let audioURL = getAudioURL()
@@ -84,6 +90,7 @@ struct RecordView: View {
                     isRecording = false
                     
                     doSubmission()
+                    print(recordTitle)
                 } label: {
                     Image("save-icon")
                         .resizable()
