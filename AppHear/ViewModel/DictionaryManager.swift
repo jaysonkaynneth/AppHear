@@ -74,7 +74,7 @@ class DictionaryManager : ObservableObject{
         let firstIndex = firstPhase.lastIndexOfCharacter(" ") ?? 0
         let lastIndex = secondPhase.firstIndexOfCharacter(" ") ?? secondPhase.length
         tappedWord = transcript.substring(firstIndex..<lastIndex+indexChar).trimTrailingPunctuation()
-        if !tappedWord.isEmpty{
+        if !tappedWord.isEmpty && !tappedWord.isNumber{
             isSheetPresented.toggle()
         }
     }
