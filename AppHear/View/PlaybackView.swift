@@ -42,6 +42,7 @@ struct PlaybackView: View {
     let playerManager = AudioManager.shared
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     var audioURL: URL
+    var passedFile: File
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -50,8 +51,8 @@ struct PlaybackView: View {
     }
     
     func getAudioURL() -> URL {
-        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
-        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+//        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        return URL(fileURLWithPath: passedFile.audio!)
     }
     
     
@@ -73,7 +74,7 @@ struct PlaybackView: View {
                     }
                     Spacer()
                     
-                    Text("Typography S1")
+                    Text(passedFile.title!)
                         .font(.custom("Nunito-ExtraBold", size: 22))
                         .foregroundColor(Color(CGColor.appHearBlue))
                         .multilineTextAlignment(.center)
@@ -98,7 +99,7 @@ struct PlaybackView: View {
                     VStack{
                         
                         ScrollView{
-                            Text(transcript)
+                            Text(passedFile.transcript!)
                                 .onTapGesture {location in
                                     dictionaryManager.extractWord(location: location, transcript: kalimat)
                                 }
@@ -157,8 +158,8 @@ struct PlaybackView: View {
                             do {
                                 let fileData = try Data(contentsOf: url)
                                 storedURL = getAudioURL()
-                                
-                                print("File Writing on View -> Success \(storedURL?.absoluteString ?? "nil") ")
+
+                                print("File Writing on View -> Success \(audioURL.absoluteString ) ")
                             } catch {
                                 print("Data.init(contentsOf:) failed: \(error)")
                             }

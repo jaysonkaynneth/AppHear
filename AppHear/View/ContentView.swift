@@ -100,19 +100,21 @@ struct ContentView: View {
                         
                     }.offset(y: -120)
                         
-                    List{
-                        ForEach(files) { files in
-                            HStack{
-                                Text(files.transcript ?? "no transcript")
-                                
-                                Text(files.audio ?? "no transcript")
-
-                            }
-                                .onTapGesture {
-                                    print("Tapped cell")
-                                }
-                        }.onDelete(perform: deleteItems)
-                    }
+//                    List{
+//                        ForEach(files) { files in
+//                            HStack{
+//                                Text(files.transcript ?? "no transcript")
+//                                
+//                                Text(files.audio ?? "no url")
+//                                
+//                                Text(files.title ?? "no title")
+//
+//                            }
+//                                .onTapGesture {
+//                                    print("Tapped cell")
+//                                }
+//                        }.onDelete(perform: deleteItems)
+//                    }
                     Spacer()
                         
                         ZStack {

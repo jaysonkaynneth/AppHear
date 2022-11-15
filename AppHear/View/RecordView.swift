@@ -79,6 +79,8 @@ struct RecordView: View {
                     
                     file.transcript = (transcript)
                     file.audio = audioURL.absoluteString
+                    file.title = recordTitle
+                    file.date = Date()
                     
                     try? moc.save()
                     self.audioEngine.stop()
@@ -355,7 +357,7 @@ struct RecordView: View {
     }
 
     func getAudioURL() -> URL {
-        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        return getDocumentsDirectory().appendingPathComponent("\(recordTitle) + .m4a")
         //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
     }
     

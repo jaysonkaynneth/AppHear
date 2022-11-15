@@ -71,43 +71,45 @@ struct LibraryView: View {
                             Spacer()
                         }
                     }
+                    
                     List{
-                        ForEach(recordings){ item in
+                        ForEach(files){ file in
                             DisclosureGroup(
                             content: {
-                                CustomList(name: item.name, date: item.date, emoji: item.emoji)
+                                CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
                             },
                             label: {
-                                CustomList(name: item.name, date: item.date, emoji: item.emoji)
+                                CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
                             }
                         ).tint(.clear)
                         }
+                        .onDelete(perform: deleteItems)
                         .listRowBackground(Image("library-card")
-                            .resizable()
-                            .scaledToFit()
-                            .ignoresSafeArea(.all)
-                            .aspectRatio(contentMode: .fit))
+                        .resizable()
+                        .scaledToFit()
+                        .ignoresSafeArea(.all)
+                        .aspectRatio(contentMode: .fit))
                         .listRowInsets(EdgeInsets())
                         .listRowSeparator(.hidden)
-                        .swipeActions(allowsFullSwipe: false) {
-                            Button {
-                                print("Delete")
-                            } label: {
-                                Image("library-trash")
-                                    .resizable()
-                                    .scaledToFit()
-                                
-                            }
-                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
-                            
-                            Button {
-                                print("Saved")
-                            } label: {
-                                    Image("library-folder").resizable()
-                                        .frame(width: 100,height: 100)
-                            }
-                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
-                        }
+//                        .swipeActions(allowsFullSwipe: false) {
+//                            Button {
+//                                print("Delete")
+//                            } label: {
+//                                Image("library-trash")
+//                                    .resizable()
+//                                    .scaledToFit()
+//
+//                            }
+//                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
+//
+//                            Button {
+//                                print("Saved")
+//                            } label: {
+//                                    Image("library-folder").resizable()
+//                                        .frame(width: 100,height: 100)
+//                            }
+//                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
+//                        }
                     }
                     .padding(.top, 3)
                     .frame( maxWidth: .infinity)
@@ -122,6 +124,19 @@ struct LibraryView: View {
             .navigationBarTitle("")
         }
         .preferredColorScheme(.light)
+    }
+    
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { files[$0] }.forEach(moc.delete)
+
+            do {
+                try moc.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }
 
