@@ -1,13 +1,13 @@
 //
-//  LibraryView.swift
+//  DeletedView.swift
 //  AppHear
 //
-//  Created by Jason Kenneth on 11/10/22.
+//  Created by Ganesh Ekatata Buana on 15/11/22.
 //
 
 import SwiftUI
 
-struct LibraryView: View {
+struct DeletedView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
@@ -39,7 +39,7 @@ struct LibraryView: View {
                     }
                     
                     HStack {
-                        Text("All Recordings")
+                        Text("Recently Deleted")
                             .font(.custom("Nunito-ExtraBold", size: 28))
                             .foregroundColor(.white)
                         Spacer()
@@ -56,7 +56,7 @@ struct LibraryView: View {
                     
                     List{
                         ForEach(files){ file in
-                            if file.isdeleted == false {
+                            if file.isdeleted == true {
                                 DisclosureGroup(
                                 content: {
                                     CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
@@ -112,7 +112,7 @@ struct LibraryView: View {
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { files[$0].isdeleted = true }
+            offsets.map { files[$0] }.forEach(moc.delete)
             do {
                 try moc.save()
             } catch {
@@ -121,4 +121,11 @@ struct LibraryView: View {
             }
         }
     }
+}
+
+struct Recording: Identifiable {
+    let id = UUID()
+    var name: String
+    var date: Date
+    var emoji: String
 }

@@ -28,6 +28,7 @@ struct RecordView: View {
     @State var confirmedText: AttributedString = ""
     @State var audioRecorder : AVAudioRecorder!
     @State var isDirty = true
+    @State var audioURL: URL!
     
     @State var recordTitle = ""
 
@@ -73,7 +74,6 @@ struct RecordView: View {
                 }
                 Button {
                     //ACTION
-                    let audioURL = getAudioURL()
                     let inputNode = audioEngine.inputNode
                     let file =  File(context: moc)
                     
@@ -81,17 +81,18 @@ struct RecordView: View {
                     file.audio = audioURL.absoluteString
                     file.title = recordTitle
                     file.date = Date()
+                    file.isdeleted = false
                     
                     try? moc.save()
                     self.audioEngine.stop()
                     inputNode.removeTap(onBus: 0)
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
-                    
+                     
                     recording = false
                     isRecording = false
                     
-                    doSubmission()
+//                    doSubmission()
                     print(recordTitle)
                 } label: {
                     Image("save-icon")
@@ -271,7 +272,7 @@ struct RecordView: View {
             recognitionTask = nil
         }
         
-        let audioURL = getAudioURL()
+            audioURL = getAudioURL()
             print(audioURL.absoluteString)
         
         let settings = [
@@ -357,8 +358,14 @@ struct RecordView: View {
     }
 
     func getAudioURL() -> URL {
-        return getDocumentsDirectory().appendingPathComponent("\(recordTitle) + .m4a")
-        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+        if recordTitle != ""{
+            return getDocumentsDirectory().appendingPathComponent("\(recordTitle).m4a")
+        }
+        else {
+            let tempIndex = UserDefaults.standard.integer(forKey: "index") + 1
+            UserDefaults.standard.setValue(tempIndex, forKey: "index")
+            return getDocumentsDirectory().appendingPathComponent("Audio\(tempIndex).m4a")
+        }
     }
     
     func doSubmission () {

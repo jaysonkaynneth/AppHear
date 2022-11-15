@@ -62,7 +62,7 @@ class DictionaryManager : ObservableObject{
         let textContainer = NSTextContainer(size: CGSize(width:  290, height: 3000))
         let layoutManager = NSLayoutManager()
         let textStorage = NSTextStorage(attributedString: NSAttributedString(string: transcript))
-        textStorage.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 14) , range: NSMakeRange(0, NSAttributedString(string: transcript).length))
+        textStorage.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16) , range: NSMakeRange(0, NSAttributedString(string: transcript).length))
         layoutManager.addTextContainer(textContainer)
         textStorage.addLayoutManager(layoutManager)
         textContainer.lineBreakMode = .byWordWrapping

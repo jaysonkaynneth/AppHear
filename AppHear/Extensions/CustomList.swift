@@ -21,7 +21,7 @@ struct CustomList: View {
     }
     
     func getAudioURL() -> URL {
-        return URL(fileURLWithPath: files.audio!)
+        return URL(string: files.audio!)!
 //        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
     }
     

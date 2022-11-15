@@ -97,11 +97,10 @@ struct PlaybackView: View {
                         .shadow(radius: 10)
                     
                     VStack{
-                        
                         ScrollView{
-                            Text(passedFile.transcript!)
+                            Text(transcript)
                                 .onTapGesture {location in
-                                    dictionaryManager.extractWord(location: location, transcript: kalimat)
+                                    dictionaryManager.extractWord(location: location, transcript: passedFile.transcript!)
                                 }
                         }.frame(width: 290)
                             .padding(.top,20)
@@ -140,19 +139,6 @@ struct PlaybackView: View {
                         isPlaying.toggle()
                         if isPlaying == true{
                             self.audioPlayer.play(audio: self.audioURL)
-                            guard let path = Bundle.main.path(forResource: "", ofType: "") else {
-                                return
-                            }
-                            let url = URL(fileURLWithPath: path)
-                            do {
-                                let fileData = try Data(contentsOf: url)
-                                storedURL = getAudioURL()
-
-                                print("File Writing on View -> Success \(audioURL.absoluteString ) ")
-                            } catch {
-                                print("Data.init(contentsOf:) failed: \(error)")
-                            }
-                            playerManager.play(url: storedURL!)
                         } else {
                             self.audioPlayer.pause()
                         }
@@ -195,9 +181,9 @@ struct PlaybackView: View {
                 DictionaryModalView(fetchedWord: dictionaryManager.tappedWord.trimTrailingPunctuation())
             })
             .onAppear{
-                var attString = AttributedString(kalimat)
+                var attString = AttributedString(passedFile.transcript!)
                 var containerForAttString = AttributeContainer()
-                containerForAttString.font = .system(size: 14)
+                containerForAttString.font = .system(size: 16)
                 containerForAttString.foregroundColor = Color(CGColor.appHearBlue)
                 attString.mergeAttributes(containerForAttString)
                 transcript = attString

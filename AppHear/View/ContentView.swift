@@ -15,6 +15,9 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
+    @State var recordAmount = 0
+    @State var deletedAmount = 0
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -36,7 +39,7 @@ struct ContentView: View {
                                 }
                             }
                             Image("no-device").resizable().frame(width: 22.53, height: 28.53).padding(.trailing)
-                        }
+                        }.onAppear(perform: initiateIndexCounter)
                     }
                     
                     Spacer()
@@ -59,7 +62,7 @@ struct ContentView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: LibraryView()
+                        NavigationLink(destination: DeletedView()
                             .navigationBarHidden(true)
                             .navigationBarTitle("")) {
                                 ZStack(){
@@ -140,6 +143,13 @@ struct ContentView: View {
                     overlay.toggle()
                 }
             }
+        }
+    }
+    
+    private func initiateIndexCounter(){
+        let temp = UserDefaults.standard.integer(forKey: "index")
+        if temp == nil{
+            UserDefaults.standard.set(0, forKey: "index")
         }
     }
     
