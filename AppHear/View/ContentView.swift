@@ -39,7 +39,7 @@ struct ContentView: View {
                                 }
                             }
                             Image("no-device").resizable().frame(width: 22.53, height: 28.53).padding(.trailing)
-                        }.onAppear(perform: initiateIndexCounter)
+                        }.onAppear(perform: initiateIndexCounter).onAppear(perform: countRecord)
                     }
                     
                     Spacer()
@@ -55,7 +55,7 @@ struct ContentView: View {
                                     VStack(alignment: .leading){
                                         Image("recordings-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
                                         Text("All Recordings").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                        Text("3 Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                        Text("\(recordAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                     }.padding(.leading, 15)
                                 }.frame(width: 165, height: 142)
                             }
@@ -73,7 +73,7 @@ struct ContentView: View {
                                     VStack(alignment: .leading){
                                         Image("delete-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
                                         Text("Recently Deleted").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                        Text("2 Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                        Text("\(deletedAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                     }.padding(.trailing,40)
                                 }.frame(width: 165, height: 142)
                             }
@@ -150,6 +150,24 @@ struct ContentView: View {
         let temp = UserDefaults.standard.integer(forKey: "index")
         if temp == nil{
             UserDefaults.standard.set(0, forKey: "index")
+        }
+    }
+    
+    private func countRecord(){
+        if files.count != 0{
+            let count = 0...(files.count-1)
+            var delTemp = 0
+            var recTemp = 0
+            for number in count {
+                if files[number].isdeleted == true{
+                    delTemp += 1
+                }
+                else if files[number].isdeleted == false{
+                    recTemp += 1
+                }
+            }
+            deletedAmount = delTemp
+            recordAmount = recTemp
         }
     }
     

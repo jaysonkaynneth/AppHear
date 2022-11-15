@@ -18,7 +18,8 @@ struct RecordView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
     @State var recording = false
-    @State private var speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "id-ID"))
+    @State var speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "id-ID"))
+    @State var locale : Locale?
     @State var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
     @State var recognitionTask         : SFSpeechRecognitionTask?
     @State var defaultTaskHint: SFSpeechRecognitionTaskHint?
@@ -72,6 +73,7 @@ struct RecordView: View {
                         .clipped(antialiased: true)
                     
                 }
+                
                 Button {
                     //ACTION
                     let inputNode = audioEngine.inputNode
@@ -100,7 +102,7 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
-                }
+                }.disabled(audioURL == nil || recordTitle.isEmpty)
             }.padding(.top)
             
             ZStack{
@@ -302,6 +304,15 @@ struct RecordView: View {
         recognitionRequest.shouldReportPartialResults = true
         //            recognitionRequest.taskHint.addsPunctuation = true
         
+//        let lang = UserDefaults.standard.string(forKey: "lang")
+//        if lang == "id"{
+//            locale = Locale.init(identifier: "id-ID")
+//        }
+//        else if lang == "en"{
+//            locale = Locale.init(identifier: "en-EN")
+//        }
+//
+//        speechRecognizer = SFSpeechRecognizer(locale: locale!)
         self.recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
