@@ -18,6 +18,7 @@ import CloudKit
 import AVKit
 import AVFoundation
 import PartialSheet
+import Combine
 
 
 struct PlaybackView: View {
@@ -39,7 +40,6 @@ struct PlaybackView: View {
     var kalimat = "Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket."
     //
     
-    let playerManager = AudioManager.shared
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     var audioURL: URL
     var passedFile: File
@@ -109,20 +109,9 @@ struct PlaybackView: View {
                     }
                 }
                 
-                SliderView(value: $currentValue,
-                           sliderRange: 0...15802)
-                .frame(width: 350, height:8)
+                SliderView()
+//                .frame(width: 350, height:8)
                 .padding(.top)
-                
-                
-                
-                HStack{
-                    Text("\(currentValue, specifier: "%.f")")
-                        .padding(.leading)
-                    Spacer()
-                    Text("1:58:02") .font(.custom("Nunito-Medium", size: 12))
-                        .padding(.trailing)
-                }
                 
                 HStack {
                     
@@ -278,6 +267,5 @@ struct PlaybackView: View {
 //Button(action: viewModel.startRecording) {
 //
 //}
-
 
 

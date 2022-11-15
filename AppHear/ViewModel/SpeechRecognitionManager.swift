@@ -48,7 +48,7 @@ class SpeechRecManager {
                 print("error \(error!.localizedDescription)")
                 return
             }
-            if result != nil{
+            if result != nil {
                 self.transcript = result?.bestTranscription.formattedString ?? "No transcript was made"
                 isFinal = (result?.isFinal)!
             }
@@ -81,7 +81,7 @@ class SpeechRecManager {
         recognitionRequest = nil
         audioEngine.stop()
         inputNode.removeTap(onBus: 0)
-//        try? audioSession.setActive(false)
+        //        try? audioSession.setActive(false)
         audioSession = nil
         print(transcript)
     }
