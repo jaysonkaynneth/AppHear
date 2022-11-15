@@ -33,7 +33,7 @@ struct PlaybackView: View {
     @State private var isSheetPresented = false
     @State var storedURL: URL?
     @StateObject var dictionaryManager : DictionaryManager = DictionaryManager()
-    @ObservedObject var audioPlayer = AudioPlayerManager()
+    @ObservedObject var audioPlayerManager = AudioPlayerManager()
     
     //For testing only
     var kalimat = "Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket."
@@ -105,9 +105,30 @@ struct PlaybackView: View {
                     }
                 }
                 
-                SliderView()
-//                .frame(width: 350, height:8)
-                .padding(.top)
+//                SliderView()
+////                .frame(width: 350, height:8)
+//                .padding(.top)
+                
+                Slider(value: $audioPlayerManager.playValue, in: TimeInterval(0.0)...audioPlayerManager.playerDuration, onEditingChanged: { _ in
+                    self.audioPlayerManager.sliderValue()
+                })
+                .onReceive(audioPlayerManager.timer) { _ in
+                    
+                    if self.audioPlayerManager.isPlaying {
+                        if let currentTime = self.audioPlayerManager.audioPlayer?.currentTime {
+                            self.audioPlayerManager.playValue = currentTime
+                            
+                            if currentTime == TimeInterval(0.0) {
+                                self.audioPlayerManager.isPlaying = false
+                            }
+                        }
+                        
+                    }
+                    else {
+                        self.audioPlayerManager.isPlaying = false
+                        self.audioPlayerManager.timer.upstream.connect().cancel()
+                    }
+                }
                 
                 HStack {
                     
@@ -135,9 +156,10 @@ struct PlaybackView: View {
                     Button {
                         isPlaying.toggle()
                         if isPlaying == true{
-                            self.audioPlayer.play(audio: self.audioURL)
+                            self.audioPlayerManager.play(audio: self.audioURL)
+                            self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                         } else {
-                            self.audioPlayer.pause()
+                            self.audioPlayerManager.pause()
                         }
                         
                         

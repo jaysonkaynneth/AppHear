@@ -204,8 +204,8 @@
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
 				962B394928FC1D63009F95D3 /* VizualizerView.swift */,
 				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
-				EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */,
 				96B969AB292236190079A994 /* SliderView.swift */,
+				EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,8 +216,8 @@
 				1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */,
 				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
-				EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */,
 				96B969AF29224F020079A994 /* audioplayingview.swift */,
+				EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */,
 				EA8E4D5C291E354C00AB3B97 /* DictionaryManager.swift */,
 			);
 			path = ViewModel;

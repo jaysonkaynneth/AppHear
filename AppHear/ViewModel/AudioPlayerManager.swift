@@ -13,16 +13,11 @@ import AVKit
 
 class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
-    let objectWillChange = PassthroughSubject<AudioPlayerManager, Never>()
+
     
-    var isPlaying = false {
-        didSet {
-            objectWillChange.send(self)
-        }
-    }
+    var isPlaying = false
     
-    var audioPlayer: AVAudioPlayer!
-    var playing = false
+    var audioPlayer: AVAudioPlayer?
     @Published var playValue: TimeInterval = 0.0
     var playerDuration: TimeInterval = 3
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -37,18 +32,44 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audio)
-            audioPlayer.delegate = self
-            audioPlayer.play()
-            isPlaying = true
+            if isPlaying == false {
+                if (audioPlayer == nil) {
+                    
+                    audioPlayer = try AVAudioPlayer(contentsOf: audio)
+                    audioPlayer?.delegate = self
+                    audioPlayer?.prepareToPlay()
+                    audioPlayer?.play()
+                    isPlaying = true
+                }
+            }
+            if isPlaying == false {
+                
+                audioPlayer?.play()
+                isPlaying = true
+            }
         } catch let error {
             print("Playback failed because \(error.localizedDescription).")
         }
     }
     
     func pause() {
-        audioPlayer.stop()
-        isPlaying = false
+        if isPlaying == true {
+            audioPlayer?.pause()
+            isPlaying = false
+        }
+    }
+    
+    func sliderValue() {
+        if isPlaying == true {
+            pause()
+            audioPlayer?.currentTime = playValue
+            
+        }
+        
+        if isPlaying == false {
+            audioPlayer?.play()
+            isPlaying = true
+        }
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
