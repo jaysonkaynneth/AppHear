@@ -22,6 +22,10 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     var audioPlayer: AVAudioPlayer!
+    var playing = false
+    @Published var playValue: TimeInterval = 0.0
+    var playerDuration: TimeInterval = 3
+    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     func play(audio: URL) {
         let playbackSession = AVAudioSession.sharedInstance()
