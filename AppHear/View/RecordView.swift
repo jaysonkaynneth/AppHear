@@ -10,6 +10,7 @@ import CoreData
 import Speech
 import AVFoundation
 import CloudKit
+import PartialSheet
 
 struct RecordView: View {
     
@@ -31,6 +32,8 @@ struct RecordView: View {
     @State var isDirty = true
     @State var audioURL: URL!
     @State var recordTitle = ""
+    @State var isNotSaved = true
+    @State var isPresented = false
 
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
@@ -43,15 +46,17 @@ struct RecordView: View {
         VStack {
             HStack {
                 Button {
-                    presentationMode.wrappedValue.dismiss()
-                  
+                    if isNotSaved == false {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    
                 } label: {
                     Image("down-chevron")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 12, height: 16)
                         .clipped(antialiased: true)
-                }
+                }.partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
                 
                 TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
                     .font(.custom("Nunito-ExtraBold", size: 22))
@@ -89,12 +94,13 @@ struct RecordView: View {
                     self.recognitionRequest?.endAudio()
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
-                    self.audioRecorder.stop()
+                   
                     self.audioRecorder = nil
                     
                     recording = false
                     isRecording = false
-    
+                    isPresented = true
+                    isNotSaved = false
 //                    doSubmission()
                 } label: {
                     Image("save-icon")
@@ -103,6 +109,7 @@ struct RecordView: View {
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
                 }.disabled(audioURL == nil || recordTitle.isEmpty)
+                
             }.padding(.top)
             
             ZStack{
@@ -148,6 +155,8 @@ struct RecordView: View {
         .navigationBarHidden(true)
         .navigationBarTitle("")
         .preferredColorScheme(.light)
+        .ignoresSafeArea(.keyboard)
+        .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
     }
     
     private func soundLevel(level: Float) -> CGFloat {
@@ -405,5 +414,15 @@ struct RecordView: View {
 }
 
 
+struct RecordView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            RecordView()
+//            AnimationSheetView()
+        }
+        .attachPartialSheetToRoot()
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
 
 
