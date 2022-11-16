@@ -19,9 +19,30 @@ import AVKit
 import AVFoundation
 import PartialSheet
 import Combine
+import UniformTypeIdentifiers
 
 
 struct PlaybackView: View {
+    
+    struct TextFile: FileDocument {
+        static var readableContentTypes = [UTType.plainText]
+            var text: String = ""
+
+            init(text: String) {
+                self.text = text
+            }
+
+            init(configuration: ReadConfiguration) throws {
+                if let data = configuration.file.regularFileContents {
+                    text = String(decoding: data, as: UTF8.self)
+                }
+            }
+
+            func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+                let data = Data(text.utf8)
+                return FileWrapper(regularFileWithContents: data)
+            }
+    }
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var moc
@@ -32,13 +53,11 @@ struct PlaybackView: View {
     @State private var time: Double = 0
     @State private var transcript = AttributedString("")
     @State private var isSheetPresented = false
+    @State private var showingExporter = false
     @State var storedURL: URL?
     @StateObject var dictionaryManager : DictionaryManager = DictionaryManager()
     @ObservedObject var audioPlayer = AudioPlayerManager()
-    
-    //For testing only
-    var kalimat = "Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket."
-    //
+
     
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     var audioURL: URL
@@ -80,7 +99,7 @@ struct PlaybackView: View {
                         .multilineTextAlignment(.center)
                     Spacer()
                     Button {
-                        //
+                        showingExporter.toggle()
                     } label: {
                         Image("export")
                             .resizable()
@@ -88,7 +107,14 @@ struct PlaybackView: View {
                             .frame(width: 23, height: 21)
                             .clipped(antialiased: true)
                         
-                    }.padding(.trailing)
+                    }.padding(.trailing).fileExporter(isPresented: $showingExporter, document: TextFile(text: passedFile.transcript!), contentType: .plainText) { result in
+                        switch result {
+                            case .success(let url):
+                                print("Saved to \(url)")
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            }
+                    }
                 }.padding(.top)
                 ZStack{
                     Image("pb-textbox")

@@ -88,14 +88,16 @@ struct RecordView: View {
                     try? moc.save()
                     self.audioEngine.stop()
                     inputNode.removeTap(onBus: 0)
+                    self.recognitionRequest?.endAudio()
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
-                     
+                    self.audioRecorder.stop()
+                    self.audioRecorder = nil
+                    
                     recording = false
                     isRecording = false
-                    
+    
 //                    doSubmission()
-                    print(recordTitle)
                 } label: {
                     Image("save-icon")
                         .resizable()
