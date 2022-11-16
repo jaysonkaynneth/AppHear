@@ -68,12 +68,6 @@ struct LibraryView: View {
                             }
                         }
                         .onDelete(perform: deleteItems)
-                        .listRowBackground(Image("library-card")
-                        .resizable()
-                        .scaledToFit()
-                        .ignoresSafeArea(.all)
-                        .aspectRatio(contentMode: .fit))
-                        .listRowInsets(EdgeInsets())
                         .listRowSeparator(.hidden)
 //                        .swipeActions(allowsFullSwipe: false) {
 //                            Button {
@@ -96,7 +90,7 @@ struct LibraryView: View {
 //                        }
                     }
                     .padding(.top, 3)
-                    .frame( maxWidth: .infinity)
+                    .frame(maxWidth: .infinity)
                     .edgesIgnoringSafeArea(.all)
                     .listStyle(GroupedListStyle())
                     .scrollContentBackground(.hidden)

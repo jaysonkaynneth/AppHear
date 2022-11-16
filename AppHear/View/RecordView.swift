@@ -30,7 +30,6 @@ struct RecordView: View {
     @State var audioRecorder : AVAudioRecorder!
     @State var isDirty = true
     @State var audioURL: URL!
-    
     @State var recordTitle = ""
 
     let audioEngine = AVAudioEngine()
@@ -75,7 +74,6 @@ struct RecordView: View {
                 }
                 
                 Button {
-                    //ACTION
                     let inputNode = audioEngine.inputNode
                     let file =  File(context: moc)
                     

@@ -21,7 +21,6 @@ import PartialSheet
 import Combine
 import UniformTypeIdentifiers
 
-
 struct PlaybackView: View {
     
     struct TextFile: FileDocument {
@@ -56,9 +55,9 @@ struct PlaybackView: View {
     @State private var showingExporter = false
     @State var storedURL: URL?
     @StateObject var dictionaryManager : DictionaryManager = DictionaryManager()
-    @ObservedObject var audioPlayer = AudioPlayerManager()
-
-    
+    @ObservedObject var audioPlayerManager = AudioPlayerManager()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+   
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     var audioURL: URL
     var passedFile: File
@@ -74,6 +73,10 @@ struct PlaybackView: View {
         return URL(fileURLWithPath: passedFile.audio!)
     }
     
+    func getAudioDuration() -> Double {
+        let audio = AVURLAsset(url: audioURL)
+        return Double(floor(CMTimeGetSeconds(audio.duration)))
+    }
     
     @State var audiofiles = [AudioFiles]()
     
@@ -134,9 +137,46 @@ struct PlaybackView: View {
                     }
                 }
                 
-                SliderView()
-//                .frame(width: 350, height:8)
-                .padding(.top)
+//                SliderView()
+////                .frame(width: 350, height:8)
+//                .padding(.top)
+                
+                Slider(value: $audioPlayerManager.playValue, in: TimeInterval(0.0)...audioPlayerManager.playerDuration, onEditingChanged: { _ in
+                    self.audioPlayerManager.sliderValue()
+                })
+                .padding(.trailing)
+                .padding(.leading)
+                .onReceive(audioPlayerManager.timer) { _ in
+                    
+                    if self.audioPlayerManager.isPlaying {
+                        if let currentTime = self.audioPlayerManager.audioPlayer?.currentTime {
+                            self.audioPlayerManager.playValue = currentTime
+                            
+                            if currentTime == TimeInterval(0.0) {
+                                self.audioPlayerManager.isPlaying = false
+                            }
+                        }
+                    }
+                    else {
+                        self.audioPlayerManager.isPlaying = false
+                        self.audioPlayerManager.timer.upstream.connect().cancel()
+                    }
+                }
+                
+                
+                HStack {
+                    let progressAudio = Int(round(self.audioPlayerManager.playValue * audioPlayerManager.getAudioDuration())/3)
+                    let progressTime = String(format: "%d:%02d", progressAudio / 60, progressAudio % 60)
+                    Text(progressTime).padding(.leading)
+                      
+                    Spacer()
+
+                    let audioTime = Int(round((1.0 - self.audioPlayerManager.playValue) * audioPlayerManager.getAudioDuration()))
+//                    let audioTime = Int(audioPlayerManager.getAudioDuration())
+                    let audioTotalTime = String(format: "-%d:%02d", audioTime / 60, audioTime % 60)
+                    Text(audioTotalTime).padding(.trailing)
+                }
+                
                 
                 HStack {
                     
@@ -152,7 +192,7 @@ struct PlaybackView: View {
                     Spacer()
                     
                     Button {
-                        
+                      
                     } label: {
                         Image("backward")
                             .resizable()
@@ -164,12 +204,13 @@ struct PlaybackView: View {
                     Button {
                         isPlaying.toggle()
                         if isPlaying == true{
-                            self.audioPlayer.play(audio: self.audioURL)
+                            self.audioPlayerManager.play(audio: self.audioURL)
+                            self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                            
                         } else {
-                            self.audioPlayer.pause()
+                            self.audioPlayerManager.pause()
                         }
-                        
-                        
+                  
                     } label: {
                         Image(isPlaying ? "pause" : "play")
                             .resizable()
