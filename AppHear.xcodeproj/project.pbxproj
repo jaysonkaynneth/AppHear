@@ -45,7 +45,6 @@
 		96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */; };
 		96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0926928F568EE00EA7B49 /* LibraryView.swift */; };
 		96F9EF4728FD4BD400634CFB /* MicrophoneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */; };
-		EA30A9D32923A2D800BE7671 /* VerbsList.json in Resources */ = {isa = PBXBuildFile; fileRef = EA30A9D22923A2D800BE7671 /* VerbsList.json */; };
 		EA8E4D55291E2C2300AB3B97 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = EA8E4D54291E2C2300AB3B97 /* ActivityIndicatorView */; };
 		EA8E4D58291E2DC200AB3B97 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = EA8E4D57291E2DC200AB3B97 /* PartialSheet */; };
 		EA8E4D5B291E32EB00AB3B97 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */; };
@@ -53,7 +52,7 @@
 		EA8E4D5F291E35E300AB3B97 /* DictionaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D5E291E35E300AB3B97 /* DictionaryModel.swift */; };
 		EA8E4D61291E38ED00AB3B97 /* DictionaryModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */; };
 		EA8E4D63291E47F700AB3B97 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D62291E47F700AB3B97 /* String.swift */; };
-		EAB1DE1E29238FEB00C54613 /* VerbsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1DE1D29238FEB00C54613 /* VerbsModel.swift */; };
+		EADFCA082925585300C07B9C /* VerbsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFCA072925585300C07B9C /* VerbsList.swift */; };
 		EAF55F6729239A4F002F5542 /* VerbsList.json in Resources */ = {isa = PBXBuildFile; fileRef = EAF55F6629239A4F002F5542 /* VerbsList.json */; };
 /* End PBXBuildFile section */
 
@@ -99,13 +98,12 @@
 		96F0926928F568EE00EA7B49 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		96F0927028F59CC500EA7B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneManager.swift; sourceTree = "<group>"; };
-		EA30A9D22923A2D800BE7671 /* VerbsList.json */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = VerbsList.json; path = ../../../Downloads/VerbsList.json; sourceTree = "<group>"; };
 		EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 		EA8E4D5C291E354C00AB3B97 /* DictionaryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryManager.swift; sourceTree = "<group>"; };
 		EA8E4D5E291E35E300AB3B97 /* DictionaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryModel.swift; sourceTree = "<group>"; };
 		EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryModalView.swift; sourceTree = "<group>"; };
 		EA8E4D62291E47F700AB3B97 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		EAB1DE1D29238FEB00C54613 /* VerbsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbsModel.swift; sourceTree = "<group>"; };
+		EADFCA072925585300C07B9C /* VerbsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbsList.swift; sourceTree = "<group>"; };
 		EAF55F6629239A4F002F5542 /* VerbsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VerbsList.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,8 +155,7 @@
 				96F0927228F59FD800EA7B49 /* View */,
 				96F0927128F59FD200EA7B49 /* Model */,
 				96F0925628F55BAB00EA7B49 /* AppHearApp.swift */,
-				EAB1DE1D29238FEB00C54613 /* VerbsModel.swift */,
-				EA30A9D22923A2D800BE7671 /* VerbsList.json */,
+				EADFCA072925585300C07B9C /* VerbsList.swift */,
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
 				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
 				96F0927028F59CC500EA7B49 /* Info.plist */,
@@ -307,7 +304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA30A9D32923A2D800BE7671 /* VerbsList.json in Resources */,
 				EAF55F6729239A4F002F5542 /* VerbsList.json in Resources */,
 				96353D2D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf in Resources */,
 				96353D2428F6A24800518F3B /* Nunito-SemiBold.ttf in Resources */,
@@ -338,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADFCA082925585300C07B9C /* VerbsList.swift in Sources */,
 				1F2CF7A8291A5E2E003A2048 /* AudioFiles.swift in Sources */,
 				96F0926028F55BAC00EA7B49 /* Persistence.swift in Sources */,
 				962B394828FBBFFC009F95D3 /* RecordView.swift in Sources */,
@@ -360,7 +357,6 @@
 				1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */,
 				EA8E4D63291E47F700AB3B97 /* String.swift in Sources */,
 				96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */,
-				EAB1DE1E29238FEB00C54613 /* VerbsModel.swift in Sources */,
 				1F4469552923964C0030C673 /* DeletedView.swift in Sources */,
 				EA8E4D5B291E32EB00AB3B97 /* AudioPlayerManager.swift in Sources */,
 			);
