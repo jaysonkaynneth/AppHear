@@ -33,7 +33,6 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     var isPlaying = false
     var audioPlayer: AVAudioPlayer?
     @Published var playValue: TimeInterval = 0.0
-    lazy var playerDuration: TimeInterval = 5.0
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     func play(audio: URL) {
