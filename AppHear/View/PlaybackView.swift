@@ -165,13 +165,13 @@ struct PlaybackView: View {
                 
                 
                 HStack {
-                    let progressAudio = Int(round(self.audioPlayerManager.playValue * audioPlayerManager.getAudioDuration())/3)
+                    let progressAudio = Int(round(getAudioDuration()))
                     let progressTime = String(format: "%d:%02d", progressAudio / 60, progressAudio % 60)
                     Text(progressTime).padding(.leading)
                       
                     Spacer()
 
-                    let audioTime = Int(round((1.0 - self.audioPlayerManager.playValue) * audioPlayerManager.getAudioDuration()))
+                    let audioTime = Int(round((1.0 - self.audioPlayerManager.playValue) * getAudioDuration()))
 //                    let audioTime = Int(audioPlayerManager.getAudioDuration())
                     let audioTotalTime = String(format: "-%d:%02d", audioTime / 60, audioTime % 60)
                     Text(audioTotalTime).padding(.trailing)
