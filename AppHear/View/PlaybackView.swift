@@ -34,7 +34,7 @@ struct PlaybackView: View {
     @State var storedURL: URL?
     @StateObject var dictionaryManager : DictionaryManager = DictionaryManager()
     @ObservedObject var audioPlayerManager = AudioPlayerManager()
-    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     //For testing only
     var kalimat = "Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket."
     //
@@ -52,7 +52,6 @@ struct PlaybackView: View {
         return getDocumentsDirectory().appendingPathComponent("audio.m4a")
         //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
     }
-    
     
     var body: some View {
         NavigationView {
@@ -112,6 +111,8 @@ struct PlaybackView: View {
                 Slider(value: $audioPlayerManager.playValue, in: TimeInterval(0.0)...audioPlayerManager.playerDuration, onEditingChanged: { _ in
                     self.audioPlayerManager.sliderValue()
                 })
+                .padding(.trailing)
+                .padding(.leading)
                 .onReceive(audioPlayerManager.timer) { _ in
                     
                     if self.audioPlayerManager.isPlaying {
@@ -130,6 +131,21 @@ struct PlaybackView: View {
                     }
                 }
                 
+                
+                HStack {
+                    let progressAudio = Int(round(self.audioPlayerManager.playValue * audioPlayerManager.getAudioDuration())/3)
+                    let progressTime = String(format: "%d:%02d", progressAudio / 60, progressAudio % 60)
+                    Text(progressTime).padding(.leading)
+                      
+                    Spacer()
+
+                    let audioTime = Int(round((1.0 - self.audioPlayerManager.playValue) * audioPlayerManager.getAudioDuration()))
+//                    let audioTime = Int(audioPlayerManager.getAudioDuration())
+                    let leftTime = String(format: "-%d:%02d", audioTime / 60, audioTime % 60)
+                    Text(leftTime).padding(.trailing)
+                }
+                
+                
                 HStack {
                     
                     Button {
@@ -144,7 +160,7 @@ struct PlaybackView: View {
                     Spacer()
                     
                     Button {
-                        
+                      
                     } label: {
                         Image("backward")
                             .resizable()
@@ -158,11 +174,11 @@ struct PlaybackView: View {
                         if isPlaying == true{
                             self.audioPlayerManager.play(audio: self.audioURL)
                             self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                            
                         } else {
                             self.audioPlayerManager.pause()
                         }
-                        
-                        
+                  
                     } label: {
                         Image(isPlaying ? "pause" : "play")
                             .resizable()

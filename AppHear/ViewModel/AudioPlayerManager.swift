@@ -13,13 +13,26 @@ import AVKit
 
 class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
 
+    func getAudioURL() -> URL {
+        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+    }
+
+    func getAudioDuration() -> Double {
+        let audio = AVURLAsset(url: getAudioURL())
+        return Double(floor(CMTimeGetSeconds(audio.duration)))
+    }
     
     var isPlaying = false
-    
     var audioPlayer: AVAudioPlayer?
     @Published var playValue: TimeInterval = 0.0
-    var playerDuration: TimeInterval = 3
+    lazy var playerDuration: TimeInterval = getAudioDuration()
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     func play(audio: URL) {
@@ -70,6 +83,7 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
             audioPlayer?.play()
             isPlaying = true
         }
+        
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -77,4 +91,8 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
             isPlaying = false
         }
     }
+    
+
 }
+
+
