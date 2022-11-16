@@ -18,7 +18,8 @@ struct RecordView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
     @State var recording = false
-    @State private var speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "id-ID"))
+    @State var speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "id-ID"))
+    @State var locale : Locale?
     @State var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
     @State var recognitionTask         : SFSpeechRecognitionTask?
     @State var defaultTaskHint: SFSpeechRecognitionTaskHint?
@@ -28,6 +29,9 @@ struct RecordView: View {
     @State var confirmedText: AttributedString = ""
     @State var audioRecorder : AVAudioRecorder!
     @State var isDirty = true
+    @State var audioURL: URL!
+    
+    @State var recordTitle = ""
 
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
@@ -48,12 +52,16 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 12, height: 16)
                         .clipped(antialiased: true)
-                        .padding(.trailing, 50)
                 }
-                Text("04/10/22 09:41")
+                
+                TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
                     .font(.custom("Nunito-ExtraBold", size: 22))
-                    .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
+                    .foregroundColor(Color(cgColor: .appHearBlue))
                     .multilineTextAlignment(.center)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .frame(width: 240, height: 38, alignment: .center)
+                    .padding(.leading, 20)
                 
                 Button {
                     //ACTION
@@ -64,33 +72,37 @@ struct RecordView: View {
                         .frame(width: 23, height: 21)
                         .clipped(antialiased: true)
                     
-                } .padding(.leading, 40)
+                }
+                
                 Button {
                     //ACTION
-                    let audioURL = getAudioURL()
                     let inputNode = audioEngine.inputNode
                     let file =  File(context: moc)
                     
                     file.transcript = (transcript)
                     file.audio = audioURL.absoluteString
+                    file.title = recordTitle
+                    file.date = Date()
+                    file.isdeleted = false
                     
                     try? moc.save()
                     self.audioEngine.stop()
                     inputNode.removeTap(onBus: 0)
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
-                    
+                     
                     recording = false
                     isRecording = false
                     
-                    doSubmission()
+//                    doSubmission()
+                    print(recordTitle)
                 } label: {
                     Image("save-icon")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
-                }
+                }.disabled(audioURL == nil || recordTitle.isEmpty)
             }.padding(.top)
             
             ZStack{
@@ -262,7 +274,7 @@ struct RecordView: View {
             recognitionTask = nil
         }
         
-        let audioURL = getAudioURL()
+            audioURL = getAudioURL()
             print(audioURL.absoluteString)
         
         let settings = [
@@ -292,6 +304,15 @@ struct RecordView: View {
         recognitionRequest.shouldReportPartialResults = true
         //            recognitionRequest.taskHint.addsPunctuation = true
         
+//        let lang = UserDefaults.standard.string(forKey: "lang")
+//        if lang == "id"{
+//            locale = Locale.init(identifier: "id-ID")
+//        }
+//        else if lang == "en"{
+//            locale = Locale.init(identifier: "en-EN")
+//        }
+//
+//        speechRecognizer = SFSpeechRecognizer(locale: locale!)
         self.recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
@@ -348,8 +369,14 @@ struct RecordView: View {
     }
 
     func getAudioURL() -> URL {
-        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
-        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+        if recordTitle != ""{
+            return getDocumentsDirectory().appendingPathComponent("\(recordTitle).m4a")
+        }
+        else {
+            let tempIndex = UserDefaults.standard.integer(forKey: "index") + 1
+            UserDefaults.standard.setValue(tempIndex, forKey: "index")
+            return getDocumentsDirectory().appendingPathComponent("Audio\(tempIndex).m4a")
+        }
     }
     
     func doSubmission () {
@@ -365,10 +392,11 @@ struct RecordView: View {
                 if let error = error {
                     print("Error: \(error.localizedDescription)")
                 } else {
-        
+                    print("\(String(describing: record?.recordID))")
                 }
             }
         }
+        
     }
     
     //INI TEMPORARY YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

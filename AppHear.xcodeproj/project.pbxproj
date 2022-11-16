@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2CF7A8291A5E2E003A2048 /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */; };
+		1F4469552923964C0030C673 /* DeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4469542923964C0030C673 /* DeletedView.swift */; };
 		1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BF928F7B4A600DAD59B /* Color.swift */; };
 		1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */; };
 		9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605725928F8911F0029C3A3 /* CustomList.swift */; };
@@ -56,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		1F2CF7A6291A2D2A003A2048 /* AppHear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppHear.entitlements; sourceTree = "<group>"; };
+		1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
+		1F4469542923964C0030C673 /* DeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedView.swift; sourceTree = "<group>"; };
 		1F787BF928F7B4A600DAD59B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		9605725928F8911F0029C3A3 /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				96F0926128F55BAC00EA7B49 /* AppHear.xcdatamodeld */,
+				1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */,
 				EA8E4D5E291E35E300AB3B97 /* DictionaryModel.swift */,
 				EAF55F6629239A4F002F5542 /* VerbsList.json */,
 			);
@@ -210,10 +215,10 @@
 				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
 				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
+				1F4469542923964C0030C673 /* DeletedView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
 				962B394928FC1D63009F95D3 /* VizualizerView.swift */,
 				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
-				96B969AF29224F020079A994 /* audioplayingview.swift */,
 				EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */,
 				96B969AB292236190079A994 /* SliderView.swift */,
 			);
@@ -227,6 +232,7 @@
 				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
 				EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */,
+				96B969AF29224F020079A994 /* audioplayingview.swift */,
 				EA8E4D5C291E354C00AB3B97 /* DictionaryManager.swift */,
 			);
 			path = ViewModel;
@@ -329,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2CF7A8291A5E2E003A2048 /* AudioFiles.swift in Sources */,
 				96F0926028F55BAC00EA7B49 /* Persistence.swift in Sources */,
 				962B394828FBBFFC009F95D3 /* RecordView.swift in Sources */,
 				96F0926328F55BAC00EA7B49 /* AppHear.xcdatamodeld in Sources */,
@@ -350,6 +357,7 @@
 				EA8E4D63291E47F700AB3B97 /* String.swift in Sources */,
 				96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */,
 				EAB1DE1E29238FEB00C54613 /* VerbsModel.swift in Sources */,
+				1F4469552923964C0030C673 /* DeletedView.swift in Sources */,
 				EA8E4D5B291E32EB00AB3B97 /* AudioPlayerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,7 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = LDU59D27D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -513,7 +521,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = LDU59D27D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
