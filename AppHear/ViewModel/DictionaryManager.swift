@@ -14,14 +14,10 @@ class DictionaryManager : ObservableObject{
     @Published var word = [Word]()
     @Published var isFetching : Bool = true
     @Published var isSheetPresented = false
-//    @State var indexChar = 0
-//    @State var location: CGPoint = .zero
-//    @State var firstPhase = ""
-//    @State var secondPhase = ""
     @Published var tappedWord = ""
+    @Published var confirmedText : AttributedString = ""
     @State var contohkalimat: AttributedString = AttributedString("")
     @State var transcript = ""
-    let semaphore = DispatchSemaphore(value: 0)
     
     func fetch(kata : String) {
         isFetching = true
@@ -74,8 +70,40 @@ class DictionaryManager : ObservableObject{
         let firstIndex = firstPhase.lastIndexOfCharacter(" ") ?? 0
         let lastIndex = secondPhase.firstIndexOfCharacter(" ") ?? secondPhase.length
         tappedWord = transcript.substring(firstIndex..<lastIndex+indexChar).trimTrailingPunctuation()
-        if !tappedWord.isEmpty{
+        if !tappedWord.isEmpty && !tappedWord.isNumber{
             isSheetPresented.toggle()
+        }
+    }
+    func highlightText(transcript: String){
+        let transcriptWords = transcript.components(separatedBy: " ")
+        
+        for word in transcriptWords {
+            
+            let attributedString: AttributedString = AttributedString(word)
+            var isMatched = false
+            
+            for searchw in VerbsModel().katakerja{
+                var attributedWord: AttributedString = AttributedString(searchw)
+                
+                if word.contains(searchw){
+                    var container = AttributeContainer()
+                    container.underlineStyle = .single
+                    container.underlineColor = .blue
+                    attributedWord.mergeAttributes(container)
+                    let unhighlightedWord = word.replacingOccurrences(of: searchw, with: "/")
+//                    var containerForEmpty = AttributeContainer()
+                    let firstIndex = unhighlightedWord.firstIndexOfCharacter("/") ?? 0
+                    let firstPhase = unhighlightedWord.substring(0..<firstIndex)
+                    let secondPhase = unhighlightedWord.substring(from: firstIndex+1)
+                    confirmedText += AttributedString(" ") + AttributedString(firstPhase) + attributedWord + AttributedString(secondPhase)
+                    isMatched = true
+                }
+                
+            }
+            
+            if isMatched == false{
+                confirmedText += AttributedString(" ") + attributedString
+            }
         }
     }
 }

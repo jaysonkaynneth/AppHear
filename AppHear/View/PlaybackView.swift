@@ -127,7 +127,7 @@ struct PlaybackView: View {
                     
                     VStack{
                         ScrollView{
-                            Text(transcript)
+                            Text(dictionaryManager.confirmedText)
                                 .onTapGesture {location in
                                     dictionaryManager.extractWord(location: location, transcript: passedFile.transcript!)
                                 }
@@ -254,6 +254,8 @@ struct PlaybackView: View {
                 containerForAttString.foregroundColor = Color(CGColor.appHearBlue)
                 attString.mergeAttributes(containerForAttString)
                 transcript = attString
+                dictionaryManager.highlightText(transcript: passedFile.transcript!)
+                dictionaryManager.confirmedText.mergeAttributes(containerForAttString)
             }
     }
     
