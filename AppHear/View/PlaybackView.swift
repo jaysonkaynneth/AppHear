@@ -19,8 +19,29 @@ import AVKit
 import AVFoundation
 import PartialSheet
 import Combine
+import UniformTypeIdentifiers
 
 struct PlaybackView: View {
+    
+    struct TextFile: FileDocument {
+        static var readableContentTypes = [UTType.plainText]
+            var text: String = ""
+
+            init(text: String) {
+                self.text = text
+            }
+
+            init(configuration: ReadConfiguration) throws {
+                if let data = configuration.file.regularFileContents {
+                    text = String(decoding: data, as: UTF8.self)
+                }
+            }
+
+            func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+                let data = Data(text.utf8)
+                return FileWrapper(regularFileWithContents: data)
+            }
+    }
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var moc
@@ -31,6 +52,7 @@ struct PlaybackView: View {
     @State private var time: Double = 0
     @State private var transcript = AttributedString("")
     @State private var isSheetPresented = false
+    @State private var showingExporter = false
     @State var storedURL: URL?
     @StateObject var dictionaryManager : DictionaryManager = DictionaryManager()
     @ObservedObject var audioPlayerManager = AudioPlayerManager()
@@ -83,7 +105,7 @@ struct PlaybackView: View {
                         .multilineTextAlignment(.center)
                     Spacer()
                     Button {
-                        //
+                        showingExporter.toggle()
                     } label: {
                         Image("export")
                             .resizable()
@@ -91,7 +113,14 @@ struct PlaybackView: View {
                             .frame(width: 23, height: 21)
                             .clipped(antialiased: true)
                         
-                    }.padding(.trailing)
+                    }.padding(.trailing).fileExporter(isPresented: $showingExporter, document: TextFile(text: passedFile.transcript!), contentType: .plainText) { result in
+                        switch result {
+                            case .success(let url):
+                                print("Saved to \(url)")
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            }
+                    }
                 }.padding(.top)
                 ZStack{
                     Image("pb-textbox")
