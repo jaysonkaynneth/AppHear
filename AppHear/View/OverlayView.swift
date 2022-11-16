@@ -30,6 +30,7 @@ struct OverlayView: View {
                     HStack {
                         Button {
                             isPresented.toggle()
+                            UserDefaults.standard.set("id", forKey: "lang")
                         } label: {
                             Image("id-lang-icon")
                                 .resizable()
@@ -42,7 +43,7 @@ struct OverlayView: View {
                         
                         Button {
                             isPresented.toggle()
-                   
+                            UserDefaults.standard.set("en", forKey: "lang")
                         } label: {
                             Image("en-lang-icon")
                                 .resizable()
