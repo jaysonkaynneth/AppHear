@@ -91,7 +91,7 @@ struct SliderView: View
                     HStack {
                         Text(progressString)
                             .font(.system(size: 0.4 * geometry.size.height))
-                            .foregroundColor(.black)
+                            .foregroundColor(.blue)
                             .minimumScaleFactor(0.5)
                             .background(
                                 GeometryReader { proxy in

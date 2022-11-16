@@ -11,10 +11,10 @@ import CoreData
 struct ContentView: View {
     
     @ObservedObject var viewModel: ContentViewModel
-    @State private var overlay = false
+//    @State private var overlay = false
+    @State var overlay = false
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
-    
     @State var recordAmount = 0
     @State var deletedAmount = 0
     
@@ -133,6 +133,7 @@ struct ContentView: View {
                 }.ignoresSafeArea().background(Color(cgColor: .screenColor))
             }.overlay(secretOverlay)
         }.preferredColorScheme(.light)
+         
     }
     
     
@@ -142,6 +143,7 @@ struct ContentView: View {
                 OverlayView().onTapGesture {
                     overlay.toggle()
                 }
+                
             }
         }
     }

@@ -19,9 +19,29 @@ import AVKit
 import AVFoundation
 import PartialSheet
 import Combine
-
+import UniformTypeIdentifiers
 
 struct PlaybackView: View {
+    
+    struct TextFile: FileDocument {
+        static var readableContentTypes = [UTType.plainText]
+            var text: String = ""
+
+            init(text: String) {
+                self.text = text
+            }
+
+            init(configuration: ReadConfiguration) throws {
+                if let data = configuration.file.regularFileContents {
+                    text = String(decoding: data, as: UTF8.self)
+                }
+            }
+
+            func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+                let data = Data(text.utf8)
+                return FileWrapper(regularFileWithContents: data)
+            }
+    }
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var moc
@@ -32,14 +52,12 @@ struct PlaybackView: View {
     @State private var time: Double = 0
     @State private var transcript = AttributedString("")
     @State private var isSheetPresented = false
+    @State private var showingExporter = false
     @State var storedURL: URL?
     @StateObject var dictionaryManager : DictionaryManager = DictionaryManager()
-    @ObservedObject var audioPlayer = AudioPlayerManager()
-    
-    //For testing only
-    var kalimat = "Roket memakan banyak oksigen dan meminum banyak udara batubara. Roket tidak bisa membaca arah gerak mata angin, pembacaan buku bacaan dibacakan oleh baca"
-    //
-    
+    @ObservedObject var audioPlayerManager = AudioPlayerManager()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+   
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     var audioURL: URL
     var passedFile: File
@@ -55,6 +73,10 @@ struct PlaybackView: View {
         return URL(fileURLWithPath: passedFile.audio!)
     }
     
+    func getAudioDuration() -> Double {
+        let audio = AVURLAsset(url: audioURL)
+        return Double(floor(CMTimeGetSeconds(audio.duration)))
+    }
     
     @State var audiofiles = [AudioFiles]()
     
@@ -80,7 +102,7 @@ struct PlaybackView: View {
                         .multilineTextAlignment(.center)
                     Spacer()
                     Button {
-                        //
+                        showingExporter.toggle()
                     } label: {
                         Image("export")
                             .resizable()
@@ -88,7 +110,14 @@ struct PlaybackView: View {
                             .frame(width: 23, height: 21)
                             .clipped(antialiased: true)
                         
-                    }.padding(.trailing)
+                    }.padding(.trailing).fileExporter(isPresented: $showingExporter, document: TextFile(text: passedFile.transcript!), contentType: .plainText) { result in
+                        switch result {
+                            case .success(let url):
+                                print("Saved to \(url)")
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            }
+                    }
                 }.padding(.top)
                 ZStack{
                     Image("pb-textbox")
@@ -108,9 +137,46 @@ struct PlaybackView: View {
                     }
                 }
                 
-                SliderView()
-//                .frame(width: 350, height:8)
-                .padding(.top)
+//                SliderView()
+////                .frame(width: 350, height:8)
+//                .padding(.top)
+                
+                Slider(value: $audioPlayerManager.playValue, in: TimeInterval(0.0)...audioPlayerManager.playerDuration, onEditingChanged: { _ in
+                    self.audioPlayerManager.sliderValue()
+                })
+                .padding(.trailing)
+                .padding(.leading)
+                .onReceive(audioPlayerManager.timer) { _ in
+                    
+                    if self.audioPlayerManager.isPlaying {
+                        if let currentTime = self.audioPlayerManager.audioPlayer?.currentTime {
+                            self.audioPlayerManager.playValue = currentTime
+                            
+                            if currentTime == TimeInterval(0.0) {
+                                self.audioPlayerManager.isPlaying = false
+                            }
+                        }
+                    }
+                    else {
+                        self.audioPlayerManager.isPlaying = false
+                        self.audioPlayerManager.timer.upstream.connect().cancel()
+                    }
+                }
+                
+                
+                HStack {
+                    let progressAudio = Int(round(self.audioPlayerManager.playValue * audioPlayerManager.getAudioDuration())/3)
+                    let progressTime = String(format: "%d:%02d", progressAudio / 60, progressAudio % 60)
+                    Text(progressTime).padding(.leading)
+                      
+                    Spacer()
+
+                    let audioTime = Int(round((1.0 - self.audioPlayerManager.playValue) * audioPlayerManager.getAudioDuration()))
+//                    let audioTime = Int(audioPlayerManager.getAudioDuration())
+                    let audioTotalTime = String(format: "-%d:%02d", audioTime / 60, audioTime % 60)
+                    Text(audioTotalTime).padding(.trailing)
+                }
+                
                 
                 HStack {
                     
@@ -126,7 +192,7 @@ struct PlaybackView: View {
                     Spacer()
                     
                     Button {
-                        
+                      
                     } label: {
                         Image("backward")
                             .resizable()
@@ -138,12 +204,13 @@ struct PlaybackView: View {
                     Button {
                         isPlaying.toggle()
                         if isPlaying == true{
-                            self.audioPlayer.play(audio: self.audioURL)
+                            self.audioPlayerManager.play(audio: self.audioURL)
+                            self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                            
                         } else {
-                            self.audioPlayer.pause()
+                            self.audioPlayerManager.pause()
                         }
-                        
-                        
+                  
                     } label: {
                         Image(isPlaying ? "pause" : "play")
                             .resizable()

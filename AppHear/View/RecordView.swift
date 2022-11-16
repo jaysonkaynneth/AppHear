@@ -30,7 +30,6 @@ struct RecordView: View {
     @State var audioRecorder : AVAudioRecorder!
     @State var isDirty = true
     @State var audioURL: URL!
-    
     @State var recordTitle = ""
 
     let audioEngine = AVAudioEngine()
@@ -75,7 +74,6 @@ struct RecordView: View {
                 }
                 
                 Button {
-                    //ACTION
                     let inputNode = audioEngine.inputNode
                     let file =  File(context: moc)
                     
@@ -88,14 +86,16 @@ struct RecordView: View {
                     try? moc.save()
                     self.audioEngine.stop()
                     inputNode.removeTap(onBus: 0)
+                    self.recognitionRequest?.endAudio()
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
-                     
+                    self.audioRecorder.stop()
+                    self.audioRecorder = nil
+                    
                     recording = false
                     isRecording = false
-                    
+    
 //                    doSubmission()
-                    print(recordTitle)
                 } label: {
                     Image("save-icon")
                         .resizable()
