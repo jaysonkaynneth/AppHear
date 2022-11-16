@@ -141,7 +141,7 @@ struct PlaybackView: View {
 ////                .frame(width: 350, height:8)
 //                .padding(.top)
                 
-                Slider(value: $audioPlayerManager.playValue, in: TimeInterval(0.0)...audioPlayerManager.playerDuration, onEditingChanged: { _ in
+                Slider(value: $audioPlayerManager.playValue, in: TimeInterval(0.0)...getAudioDuration(), onEditingChanged: { _ in
                     self.audioPlayerManager.sliderValue()
                 })
                 .padding(.trailing)
