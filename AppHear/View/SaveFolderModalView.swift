@@ -10,6 +10,7 @@ import SwiftUI
 struct SaveFolderModalView: View {
     var body: some View {
         VStack {
+            Text("Select a Folder").font(.custom("Nunito-Bold", size: 18)).foregroundColor(Color(cgColor: .appHearBlue))
             HStack {
                 VStack(alignment: .leading){
                     Image("recordings-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
