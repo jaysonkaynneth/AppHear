@@ -20,7 +20,6 @@ import AVFoundation
 import PartialSheet
 import Combine
 
-
 struct PlaybackView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -55,6 +54,10 @@ struct PlaybackView: View {
         return URL(fileURLWithPath: passedFile.audio!)
     }
     
+    func getAudioDuration() -> Double {
+        let audio = AVURLAsset(url: audioURL)
+        return Double(floor(CMTimeGetSeconds(audio.duration)))
+    }
     
     @State var audiofiles = [AudioFiles]()
     
@@ -127,7 +130,6 @@ struct PlaybackView: View {
                                 self.audioPlayerManager.isPlaying = false
                             }
                         }
-                        
                     }
                     else {
                         self.audioPlayerManager.isPlaying = false
@@ -145,8 +147,8 @@ struct PlaybackView: View {
 
                     let audioTime = Int(round((1.0 - self.audioPlayerManager.playValue) * audioPlayerManager.getAudioDuration()))
 //                    let audioTime = Int(audioPlayerManager.getAudioDuration())
-                    let leftTime = String(format: "-%d:%02d", audioTime / 60, audioTime % 60)
-                    Text(leftTime).padding(.trailing)
+                    let audioTotalTime = String(format: "-%d:%02d", audioTime / 60, audioTime % 60)
+                    Text(audioTotalTime).padding(.trailing)
                 }
                 
                 
