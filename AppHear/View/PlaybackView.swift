@@ -187,7 +187,8 @@ struct PlaybackView: View {
                 containerForAttString.foregroundColor = Color(CGColor.appHearBlue)
                 attString.mergeAttributes(containerForAttString)
                 transcript = attString
-                dictionaryManager.highlightText(transcript: kalimat)
+                dictionaryManager.highlightText(transcript: passedFile.transcript!)
+                dictionaryManager.confirmedText.mergeAttributes(containerForAttString)
             }
     }
     
