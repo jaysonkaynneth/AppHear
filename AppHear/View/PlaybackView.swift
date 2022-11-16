@@ -14,6 +14,7 @@
 
 import SwiftUI
 import Speech
+import CloudKit
 import AVKit
 import AVFoundation
 import PartialSheet
@@ -41,6 +42,7 @@ struct PlaybackView: View {
     
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     var audioURL: URL
+    var passedFile: File
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -49,10 +51,12 @@ struct PlaybackView: View {
     }
     
     func getAudioURL() -> URL {
-        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
-        //return getDocumentsDirectory().appendingPathComponent("\(title).m4a")
+//        return getDocumentsDirectory().appendingPathComponent("audio.m4a")
+        return URL(fileURLWithPath: passedFile.audio!)
     }
     
+    
+    @State var audiofiles = [AudioFiles]()
     
     var body: some View {
         NavigationView {
@@ -70,7 +74,7 @@ struct PlaybackView: View {
                     }
                     Spacer()
                     
-                    Text("Typography S1")
+                    Text(passedFile.title!)
                         .font(.custom("Nunito-ExtraBold", size: 22))
                         .foregroundColor(Color(CGColor.appHearBlue))
                         .multilineTextAlignment(.center)
@@ -93,11 +97,10 @@ struct PlaybackView: View {
                         .shadow(radius: 10)
                     
                     VStack{
-                        
                         ScrollView{
                             Text(transcript)
                                 .onTapGesture {location in
-                                    dictionaryManager.extractWord(location: location, transcript: kalimat)
+                                    dictionaryManager.extractWord(location: location, transcript: passedFile.transcript!)
                                 }
                         }.frame(width: 290)
                             .padding(.top,20)
@@ -178,15 +181,77 @@ struct PlaybackView: View {
                 DictionaryModalView(fetchedWord: dictionaryManager.tappedWord.trimTrailingPunctuation())
             })
             .onAppear{
-                var attString = AttributedString(kalimat)
+                var attString = AttributedString(passedFile.transcript!)
                 var containerForAttString = AttributeContainer()
-                containerForAttString.font = .system(size: 14)
+                containerForAttString.font = .system(size: 16)
                 containerForAttString.foregroundColor = Color(CGColor.appHearBlue)
                 attString.mergeAttributes(containerForAttString)
                 transcript = attString
             }
     }
+    
+//    func loadAudio() {
+//        let pred = NSPredicate(value: true)
+//        let sort = NSSortDescriptor(key: "creationDate", ascending: false)
+//        let query = CKQuery(recordType: "AudioFiles", predicate: pred)
+//        query.sortDescriptors = [sort]
+//
+//        let operation = CKQueryOperation(query: query)
+//        operation.desiredKeys = ["transcript"]
+//        operation.resultsLimit = 50
+//
+//        var newAudio = [AudioFiles]()
+//
+//        operation.recordMatchedBlock = { record in
+//            print(record)
+//            var audio = AudioFiles()
+//            audio.recordID = record.recordID
+//            audio.transcript = record["transcript"]
+//            newAudio.append(audio)
+//            audiofiles = newAudio
+//
+//        }
+//        CKContainer.default().publicCloudDatabase.add(operation)
+//    }
+    
+//    func fetchAudioAsset(with recordID: CKRecord.ID) {
+//
+//        CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) {(record, err) in
+//
+//            DispatchQueue.main.async {
+//                if let err = err {
+//                    print(err.localizedDescription)
+//                    return
+//                }
+//
+//                if record != nil { return }
+//                guard let audioAsset = record?["audio"] as? CKAsset else { return }
+//                guard let audioURL = audioAsset.fileURL else { return }
+//
+//                do {
+//
+//                    audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+//
+//                } catch {
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+//    }
+    
 }
+        
 
+//struct PlaybackView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlaybackView()
+//    }
+//}
+
+
+
+//Button(action: viewModel.startRecording) {
+//
+//}
 
 
