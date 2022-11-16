@@ -36,7 +36,7 @@ struct PlaybackView: View {
     @ObservedObject var audioPlayer = AudioPlayerManager()
     
     //For testing only
-    var kalimat = "Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket.Roket merupakan wahana luar angkasa, peluru kendali, atau kendaraan terbang yang mendapatkan dorongan melalui reaksi roket terhadap keluarnya secara cepat bahan fluida dari keluaran mesin roket. Aksi dari keluaran dalam ruang bakar dan nozle pengembang, mampu membuat gas mengalir dengan kecepatan hipersonik sehingga menimbulkan dorongan reaktif yang besar untuk roket (sebanding dengan reaksi balasan sesuai dengan Hukum Pergerakan Newton ke 3). Seringkali definisi roket digunakan untuk merujuk kepada mesin roket."
+    var kalimat = "Roket memakan banyak oksigen dan meminum banyak udara batubara. Roket tidak bisa membaca arah gerak mata angin, pembacaan buku bacaan dibacakan oleh baca"
     //
     
     let audioDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -93,9 +93,8 @@ struct PlaybackView: View {
                         .shadow(radius: 10)
                     
                     VStack{
-                        
                         ScrollView{
-                            Text(transcript)
+                            Text(dictionaryManager.confirmedText)
                                 .onTapGesture {location in
                                     dictionaryManager.extractWord(location: location, transcript: kalimat)
                                 }
@@ -184,6 +183,7 @@ struct PlaybackView: View {
                 containerForAttString.foregroundColor = Color(CGColor.appHearBlue)
                 attString.mergeAttributes(containerForAttString)
                 transcript = attString
+                dictionaryManager.highlightText(transcript: kalimat)
             }
     }
 }
