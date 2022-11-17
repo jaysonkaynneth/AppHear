@@ -43,7 +43,6 @@ struct CustomList: View {
                             .font(.custom("Nunito-ExtraBold", size: 13))
                     }
                     Spacer()
-                    
                     Text(emoji)
                         .foregroundColor(.black)
                         .font(.system(size: 33))
