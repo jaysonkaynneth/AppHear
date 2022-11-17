@@ -51,7 +51,9 @@ struct CustomList: View {
             }
             .padding(.leading)
             .padding(.trailing)
-        }
+        }.background(RoundedRectangle(cornerRadius: 20)
+            .fill(.white)
+            .shadow(radius: 5))
     }
     
 }
