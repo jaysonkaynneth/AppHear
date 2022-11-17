@@ -34,6 +34,7 @@ struct RecordView: View {
     @State var recordTitle = ""
     @State var isNotSaved = true
     @State var isPresented = false
+    @State var isAlerted = false
 
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
@@ -101,6 +102,9 @@ struct RecordView: View {
                     isRecording = false
                     isPresented = true
                     isNotSaved = false
+                    isAlerted = true
+                    
+                   
 //                    doSubmission()
                 } label: {
                     Image("save-icon")
@@ -108,7 +112,17 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
-                }.disabled(audioURL == nil || recordTitle.isEmpty)
+                }                    .alert("Transcript Saved!", isPresented: $isAlerted) {
+                    Button("Ok", role: .cancel)
+                    {
+                        transcript = ""
+                        recordTitle = ""
+                    }
+                }
+
+                .disabled(audioURL == nil || recordTitle.isEmpty)
+                        
+                
                 
             }.padding(.top)
             
@@ -157,6 +171,9 @@ struct RecordView: View {
         .preferredColorScheme(.light)
         .ignoresSafeArea(.keyboard)
         .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
+        .onTapGesture {
+              self.endTextEditing()
+        }
     }
     
     private func soundLevel(level: Float) -> CGFloat {

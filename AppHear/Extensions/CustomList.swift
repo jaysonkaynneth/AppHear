@@ -47,7 +47,6 @@ struct CustomList: View {
                             .font(.custom("Nunito-ExtraBold", size: 15))
                     }.padding(.leading, 20)
                     Spacer()
-                    
                     Text(emoji)
                         .foregroundColor(.black)
                         .font(.system(size: 33))
@@ -55,7 +54,13 @@ struct CustomList: View {
             }
             .padding(.leading)
             .padding(.trailing)
-        }
+        }.background(RoundedRectangle(cornerRadius: 20)
+            .fill(.white)
+            .frame(width: 335)
+            .padding(.leading)
+            .shadow(radius: 5))
+        .frame(width: 335)
+        .padding(.leading)
     }
     
 }

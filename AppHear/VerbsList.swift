@@ -25,5 +25,12 @@ struct VerbsList{
         "makan",
         "minum",
         "rusak",
+        "dorong",
+        "bakar",
+        "mengandung",
+        "menyembur",
+        "letak",
+        "hasil",
+        "campur"
     ]
 }

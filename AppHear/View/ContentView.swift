@@ -17,6 +17,7 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State var recordAmount = 0
     @State var deletedAmount = 0
+    @State var isPresented = false
     
     var body: some View {
         NavigationView {
@@ -29,7 +30,7 @@ struct ContentView: View {
                         
                         HStack{
                             ZStack {
-                                Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 350, height: 41).cornerRadius(19.5, antialiased: true)
+                                Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 330, height: 39).cornerRadius(19.5, antialiased: true)
                                 
                                 HStack{
                                     Image(systemName: "magnifyingglass").foregroundColor(.white).padding(.leading, 40)
@@ -38,7 +39,7 @@ struct ContentView: View {
                                     Spacer()
                                 }
                             }
-//                            Image("no-device").resizable().frame(width: 22.53, height: 28.53).padding(.trailing)
+//                            Image(" ").resizable().frame(width: 22.53, height: 28.53).padding(.trailing)
                         }.onAppear(perform: initiateIndexCounter).onAppear(perform: countRecord)
                     }
                     
@@ -91,12 +92,17 @@ struct ContentView: View {
                             
                                 
                                 VStack(alignment: .center){
-                                    Image("new-folder-icon").resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
+                                    Image("new-folder-icon")
+                                        .resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
+                                      
                                     Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
                                         
                                 }.padding(.leading, 40)
                                 
-                            }.frame(width: 165, height: 142)
+                                
+                            }.frame(width: 165, height: 142)      .onTapGesture {
+                                isPresented.toggle()
+                            }  .sheet(isPresented: $isPresented, content: NewFolderModalView.init)
                         }
                         
                         Spacer()

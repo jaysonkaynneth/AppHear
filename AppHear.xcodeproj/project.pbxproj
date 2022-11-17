@@ -17,6 +17,8 @@
 		960A7FBD29253497007332AD /* SaveRecordingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A7FBC29253497007332AD /* SaveRecordingModalView.swift */; };
 		960A7FC129254829007332AD /* SaveAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A7FC029254829007332AD /* SaveAlertView.swift */; };
 		960A7FC329255525007332AD /* SaveFolderModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A7FC229255525007332AD /* SaveFolderModalView.swift */; };
+		960BA3DF2925E9E100AEB58B /* NewFolderModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BA3DE2925E9E100AEB58B /* NewFolderModalView.swift */; };
+		960BA3E22925F63E00AEB58B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BA3E12925F63E00AEB58B /* SplashScreenView.swift */; };
 		962B394828FBBFFC009F95D3 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962B394728FBBFFC009F95D3 /* RecordView.swift */; };
 		962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962B394928FC1D63009F95D3 /* VizualizerView.swift */; };
 		96353D1F28F6A24800518F3B /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D0F28F6A24700518F3B /* Nunito-ExtraLight.ttf */; };
@@ -57,6 +59,7 @@
 		EA8E4D61291E38ED00AB3B97 /* DictionaryModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */; };
 		EA8E4D63291E47F700AB3B97 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D62291E47F700AB3B97 /* String.swift */; };
 		EADFCA082925585300C07B9C /* VerbsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFCA072925585300C07B9C /* VerbsList.swift */; };
+		EADFCA0A2926253000C07B9C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFCA092926253000C07B9C /* View.swift */; };
 		EAF55F6729239A4F002F5542 /* VerbsList.json in Resources */ = {isa = PBXBuildFile; fileRef = EAF55F6629239A4F002F5542 /* VerbsList.json */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +75,8 @@
 		960A7FBC29253497007332AD /* SaveRecordingModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordingModalView.swift; sourceTree = "<group>"; };
 		960A7FC029254829007332AD /* SaveAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAlertView.swift; sourceTree = "<group>"; };
 		960A7FC229255525007332AD /* SaveFolderModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFolderModalView.swift; sourceTree = "<group>"; };
+		960BA3DE2925E9E100AEB58B /* NewFolderModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderModalView.swift; sourceTree = "<group>"; };
+		960BA3E12925F63E00AEB58B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		962B394728FBBFFC009F95D3 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		962B394928FC1D63009F95D3 /* VizualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizualizerView.swift; sourceTree = "<group>"; };
 		96353D0F28F6A24700518F3B /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 		EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryModalView.swift; sourceTree = "<group>"; };
 		EA8E4D62291E47F700AB3B97 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EADFCA072925585300C07B9C /* VerbsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbsList.swift; sourceTree = "<group>"; };
+		EADFCA092926253000C07B9C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EAF55F6629239A4F002F5542 /* VerbsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VerbsList.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,10 +138,24 @@
 			isa = PBXGroup;
 			children = (
 				9605725928F8911F0029C3A3 /* CustomList.swift */,
+				EADFCA092926253000C07B9C /* View.swift */,
 				1F787BF928F7B4A600DAD59B /* Color.swift */,
 				EA8E4D62291E47F700AB3B97 /* String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		960BA3E02925F3C500AEB58B /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				960A7FBC29253497007332AD /* SaveRecordingModalView.swift */,
+				960A7FC229255525007332AD /* SaveFolderModalView.swift */,
+				960BA3DE2925E9E100AEB58B /* NewFolderModalView.swift */,
+				EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */,
+				960A7FC029254829007332AD /* SaveAlertView.swift */,
+				96F0927128F59FD200EA7B49 /* Model */,
+			);
+			path = Modals;
 			sourceTree = "<group>";
 		};
 		96F0924A28F55BAB00EA7B49 = {
@@ -161,7 +181,6 @@
 				1F787BF828F7B49300DAD59B /* Extensions */,
 				96F0927328F59FE000EA7B49 /* ViewModel */,
 				96F0927228F59FD800EA7B49 /* View */,
-				96F0927128F59FD200EA7B49 /* Model */,
 				96F0925628F55BAB00EA7B49 /* AppHearApp.swift */,
 				EADFCA072925585300C07B9C /* VerbsList.swift */,
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
@@ -221,18 +240,16 @@
 		96F0927228F59FD800EA7B49 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				960BA3E02925F3C500AEB58B /* Modals */,
 				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
+				960BA3E12925F63E00AEB58B /* SplashScreenView.swift */,
 				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
-				960A7FBC29253497007332AD /* SaveRecordingModalView.swift */,
-				960A7FC229255525007332AD /* SaveFolderModalView.swift */,
-				960A7FC029254829007332AD /* SaveAlertView.swift */,
 				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
 				1F4469542923964C0030C673 /* DeletedView.swift */,
 				962B394928FC1D63009F95D3 /* VizualizerView.swift */,
 				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
 				96B969AB292236190079A994 /* SliderView.swift */,
-				EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -364,6 +381,8 @@
 				960A7FC329255525007332AD /* SaveFolderModalView.swift in Sources */,
 				96F9EF4728FD4BD400634CFB /* MicrophoneManager.swift in Sources */,
 				96B969AC292236190079A994 /* SliderView.swift in Sources */,
+				960BA3DF2925E9E100AEB58B /* NewFolderModalView.swift in Sources */,
+				960BA3E22925F63E00AEB58B /* SplashScreenView.swift in Sources */,
 				967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */,
 				96B969B029224F020079A994 /* audioplayingview.swift in Sources */,
 				EA8E4D61291E38ED00AB3B97 /* DictionaryModalView.swift in Sources */,
@@ -372,6 +391,7 @@
 				96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */,
 				1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */,
 				EA8E4D63291E47F700AB3B97 /* String.swift in Sources */,
+				EADFCA0A2926253000C07B9C /* View.swift in Sources */,
 				96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */,
 				1F4469552923964C0030C673 /* DeletedView.swift in Sources */,
 				EA8E4D5B291E32EB00AB3B97 /* AudioPlayerManager.swift in Sources */,
@@ -504,7 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = XUG8PBJYAV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -520,7 +540,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.campantech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -537,7 +557,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = XUG8PBJYAV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -553,7 +573,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.campantech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

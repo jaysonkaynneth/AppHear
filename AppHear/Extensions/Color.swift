@@ -27,4 +27,7 @@ extension CGColor {
     public static var gradient2: CGColor {
         return CGColor(red: 124.0/255.0, green: 137.0/255.0 , blue: 226.0/255.0, alpha: 1.0)
     }
+    public static var appHearOrange: CGColor {
+        return CGColor(red: 255.0/255.0, green: 176.0/255.0 , blue: 61.0/255.0, alpha: 1.0)
+    }
 }
