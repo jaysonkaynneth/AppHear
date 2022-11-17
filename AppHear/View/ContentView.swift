@@ -17,6 +17,7 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State var recordAmount = 0
     @State var deletedAmount = 0
+    @State var isPresented = false
     
     var body: some View {
         NavigationView {
@@ -91,12 +92,17 @@ struct ContentView: View {
                             
                                 
                                 VStack(alignment: .center){
-                                    Image("new-folder-icon").resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
+                                    Image("new-folder-icon")
+                                        .resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
+                                      
                                     Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
                                         
                                 }.padding(.leading, 40)
                                 
-                            }.frame(width: 165, height: 142)
+                                
+                            }.frame(width: 165, height: 142)      .onTapGesture {
+                                isPresented.toggle()
+                            }  .sheet(isPresented: $isPresented, content: NewFolderModalView.init)
                         }
                         
                         Spacer()
