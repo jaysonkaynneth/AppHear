@@ -59,6 +59,7 @@
 		EA8E4D61291E38ED00AB3B97 /* DictionaryModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */; };
 		EA8E4D63291E47F700AB3B97 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E4D62291E47F700AB3B97 /* String.swift */; };
 		EADFCA082925585300C07B9C /* VerbsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFCA072925585300C07B9C /* VerbsList.swift */; };
+		EADFCA0A2926253000C07B9C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFCA092926253000C07B9C /* View.swift */; };
 		EAF55F6729239A4F002F5542 /* VerbsList.json in Resources */ = {isa = PBXBuildFile; fileRef = EAF55F6629239A4F002F5542 /* VerbsList.json */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,7 @@
 		EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryModalView.swift; sourceTree = "<group>"; };
 		EA8E4D62291E47F700AB3B97 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EADFCA072925585300C07B9C /* VerbsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbsList.swift; sourceTree = "<group>"; };
+		EADFCA092926253000C07B9C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EAF55F6629239A4F002F5542 /* VerbsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VerbsList.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				9605725928F8911F0029C3A3 /* CustomList.swift */,
+				EADFCA092926253000C07B9C /* View.swift */,
 				1F787BF928F7B4A600DAD59B /* Color.swift */,
 				EA8E4D62291E47F700AB3B97 /* String.swift */,
 			);
@@ -388,6 +391,7 @@
 				96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */,
 				1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */,
 				EA8E4D63291E47F700AB3B97 /* String.swift in Sources */,
+				EADFCA0A2926253000C07B9C /* View.swift in Sources */,
 				96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */,
 				1F4469552923964C0030C673 /* DeletedView.swift in Sources */,
 				EA8E4D5B291E32EB00AB3B97 /* AudioPlayerManager.swift in Sources */,
@@ -520,7 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = XUG8PBJYAV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -536,7 +540,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.campantech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -553,7 +557,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = XUG8PBJYAV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
@@ -569,7 +573,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.campantech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

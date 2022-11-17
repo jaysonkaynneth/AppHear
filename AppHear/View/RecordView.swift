@@ -103,6 +103,8 @@ struct RecordView: View {
                     isPresented = true
                     isNotSaved = false
                     isAlerted = true
+                    
+                   
 //                    doSubmission()
                 } label: {
                     Image("save-icon")
@@ -112,7 +114,10 @@ struct RecordView: View {
                         .clipped(antialiased: true)
                 }                    .alert("Transcript Saved!", isPresented: $isAlerted) {
                     Button("Ok", role: .cancel)
-                    { }
+                    {
+                        transcript = ""
+                        recordTitle = ""
+                    }
                 }
 
                 .disabled(audioURL == nil || recordTitle.isEmpty)
@@ -166,6 +171,9 @@ struct RecordView: View {
         .preferredColorScheme(.light)
         .ignoresSafeArea(.keyboard)
         .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
+        .onTapGesture {
+              self.endTextEditing()
+        }
     }
     
     private func soundLevel(level: Float) -> CGFloat {
