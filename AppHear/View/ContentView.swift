@@ -29,7 +29,7 @@ struct ContentView: View {
                         
                         HStack{
                             ZStack {
-                                Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 302, height: 39).cornerRadius(19.5, antialiased: true)
+                                Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 350, height: 41).cornerRadius(19.5, antialiased: true)
                                 
                                 HStack{
                                     Image(systemName: "magnifyingglass").foregroundColor(.white).padding(.leading, 40)
@@ -38,7 +38,7 @@ struct ContentView: View {
                                     Spacer()
                                 }
                             }
-                            Image("no-device").resizable().frame(width: 22.53, height: 28.53).padding(.trailing)
+//                            Image("no-device").resizable().frame(width: 22.53, height: 28.53).padding(.trailing)
                         }.onAppear(perform: initiateIndexCounter).onAppear(perform: countRecord)
                     }
                     

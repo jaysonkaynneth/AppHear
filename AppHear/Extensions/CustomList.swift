@@ -31,8 +31,12 @@ struct CustomList: View {
                 .navigationBarHidden(true)
                 .navigationBarTitle("")
         } label: {
-            ZStack(alignment: .leading){
-                HStack {
+            ZStack(alignment: .center){
+                Rectangle().foregroundColor(.white).frame(width: 350, height: 71, alignment: .center).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 18)
+                
+                HStack (alignment: .center){
                     VStack(alignment: .leading){
                         Text(name)
                             .foregroundColor(Color(red: 66/255, green: 84/255, blue: 182/255, opacity: 1.0))
@@ -40,8 +44,8 @@ struct CustomList: View {
                             
                         Text(Date().dateFormat)
                             .foregroundColor(Color(red: 139/255, green: 139/255, blue: 139/255, opacity: 1.0))
-                            .font(.custom("Nunito-ExtraBold", size: 13))
-                    }
+                            .font(.custom("Nunito-ExtraBold", size: 15))
+                    }.padding(.leading, 20)
                     Spacer()
                     
                     Text(emoji)
