@@ -34,6 +34,7 @@ struct RecordView: View {
     @State var recordTitle = ""
     @State var isNotSaved = true
     @State var isPresented = false
+    @State var isAlerted = false
 
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
@@ -101,6 +102,7 @@ struct RecordView: View {
                     isRecording = false
                     isPresented = true
                     isNotSaved = false
+                    isAlerted = true
                     
                     transcript = ""
                     recordTitle = ""
@@ -111,7 +113,14 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
-                }.disabled(audioURL == nil || recordTitle.isEmpty)
+                }                    .alert("Transcript Saved!", isPresented: $isAlerted) {
+                    Button("Ok", role: .cancel)
+                    { }
+                }
+
+                .disabled(audioURL == nil || recordTitle.isEmpty)
+                        
+                
                 
             }.padding(.top)
             
