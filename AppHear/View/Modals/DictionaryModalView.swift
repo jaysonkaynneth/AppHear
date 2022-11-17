@@ -23,26 +23,27 @@ struct DictionaryModalView: View {
                 VStack{
                     ActivityIndicatorView(isVisible: $dictionaryManager.isFetching, type: .rotatingDots(count: 5))
                         .frame(width: 40,height: 40)
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color(CGColor.appHearOrange))
                     Text("Loading contents")
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color(CGColor.appHearOrange))
                 }
             }else{
                 ScrollView{
                     VStack(alignment: .leading){
                         Text(fetchedWord)
                             .font(Font.custom("Nunito-Bold", size: 32))
-                            .foregroundColor(.yellow)
+                            .foregroundColor(Color(CGColor.appHearOrange))
                         ForEach(dictionaryManager.word, id: \.self){ pertama in
                             ForEach(pertama.data , id: \.self) { kedua in
                                 Text("/\(kedua.lema)/")
+                                Text("")
                                 ForEach(kedua.arti, id: \.self){ ketiga in
                                     Text(ketiga.kelasKata)
                                     Text(ketiga.deskripsi)
                                 }
                             }
                         }.font(Font.custom("Nunito-Bold", size: 14))
-                            .foregroundColor(.purple)
+                            .foregroundColor(Color(CGColor.appHearBlue))
                     }
                 }
             }

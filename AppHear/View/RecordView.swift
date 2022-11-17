@@ -104,8 +104,7 @@ struct RecordView: View {
                     isNotSaved = false
                     isAlerted = true
                     
-                    transcript = ""
-                    recordTitle = ""
+                   
 //                    doSubmission()
                 } label: {
                     Image("save-icon")
@@ -115,7 +114,10 @@ struct RecordView: View {
                         .clipped(antialiased: true)
                 }                    .alert("Transcript Saved!", isPresented: $isAlerted) {
                     Button("Ok", role: .cancel)
-                    { }
+                    {
+                        transcript = ""
+                        recordTitle = ""
+                    }
                 }
 
                 .disabled(audioURL == nil || recordTitle.isEmpty)
