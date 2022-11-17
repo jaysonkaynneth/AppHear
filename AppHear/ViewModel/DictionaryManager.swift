@@ -82,10 +82,10 @@ class DictionaryManager : ObservableObject{
             let attributedString: AttributedString = AttributedString(word)
             var isMatched = false
             
-            for searchw in VerbsModel().katakerja{
+            for searchw in VerbsList().kataDasar {
                 var attributedWord: AttributedString = AttributedString(searchw)
                 
-                if word.contains(searchw){
+                if word.contains(searchw) && word != searchw{
                     var container = AttributeContainer()
                     container.underlineStyle = .single
                     container.underlineColor = .blue
