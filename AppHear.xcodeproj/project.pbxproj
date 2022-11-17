@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F0A61F12926BCB80094B426 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A61F02926BCB80094B426 /* EmojiTextField.swift */; };
+		1F0A61FB2926E5B30094B426 /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A61FA2926E5B30094B426 /* FolderView.swift */; };
 		1F2CF7A8291A5E2E003A2048 /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */; };
 		1F4469552923964C0030C673 /* DeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4469542923964C0030C673 /* DeletedView.swift */; };
 		1F4469572924E8A80030C673 /* TextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4469562924E8A80030C673 /* TextFile.swift */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		1F0A61F02926BCB80094B426 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
+		1F0A61FA2926E5B30094B426 /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		1F2CF7A6291A2D2A003A2048 /* AppHear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppHear.entitlements; sourceTree = "<group>"; };
 		1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
 		1F4469542923964C0030C673 /* DeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedView.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
 				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
+				1F0A61FA2926E5B30094B426 /* FolderView.swift */,
 				1F4469542923964C0030C673 /* DeletedView.swift */,
 				962B394928FC1D63009F95D3 /* VizualizerView.swift */,
 				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
@@ -378,6 +381,7 @@
 				1F4469572924E8A80030C673 /* TextFile.swift in Sources */,
 				EA8E4D5D291E354C00AB3B97 /* DictionaryManager.swift in Sources */,
 				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
+				1F0A61FB2926E5B30094B426 /* FolderView.swift in Sources */,
 				EA8E4D5F291E35E300AB3B97 /* DictionaryModel.swift in Sources */,
 				1F0A61F12926BCB80094B426 /* EmojiTextField.swift in Sources */,
 				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,

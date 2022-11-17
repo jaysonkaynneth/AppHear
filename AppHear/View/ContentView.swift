@@ -17,6 +17,7 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @FetchRequest(sortDescriptors: []) var folders: FetchedResults<RecordFolder>
     @State var selectedFolder : RecordFolder?
+    @State private var showFolderView = false
     @State var recordAmount = 0
     @State var deletedAmount = 0
     @State var isPresented = false
@@ -119,6 +120,7 @@ struct ContentView: View {
                             ForEach(folders) { folders in
                                 Button {
                                     folderSelected(folder: folders)
+                                    showFolderView.toggle()
                                 } label: {
                                     ZStack{
                                         Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
@@ -160,6 +162,9 @@ struct ContentView: View {
                                     isPresented.toggle()
                                 }  .sheet(isPresented: $isPresented, content: NewFolderModalView.init)
                             }
+                            
+                            NavigationLink("", destination:  FolderView(passedFolder: selectedFolder ?? folders[0]), isActive: $showFolderView)
+                            
                         }.padding(.top, 6)
                 
                     }.frame(width: 360).offset(y: -20)
