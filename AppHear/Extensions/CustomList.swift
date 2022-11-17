@@ -53,6 +53,8 @@ struct CustomList: View {
         }.background(RoundedRectangle(cornerRadius: 20)
             .fill(.white)
             .shadow(radius: 5))
+        .frame(width: 335)
+        .padding(.leading)
     }
     
 }

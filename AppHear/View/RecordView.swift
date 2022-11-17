@@ -101,6 +101,9 @@ struct RecordView: View {
                     isRecording = false
                     isPresented = true
                     isNotSaved = false
+                    
+                    transcript = ""
+                    recordTitle = ""
 //                    doSubmission()
                 } label: {
                     Image("save-icon")
@@ -157,6 +160,9 @@ struct RecordView: View {
         .preferredColorScheme(.light)
         .ignoresSafeArea(.keyboard)
         .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
+        .onTapGesture {
+              self.endTextEditing()
+        }
     }
     
     private func soundLevel(level: Float) -> CGFloat {
