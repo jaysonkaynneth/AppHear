@@ -12,10 +12,11 @@ struct NewFolderModalView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
+    @FetchRequest(sortDescriptors: []) var folders: FetchedResults<RecordFolder>
     
     @State private var folderName: String = ""
     @State private var emoji: String = ""
-    @State private var isEmoji = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -39,7 +40,14 @@ struct NewFolderModalView: View {
                 
                 Button {
                     
-                    //
+                    let folder =  RecordFolder(context: moc)
+                    
+                    folder.title = folderName
+                    folder.emoji = emoji
+                    folder.count = 0
+                
+                    try? moc.save()
+                    
                 } label: {
                     Image("save-icon")
                         .resizable()
@@ -83,12 +91,9 @@ struct NewFolderModalView: View {
                
                     
                 }
-                
-                
-            
-            
             
             TextField("Folder Name", text: $folderName)
+                .font(.custom("Nunito-Bold", size: 17)).foregroundColor(Color(cgColor: .appHearBlue))
                 .padding()
                 .frame(width: 309, height: 39)
                 .background(RoundedRectangle(cornerRadius: 19.5)
