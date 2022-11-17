@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0A61F12926BCB80094B426 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A61F02926BCB80094B426 /* EmojiTextField.swift */; };
 		1F2CF7A8291A5E2E003A2048 /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */; };
 		1F4469552923964C0030C673 /* DeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4469542923964C0030C673 /* DeletedView.swift */; };
 		1F4469572924E8A80030C673 /* TextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4469562924E8A80030C673 /* TextFile.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F0A61F02926BCB80094B426 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		1F2CF7A6291A2D2A003A2048 /* AppHear.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppHear.entitlements; sourceTree = "<group>"; };
 		1F2CF7A7291A5E2E003A2048 /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
 		1F4469542923964C0030C673 /* DeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				EADFCA092926253000C07B9C /* View.swift */,
 				1F787BF928F7B4A600DAD59B /* Color.swift */,
 				EA8E4D62291E47F700AB3B97 /* String.swift */,
+				1F0A61F02926BCB80094B426 /* EmojiTextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				EA8E4D5D291E354C00AB3B97 /* DictionaryManager.swift in Sources */,
 				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
 				EA8E4D5F291E35E300AB3B97 /* DictionaryModel.swift in Sources */,
+				1F0A61F12926BCB80094B426 /* EmojiTextField.swift in Sources */,
 				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,
 				9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */,
 				960A7FC329255525007332AD /* SaveFolderModalView.swift in Sources */,
