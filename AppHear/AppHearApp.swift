@@ -14,7 +14,8 @@ struct AppHearApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: ContentViewModel())
+//            ContentView(viewModel: ContentViewModel())
+            SplashScreenView()
                 .environment(\.managedObjectContext, persistence.container.viewContext)
                 .attachPartialSheetToRoot()
         }
