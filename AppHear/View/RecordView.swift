@@ -57,7 +57,8 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 12, height: 16)
                         .clipped(antialiased: true)
-                }.partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
+                }
+//                .partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
                 
                 TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
                     .font(.custom("Nunito-ExtraBold", size: 22))
@@ -112,7 +113,7 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
-                }                    .alert("Transcript Saved!", isPresented: $isAlerted) {
+                }.partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)                    .alert("Audio and transcript saved!", isPresented: $isAlerted) {
                     Button("Ok", role: .cancel)
                     {
                         transcript = ""
