@@ -58,7 +58,7 @@ struct RecordView: View {
                         .frame(width: 12, height: 16)
                         .clipped(antialiased: true)
                 }
-//                .partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
+
                 
                 TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
                     .font(.custom("Nunito-ExtraBold", size: 22))
