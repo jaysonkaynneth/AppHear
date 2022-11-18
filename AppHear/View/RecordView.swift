@@ -105,8 +105,6 @@ struct RecordView: View {
                     isNotSaved = false
                     isAlerted = true
                     
-                    presentationMode.wrappedValue.dismiss()
-                    
                 } label: {
                     Image("save-icon")
                         .resizable()
@@ -114,7 +112,7 @@ struct RecordView: View {
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
                 }
-                .partialSheet(isPresented: $isPresented, content: SaveFolderModalView.init)
+                .sheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
 //                .alert("Transcript Saved!", isPresented: $isAlerted) {
 //                    Button("Ok", role: .cancel)
 //                    {

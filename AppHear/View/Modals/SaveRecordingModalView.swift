@@ -58,9 +58,7 @@ struct SaveRecordingModalView: View {
                         .frame(width: 309, height: 39)
                 }
             }   
-            
-       
-            
+        
             Button {
                 
             } label: {
@@ -74,6 +72,7 @@ struct SaveRecordingModalView: View {
                         .foregroundColor(.white)
                 }
             }
+            Spacer()
         }.padding()
     }
 }
