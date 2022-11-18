@@ -21,6 +21,7 @@ struct ContentView: View {
     @State var recordAmount = 0
     @State var deletedAmount = 0
     @State var isPresented = false
+    @State var recordButton = false
     
     var body: some View {
         NavigationView {
@@ -144,10 +145,11 @@ struct ContentView: View {
                                 Image("bottom-bar").resizable().scaledToFit()
                                 
                                 Button {
-                                    overlay.toggle()
+//                                    overlay.toggle()
+                                    recordButton = true
                                 } label: {
                                     Image("record").resizable().frame(width: 84, height: 84, alignment: .center)
-                                }
+                                }.fullScreenCover(isPresented: $recordButton, content: RecordView.init)
                                 
                             }
                         }
