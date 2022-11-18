@@ -158,7 +158,6 @@
 				960BA3DE2925E9E100AEB58B /* NewFolderModalView.swift */,
 				EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */,
 				960A7FC029254829007332AD /* SaveAlertView.swift */,
-				96F0927128F59FD200EA7B49 /* Model */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -189,6 +188,7 @@
 				96F0925628F55BAB00EA7B49 /* AppHearApp.swift */,
 				EADFCA072925585300C07B9C /* VerbsList.swift */,
 				96F0925F28F55BAC00EA7B49 /* Persistence.swift */,
+				96F0927128F59FD200EA7B49 /* Model */,
 				96F0925A28F55BAC00EA7B49 /* Assets.xcassets */,
 				96F0927028F59CC500EA7B49 /* Info.plist */,
 				96B969B1292250830079A994 /* audio.m4a */,
