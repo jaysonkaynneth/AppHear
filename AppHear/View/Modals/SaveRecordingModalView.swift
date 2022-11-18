@@ -11,7 +11,7 @@ struct SaveRecordingModalView: View {
     
     @State var fileName: String = ""
     @State var folderName: String = ""
-    @State var isPresented = false
+    
     
     var body: some View {
         VStack {
@@ -42,7 +42,7 @@ struct SaveRecordingModalView: View {
             }
             
             Button {
-                isPresented.toggle()
+              
             } label: {
                 ZStack {
                     HStack{
@@ -57,7 +57,7 @@ struct SaveRecordingModalView: View {
                         .stroke(Color(red: 217/255, green: 217/255, blue: 217/255))
                         .frame(width: 309, height: 39)
                 }
-            }    .sheet(isPresented: $isPresented, content: SaveFolderModalView.init)
+            }   
             
        
             

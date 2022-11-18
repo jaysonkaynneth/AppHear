@@ -57,7 +57,8 @@ struct RecordView: View {
                         .scaledToFit()
                         .frame(width: 12, height: 16)
                         .clipped(antialiased: true)
-                }.partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
+                }
+//                .partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
                 
                 TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
                     .font(.custom("Nunito-ExtraBold", size: 22))
@@ -104,21 +105,23 @@ struct RecordView: View {
                     isNotSaved = false
                     isAlerted = true
                     
-                   
-//                    doSubmission()
+                    presentationMode.wrappedValue.dismiss()
+                    
                 } label: {
                     Image("save-icon")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
-                }                    .alert("Transcript Saved!", isPresented: $isAlerted) {
-                    Button("Ok", role: .cancel)
-                    {
-                        transcript = ""
-                        recordTitle = ""
-                    }
                 }
+                .partialSheet(isPresented: $isPresented, content: SaveFolderModalView.init)
+//                .alert("Transcript Saved!", isPresented: $isAlerted) {
+//                    Button("Ok", role: .cancel)
+//                    {
+//                        transcript = ""
+//                        recordTitle = ""
+//                    }
+//                }
 
                 .disabled(audioURL == nil || recordTitle.isEmpty)
                         
@@ -177,8 +180,14 @@ struct RecordView: View {
     }
     
     private func soundLevel(level: Float) -> CGFloat {
-        let level = max(0.2, CGFloat(level) + 25)
-        return CGFloat(level * 4)
+        if isRecording == false{
+            let level = 1
+            return CGFloat(level * 4)
+        } else {
+            let level = max(0.2, CGFloat(level) + 25)
+            return CGFloat(level * 4)
+        }
+       
     }
     
     private func visualizerView() -> some View {
