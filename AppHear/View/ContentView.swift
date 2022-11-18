@@ -17,7 +17,7 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @FetchRequest(sortDescriptors: []) var folders: FetchedResults<RecordFolder>
     @State var selectedFolder : RecordFolder?
-    @State private var showFolderView = false
+    @State var showFolderView = false
     @State var recordAmount = 0
     @State var deletedAmount = 0
     @State var isPresented = false
@@ -97,7 +97,7 @@ struct ContentView: View {
                                             Image("recordings-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
                                             Text("All Recordings").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
                                             Text("\(recordAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                                        }
+                                        }.padding(.trailing)
                                     }.frame(width: 165, height: 142)
                                 }.padding(.bottom, 4)
                             
@@ -120,7 +120,6 @@ struct ContentView: View {
                             ForEach(folders) { folders in
                                 Button {
                                     folderSelected(folder: folders)
-                                    showFolderView.toggle()
                                 } label: {
                                     ZStack{
                                         Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
@@ -163,7 +162,9 @@ struct ContentView: View {
                                 }  .sheet(isPresented: $isPresented, content: NewFolderModalView.init)
                             }
                             
-                            NavigationLink("", destination:  FolderView(passedFolder: selectedFolder ?? folders[0]), isActive: $showFolderView)
+                            if !folders.isEmpty{
+                                NavigationLink("", destination:  FolderView(passedFolder: selectedFolder ?? folders[0]), isActive: $showFolderView)
+                            }
                             
                         }.padding(.top, 6)
                 
@@ -283,6 +284,7 @@ struct ContentView: View {
     
     private func folderSelected(folder: RecordFolder){
        selectedFolder = folder
+        showFolderView.toggle()
         print(selectedFolder!.title!)
     }
     

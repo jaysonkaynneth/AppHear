@@ -120,7 +120,7 @@ struct RecordView: View {
                     }
                 }
 
-                .disabled(audioURL == nil || recordTitle.isEmpty)
+                .disabled(audioURL == nil || recordTitle.isEmpty || isRecording == true)
                         
                 
                 
