@@ -1,17 +1,19 @@
 //
-//  LibraryView.swift
+//  FolderView.swift
 //  AppHear
 //
-//  Created by Jason Kenneth on 11/10/22.
+//  Created by Ganesh Ekatata Buana on 18/11/22.
 //
 
+import Foundation
 import SwiftUI
 
-struct LibraryView: View {
+struct FolderView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State private var searchText = ""
+    var passedFolder: RecordFolder
     
     var body: some View {
         NavigationView {
@@ -39,7 +41,7 @@ struct LibraryView: View {
                     }
                     
                     HStack {
-                        Text("All Recordings")
+                        Text(passedFolder.title ?? "No title")
                             .font(.custom("Nunito-ExtraBold", size: 28))
                             .foregroundColor(.white)
                         Spacer()
@@ -56,7 +58,7 @@ struct LibraryView: View {
                     
                     List{
                         ForEach(files){ file in
-                            if file.isdeleted == false {
+                            if (file.isdeleted == false) && (file.folder == passedFolder.title){
                                 DisclosureGroup(
                                 content: {
                                     CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
@@ -98,9 +100,8 @@ struct LibraryView: View {
                 .padding(.trailing)
                 .padding(.leading)
             }
-            .navigationBarHidden(true)
-            .navigationBarTitle("")
-        }
+        }.navigationBarHidden(true)
+        .navigationBarTitle("")
         .preferredColorScheme(.light)
     }
     
