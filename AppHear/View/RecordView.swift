@@ -105,8 +105,6 @@ struct RecordView: View {
                     isNotSaved = false
                     isAlerted = true
                     
-                   
-//                    doSubmission()
                 } label: {
                     Image("save-icon")
                         .resizable()
@@ -120,6 +118,14 @@ struct RecordView: View {
                         recordTitle = ""
                     }
                 }
+                .sheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
+//                .alert("Transcript Saved!", isPresented: $isAlerted) {
+//                    Button("Ok", role: .cancel)
+//                    {
+//                        transcript = ""
+//                        recordTitle = ""
+//                    }
+//                }
 
                 .disabled(audioURL == nil || recordTitle.isEmpty || isRecording == true)
                         
@@ -178,8 +184,14 @@ struct RecordView: View {
     }
     
     private func soundLevel(level: Float) -> CGFloat {
-        let level = max(0.2, CGFloat(level) + 25)
-        return CGFloat(level * 4)
+        if isRecording == false{
+            let level = 1
+            return CGFloat(level * 4)
+        } else {
+            let level = max(0.2, CGFloat(level) + 25)
+            return CGFloat(level * 4)
+        }
+       
     }
     
     private func visualizerView() -> some View {

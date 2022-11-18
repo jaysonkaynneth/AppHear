@@ -175,7 +175,7 @@ struct PlaybackView: View {
 
                     let audioTime = Int(round((getAudioDuration())))
 //                    let audioTime = Int(audioPlayerManager.getAudioDuration())
-                    let audioTotalTime = String(format: "-%d:%02d", audioTime / 60, audioTime % 60)
+                    let audioTotalTime = String(format: "%d:%02d", audioTime / 60, audioTime % 60)
                     Text(audioTotalTime).padding(.trailing)
                 }
                 
