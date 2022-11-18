@@ -144,6 +144,7 @@ struct PlaybackView: View {
                 Slider(value: $audioPlayerManager.playValue, in: TimeInterval(0.0)...getAudioDuration(), onEditingChanged: { _ in
                     self.audioPlayerManager.sliderValue()
                 })
+                .tint(Color(cgColor: .appHearBlue))
                 .padding(.trailing)
                 .padding(.leading)
                 .onReceive(audioPlayerManager.timer) { _ in

@@ -42,46 +42,11 @@ struct ContentView: View {
                                     Spacer()
                                 }
                             }
-                            //                            Image(" ").resizable().frame(width: 22.53, height: 28.53).padding(.trailing)
                         }.onAppear(perform: initiateIndexCounter).onAppear(perform: countRecord)
                     }
                     
                     Spacer()
-                    
-                    //                    HStack(alignment: .top) {
-                    //                        NavigationLink(destination: LibraryView() .navigationBarHidden(true)
-                    //                            .navigationBarTitle("") ) {
-                    //                                ZStack(){
-                    //                                    Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
-                    //                                        RoundedRectangle(cornerRadius: 20)
-                    //                                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 40)
-                    //
-                    //                                    VStack(alignment: .leading){
-                    //                                        Image("recordings-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
-                    //                                        Text("All Recordings").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                    //                                        Text("\(recordAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                    //                                    }.padding(.leading, 15)
-                    //                                }.frame(width: 165, height: 142)
-                    //                            }
-                    //
-                    //                        Spacer()
-                    //
-                    //                        NavigationLink(destination: DeletedView()
-                    //                            .navigationBarHidden(true)
-                    //                            .navigationBarTitle("")) {
-                    //                                ZStack(){
-                    //                                    Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
-                    //                                        RoundedRectangle(cornerRadius: 20)
-                    //                                            .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.trailing, 40)
-                    //
-                    //                                    VStack(alignment: .leading){
-                    //                                        Image("delete-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
-                    //                                        Text("Recently Deleted").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                    //                                        Text("\(deletedAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                    //                                    }.padding(.trailing,40)
-                    //                                }.frame(width: 165, height: 142)
-                    //                            }
-                    //                    }.offset(y: -20)
+                
                     ZStack {
                         ScrollView {
                             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2)) {
@@ -169,65 +134,6 @@ struct ContentView: View {
                             }.padding(.top, 6)
                             
                         }.frame(width: 360).offset(y: -20)
-                        
-                        
-                        
-                        
-                        //                    HStack(alignment: .top) {
-                        //                        Button(action: viewModel.createFolder) {
-                        //                            ZStack{
-                        //
-                        //                                Rectangle().fill(LinearGradient(gradient: Gradient(colors: [Color(cgColor: .gradient1), Color(cgColor: .gradient2)]), startPoint: .bottomLeading, endPoint: .topTrailing)).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
-                        //                                    RoundedRectangle(cornerRadius: 20)
-                        //                                        .stroke(Color(cgColor: .buttonBorder), lineWidth: 2)).padding(.leading, 40)
-                        //
-                        //
-                        //
-                        //                                VStack(alignment: .center){
-                        //                                    Image("new-folder-icon")
-                        //                                        .resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
-                        //
-                        //                                    Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
-                        //
-                        //                                }.padding(.leading, 40)
-                        //
-                        //
-                        //                            }.frame(width: 165, height: 142)      .onTapGesture {
-                        //                                isPresented.toggle()
-                        //                            }  .sheet(isPresented: $isPresented, content: NewFolderModalView.init)
-                        //                        }
-                        //
-                        //                        Spacer()
-                        //
-                        //                    }.offset(y: -120)
-                        
-                        //                    List{
-                        //                        ForEach(files) { files in
-                        //                            HStack{
-                        //                                Text(files.transcript ?? "no transcript")
-                        //
-                        //                                Text(files.audio ?? "no url")
-                        //
-                        //                                Text(files.title ?? "no title")
-                        //
-                        //                            }
-                        //                                .onTapGesture {
-                        //                                    print("Tapped cell")
-                        //                                }
-                        //                        }.onDelete(perform: deleteItems)
-                        //                    }
-                        
-                        //                    List{
-                        //                        ForEach(folders){ folders in
-                        //
-                        //                        HStack{
-                        //                        Text(folders.title ?? "no transcript")
-                        //                        Text(folders.emoji ?? "no url")
-                        //                        Text(String(folders.count) ?? "no title")
-                        //                        }
-                        //
-                        //                        }.onDelete(perform: deleteItems)
-                        //                    }
                         
                         Spacer()
                         VStack{
