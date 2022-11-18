@@ -48,6 +48,8 @@ struct NewFolderModalView: View {
                 
                     try? moc.save()
                     
+                    presentationMode.wrappedValue.dismiss()
+                    
                 } label: {
                     Image("save-icon")
                         .resizable()
