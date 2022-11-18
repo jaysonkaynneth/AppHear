@@ -35,7 +35,8 @@ struct RecordView: View {
     @State var isNotSaved = true
     @State var isPresented = false
     @State var isAlerted = false
-
+    @State var notSaveAlert = false
+    
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
     
@@ -49,6 +50,8 @@ struct RecordView: View {
                 Button {
                     if isNotSaved == false {
                         presentationMode.wrappedValue.dismiss()
+                    } else {
+                        notSaveAlert = true
                     }
                     
                 } label: {
@@ -58,7 +61,14 @@ struct RecordView: View {
                         .frame(width: 12, height: 16)
                         .clipped(antialiased: true)
                 }
-//                .partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
+                .partialSheet(isPresented: $isNotSaved, content: SaveAlertView.init)
+                .alert("Recording not saved!\nAre you sure you want to clear this file?", isPresented: $notSaveAlert) {
+                    
+                    Button("Clear", role: .destructive) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                
                 
                 TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
                     .font(.custom("Nunito-ExtraBold", size: 22))
@@ -96,7 +106,7 @@ struct RecordView: View {
                     self.recognitionRequest?.endAudio()
                     self.recognitionRequest = nil
                     self.recognitionTask = nil
-                   
+                    
                     self.audioRecorder = nil
                     
                     recording = false
@@ -113,16 +123,16 @@ struct RecordView: View {
                         .clipped(antialiased: true)
                 }
                 .sheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
-//                .alert("Transcript Saved!", isPresented: $isAlerted) {
-//                    Button("Ok", role: .cancel)
-//                    {
-//                        transcript = ""
-//                        recordTitle = ""
-//                    }
-//                }
-
+                //                .alert("Transcript Saved!", isPresented: $isAlerted) {
+                //                    Button("Ok", role: .cancel)
+                //                    {
+                //                        transcript = ""
+                //                        recordTitle = ""
+                //                    }
+                //                }
+                
                 .disabled(audioURL == nil || recordTitle.isEmpty)
-                        
+                
                 
                 
             }.padding(.top)
@@ -173,7 +183,7 @@ struct RecordView: View {
         .ignoresSafeArea(.keyboard)
         .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
         .onTapGesture {
-              self.endTextEditing()
+            self.endTextEditing()
         }
     }
     
@@ -185,7 +195,7 @@ struct RecordView: View {
             let level = max(0.2, CGFloat(level) + 25)
             return CGFloat(level * 4)
         }
-       
+        
     }
     
     private func visualizerView() -> some View {
@@ -232,7 +242,7 @@ struct RecordView: View {
         }
     }
     
-
+    
     
     
     func setupSpeech() {
@@ -301,21 +311,21 @@ struct RecordView: View {
     }
     
     func startRecording() {
-
+        
         if recognitionTask != nil {
             recognitionTask?.cancel()
             recognitionTask = nil
         }
         
-            audioURL = getAudioURL()
-            print(audioURL.absoluteString)
+        audioURL = getAudioURL()
+        print(audioURL.absoluteString)
         
         let settings = [
-                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                AVSampleRateKey: 12000,
-                AVNumberOfChannelsKey: 1,
-                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-            ]
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -337,15 +347,15 @@ struct RecordView: View {
         recognitionRequest.shouldReportPartialResults = true
         //            recognitionRequest.taskHint.addsPunctuation = true
         
-//        let lang = UserDefaults.standard.string(forKey: "lang")
-//        if lang == "id"{
-//            locale = Locale.init(identifier: "id-ID")
-//        }
-//        else if lang == "en"{
-//            locale = Locale.init(identifier: "en-EN")
-//        }
-//
-//        speechRecognizer = SFSpeechRecognizer(locale: locale!)
+        //        let lang = UserDefaults.standard.string(forKey: "lang")
+        //        if lang == "id"{
+        //            locale = Locale.init(identifier: "id-ID")
+        //        }
+        //        else if lang == "en"{
+        //            locale = Locale.init(identifier: "en-EN")
+        //        }
+        //
+        //        speechRecognizer = SFSpeechRecognizer(locale: locale!)
         self.recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
@@ -379,18 +389,18 @@ struct RecordView: View {
         self.audioEngine.prepare()
         
         do {
-                audioRecorder = try AVAudioRecorder(url: audioURL, settings: settings)
-                audioRecorder.record()
-                try self.audioEngine.start()
-            } catch {
-                print("fail starting audio recorder")
-            }
+            audioRecorder = try AVAudioRecorder(url: audioURL, settings: settings)
+            audioRecorder.record()
+            try self.audioEngine.start()
+        } catch {
+            print("fail starting audio recorder")
+        }
         
-//        do {
-//            try self.audioEngine.start()
-//        } catch {
-//            print("audioEngine couldn't start because of an error.")
-//        }
+        //        do {
+        //            try self.audioEngine.start()
+        //        } catch {
+        //            print("audioEngine couldn't start because of an error.")
+        //        }
         
         transcript = "Recording speech.."
     }
@@ -400,7 +410,7 @@ struct RecordView: View {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-
+    
     func getAudioURL() -> URL {
         if recordTitle != ""{
             return getDocumentsDirectory().appendingPathComponent("\(recordTitle).m4a")
@@ -415,7 +425,7 @@ struct RecordView: View {
     func doSubmission () {
         let audioRecord = CKRecord(recordType: "AudioFiles")
         audioRecord["transcript"] = transcript as CKRecordValue
-
+        
         let audioURL = getAudioURL()
         let audioAsset = CKAsset(fileURL: audioURL)
         audioRecord["audio"] = audioAsset
@@ -442,7 +452,7 @@ struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             RecordView()
-//            AnimationSheetView()
+            //            AnimationSheetView()
         }
         .attachPartialSheetToRoot()
         .navigationViewStyle(StackNavigationViewStyle())
