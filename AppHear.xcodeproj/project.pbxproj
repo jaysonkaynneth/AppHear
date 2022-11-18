@@ -42,7 +42,6 @@
 		967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E4B7929015D74001C4CCE /* OverlayView.swift */; };
 		9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */; };
 		96B969AC292236190079A994 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B969AB292236190079A994 /* SliderView.swift */; };
-		96B969B029224F020079A994 /* audioplayingview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B969AF29224F020079A994 /* audioplayingview.swift */; };
 		96B969B2292250830079A994 /* audio.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96B969B1292250830079A994 /* audio.m4a */; };
 		96E75B6C28FFECB700B49EB8 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */; };
 		96F0925728F55BAB00EA7B49 /* AppHearApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0925628F55BAB00EA7B49 /* AppHearApp.swift */; };
@@ -102,7 +101,6 @@
 		967E4B7929015D74001C4CCE /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		96B969AB292236190079A994 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
-		96B969AF29224F020079A994 /* audioplayingview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioplayingview.swift; sourceTree = "<group>"; };
 		96B969B1292250830079A994 /* audio.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = audio.m4a; sourceTree = "<group>"; };
 		96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		96F0925328F55BAB00EA7B49 /* AppHear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppHear.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,7 +264,6 @@
 				1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */,
 				9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */,
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
-				96B969AF29224F020079A994 /* audioplayingview.swift */,
 				EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */,
 				EA8E4D5C291E354C00AB3B97 /* DictionaryManager.swift */,
 			);
@@ -392,7 +389,6 @@
 				960BA3DF2925E9E100AEB58B /* NewFolderModalView.swift in Sources */,
 				960BA3E22925F63E00AEB58B /* SplashScreenView.swift in Sources */,
 				967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */,
-				96B969B029224F020079A994 /* audioplayingview.swift in Sources */,
 				EA8E4D61291E38ED00AB3B97 /* DictionaryModalView.swift in Sources */,
 				960A7FBD29253497007332AD /* SaveRecordingModalView.swift in Sources */,
 				9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */,
