@@ -61,10 +61,10 @@ struct FolderView: View {
                             if (file.isdeleted == false) && (file.folder == passedFolder.title){
                                 DisclosureGroup(
                                 content: {
-                                    CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
+                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
                                 },
                                 label: {
-                                    CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
+                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
                                 }
                             ).tint(.clear)
                             }

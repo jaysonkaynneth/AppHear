@@ -14,6 +14,7 @@
 		1F4469572924E8A80030C673 /* TextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4469562924E8A80030C673 /* TextFile.swift */; };
 		1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BF928F7B4A600DAD59B /* Color.swift */; };
 		1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */; };
+		1FB1F86129287D6E0064F338 /* MultipeerModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1F86029287D6E0064F338 /* MultipeerModalView.swift */; };
 		9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605725928F8911F0029C3A3 /* CustomList.swift */; };
 		960A7FBB292528BB007332AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 960A7FBA292528BB007332AD /* Localizable.strings */; };
 		960A7FBD29253497007332AD /* SaveRecordingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A7FBC29253497007332AD /* SaveRecordingModalView.swift */; };
@@ -73,6 +74,7 @@
 		1F4469562924E8A80030C673 /* TextFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFile.swift; sourceTree = "<group>"; };
 		1F787BF928F7B4A600DAD59B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		1FB1F86029287D6E0064F338 /* MultipeerModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerModalView.swift; sourceTree = "<group>"; };
 		9605725928F8911F0029C3A3 /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
 		960A7FBA292528BB007332AD /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		960A7FBC29253497007332AD /* SaveRecordingModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordingModalView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				960A7FBC29253497007332AD /* SaveRecordingModalView.swift */,
+				1FB1F86029287D6E0064F338 /* MultipeerModalView.swift */,
 				960A7FC229255525007332AD /* SaveFolderModalView.swift */,
 				960BA3DE2925E9E100AEB58B /* NewFolderModalView.swift */,
 				EA8E4D60291E38ED00AB3B97 /* DictionaryModalView.swift */,
@@ -389,6 +392,7 @@
 				960BA3DF2925E9E100AEB58B /* NewFolderModalView.swift in Sources */,
 				960BA3E22925F63E00AEB58B /* SplashScreenView.swift in Sources */,
 				967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */,
+				1FB1F86129287D6E0064F338 /* MultipeerModalView.swift in Sources */,
 				EA8E4D61291E38ED00AB3B97 /* DictionaryModalView.swift in Sources */,
 				960A7FBD29253497007332AD /* SaveRecordingModalView.swift in Sources */,
 				9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */,

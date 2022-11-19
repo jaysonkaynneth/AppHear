@@ -9,8 +9,14 @@ import SwiftUI
 
 struct SaveRecordingModalView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var moc
+    
     @State var fileName: String = ""
-    @State var folderName: String = ""
+    @State var fileTranscript: String = ""
+    @State var fileAudio: String = ""
+    @State var chosenFolder: RecordFolder?
+    @State var showFolders = false
     
     
     var body: some View {
@@ -26,12 +32,15 @@ struct SaveRecordingModalView: View {
         
                 Spacer()
             }
+            
             TextField("File Name", text: $fileName)
                 .padding()
                 .frame(width: 309, height: 39)
                 .background(RoundedRectangle(cornerRadius: 19.5)
                     .stroke(Color(red: 217/255, green: 217/255, blue: 217/255)))
                 .padding(.bottom)
+                .font(.custom("Nunito-Semibold", size: 17))
+                .foregroundColor(.gray)
             
             HStack{
                 Text("Folder Name")
@@ -42,11 +51,11 @@ struct SaveRecordingModalView: View {
             }
             
             Button {
-              
+                showFolders.toggle()
             } label: {
                 ZStack {
                     HStack{
-                        Text("Folder Name")
+                        Text(chosenFolder?.title ?? "Choose Folder")
                             .font(.custom("Nunito-Semibold", size: 17))
                             .foregroundColor(.gray)
                             
@@ -57,9 +66,23 @@ struct SaveRecordingModalView: View {
                         .stroke(Color(red: 217/255, green: 217/255, blue: 217/255))
                         .frame(width: 309, height: 39)
                 }
-            }   
+            }.sheet(isPresented: $showFolders){
+                SaveFolderModalView(selectedFolder: $chosenFolder)
+            }
         
             Button {
+                
+                let file =  File(context: moc)
+                file.title = fileName
+                file.transcript = fileTranscript
+                file.audio = fileAudio
+                file.date = Date()
+                file.folder = chosenFolder?.title
+                file.isdeleted = false
+                
+                try? moc.save()
+                
+                presentationMode.wrappedValue.dismiss()
                 
             } label: {
                 ZStack {

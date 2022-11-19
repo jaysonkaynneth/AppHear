@@ -59,10 +59,10 @@ struct LibraryView: View {
                             if file.isdeleted == false {
                                 DisclosureGroup(
                                 content: {
-                                    CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
+                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: "💻", files: file)
                                 },
                                 label: {
-                                    CustomList(name: file.title!, date: file.date!, emoji: "💻", files: file)
+                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: "💻", files: file)
                                 }
                             ).tint(.clear)
                             }
