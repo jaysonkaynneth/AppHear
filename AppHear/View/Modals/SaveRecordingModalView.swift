@@ -78,6 +78,7 @@ struct SaveRecordingModalView: View {
                 file.audio = fileAudio
                 file.date = Date()
                 file.folder = chosenFolder?.title
+                file.emoji = chosenFolder?.emoji
                 file.isdeleted = false
                 
                 try? moc.save()
