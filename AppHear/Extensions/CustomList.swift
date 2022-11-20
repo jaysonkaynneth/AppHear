@@ -45,7 +45,7 @@ struct CustomList: View {
                         Text(Date().dateFormat)
                             .foregroundColor(Color(red: 139/255, green: 139/255, blue: 139/255, opacity: 1.0))
                             .font(.custom("Nunito-ExtraBold", size: 15))
-                    }
+                    }.padding(.leading, 20)
                     Spacer()
                     Text(emoji)
                         .foregroundColor(.black)
