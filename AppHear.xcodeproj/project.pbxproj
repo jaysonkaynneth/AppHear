@@ -40,6 +40,7 @@
 		96353D2C28F6A24800518F3B /* Nunito-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1C28F6A24800518F3B /* Nunito-LightItalic.ttf */; };
 		96353D2D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf */; };
 		96353D2E28F6A24800518F3B /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */; };
+		965CABC62929F2A400E26FFB /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CABC52929F2A400E26FFB /* OnBoardingView.swift */; };
 		967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E4B7929015D74001C4CCE /* OverlayView.swift */; };
 		9680543E28FE5086006A8285 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */; };
 		96B969AC292236190079A994 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B969AB292236190079A994 /* SliderView.swift */; };
@@ -100,6 +101,7 @@
 		96353D1C28F6A24800518F3B /* Nunito-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-LightItalic.ttf"; sourceTree = "<group>"; };
 		96353D1D28F6A24800518F3B /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		96353D1E28F6A24800518F3B /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
+		965CABC52929F2A400E26FFB /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		967E4B7929015D74001C4CCE /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		9680543D28FE5086006A8285 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		96B969AB292236190079A994 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				960BA3E02925F3C500AEB58B /* Modals */,
 				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
+				965CABC52929F2A400E26FFB /* OnBoardingView.swift */,
 				960BA3E12925F63E00AEB58B /* SplashScreenView.swift */,
 				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
@@ -379,6 +382,7 @@
 				96F0925928F55BAB00EA7B49 /* ContentView.swift in Sources */,
 				1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */,
 				1F4469572924E8A80030C673 /* TextFile.swift in Sources */,
+				965CABC62929F2A400E26FFB /* OnBoardingView.swift in Sources */,
 				EA8E4D5D291E354C00AB3B97 /* DictionaryManager.swift in Sources */,
 				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
 				1F0A61FB2926E5B30094B426 /* FolderView.swift in Sources */,

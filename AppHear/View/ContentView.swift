@@ -22,6 +22,8 @@ struct ContentView: View {
     @State var deletedAmount = 0
     @State var isPresented = false
     @State var recordButton = false
+//    @AppStorage("showOnBoarding") private var showOnBoarding = true
+    @State private var showOnBoarding = true
     
     var body: some View {
         NavigationView {
@@ -157,7 +159,11 @@ struct ContentView: View {
                     
                 }.ignoresSafeArea().background(Color(cgColor: .screenColor))
             }.overlay(secretOverlay)
-        }.preferredColorScheme(.light)
+        }
+        .preferredColorScheme(.light)
+        .fullScreenCover(isPresented: $showOnBoarding, content: {
+            OnBoardingView(showOnBoarding: $showOnBoarding)
+        })
         
     }
     
