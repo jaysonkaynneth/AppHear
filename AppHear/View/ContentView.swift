@@ -101,7 +101,7 @@ struct ContentView: View {
                                                     .padding(.bottom, 16)
                                                 Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
                                                 Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                                            }.padding(.trailing, 35)
+                                            }.padding(.trailing, 50)
                                         }
                                     }
                                 }

@@ -3,6 +3,7 @@
     <entity name="File" representedClassName="File" syncable="YES" codeGenerationType="class">
         <attribute name="audio" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="emoji" optional="YES" attributeType="String"/>
         <attribute name="folder" optional="YES" attributeType="String"/>
         <attribute name="isdeleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>

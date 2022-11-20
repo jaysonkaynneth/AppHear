@@ -92,15 +92,16 @@ struct RecordView: View {
                 
                 Button {
                     let inputNode = audioEngine.inputNode
-                    let file =  File(context: moc)
                     
-                    file.transcript = (transcript)
-                    file.audio = audioURL.absoluteString
-                    file.title = recordTitle
-                    file.date = Date()
-                    file.isdeleted = false
+//                    let file = File(context: moc)
+//                    file.transcript = (transcript)
+//                    file.audio = audioURL.absoluteString
+//                    file.title = recordTitle
+//                    file.date = Date()
+//                    file.isdeleted = false
                     
-                    try? moc.save()
+//                    try? moc.save()
+                    
                     self.audioEngine.stop()
                     inputNode.removeTap(onBus: 0)
                     self.recognitionRequest?.endAudio()
@@ -122,17 +123,19 @@ struct RecordView: View {
                         .frame(width: 20, height: 21)
                         .clipped(antialiased: true)
                 }
-                .sheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
-                //                .alert("Transcript Saved!", isPresented: $isAlerted) {
-                //                    Button("Ok", role: .cancel)
-                //                    {
-                //                        transcript = ""
-                //                        recordTitle = ""
-                //                    }
-                //                }
-                
-                .disabled(audioURL == nil || recordTitle.isEmpty)
-                
+                .sheet(isPresented: $isPresented){
+                    SaveRecordingModalView(fileName: recordTitle, fileTranscript: transcript, fileAudio: audioURL.absoluteString)
+                }
+//                .alert("Transcript Saved!", isPresented: $isAlerted) {
+//                    Button("Ok", role: .cancel)
+//                    {
+//                        transcript = ""
+//                        recordTitle = ""
+//                    }
+//                }
+
+                .disabled(audioURL == nil || recordTitle.isEmpty || isRecording == true)
+                        
                 
                 
             }.padding(.top)
@@ -181,7 +184,7 @@ struct RecordView: View {
         .navigationBarTitle("")
         .preferredColorScheme(.light)
         .ignoresSafeArea(.keyboard)
-        .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
+//        .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
         .onTapGesture {
             self.endTextEditing()
         }

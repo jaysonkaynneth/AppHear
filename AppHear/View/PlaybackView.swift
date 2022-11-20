@@ -85,6 +85,7 @@ struct PlaybackView: View {
             VStack{
                 HStack{
                     Button {
+                        self.audioPlayerManager.audioPlayer?.stop()
                         self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image("left-chevron")
