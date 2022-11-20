@@ -22,8 +22,8 @@ struct ContentView: View {
     @State var deletedAmount = 0
     @State var isPresented = false
     @State var recordButton = false
-//    @AppStorage("showOnBoarding") private var showOnBoarding = true
-    @State private var showOnBoarding = true
+    @AppStorage("showOnBoarding") private var showOnBoarding = true
+//    @State private var showOnBoarding = true
     
     var body: some View {
         NavigationView {
