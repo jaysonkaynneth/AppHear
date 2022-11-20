@@ -15,6 +15,8 @@
 		1F787BFA28F7B4A600DAD59B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BF928F7B4A600DAD59B /* Color.swift */; };
 		1F787BFC28F8F78900DAD59B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */; };
 		1FB1F86129287D6E0064F338 /* MultipeerModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1F86029287D6E0064F338 /* MultipeerModalView.swift */; };
+		1FB1F867292A96520064F338 /* MultipeerSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1F866292A96520064F338 /* MultipeerSessionManager.swift */; };
+		1FB1F869292AAC020064F338 /* SharedRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1F868292AAC020064F338 /* SharedRecordView.swift */; };
 		9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605725928F8911F0029C3A3 /* CustomList.swift */; };
 		960A7FBB292528BB007332AD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 960A7FBA292528BB007332AD /* Localizable.strings */; };
 		960A7FBD29253497007332AD /* SaveRecordingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A7FBC29253497007332AD /* SaveRecordingModalView.swift */; };
@@ -76,6 +78,8 @@
 		1F787BF928F7B4A600DAD59B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F787BFB28F8F78900DAD59B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		1FB1F86029287D6E0064F338 /* MultipeerModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerModalView.swift; sourceTree = "<group>"; };
+		1FB1F866292A96520064F338 /* MultipeerSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerSessionManager.swift; sourceTree = "<group>"; };
+		1FB1F868292AAC020064F338 /* SharedRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedRecordView.swift; sourceTree = "<group>"; };
 		9605725928F8911F0029C3A3 /* CustomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
 		960A7FBA292528BB007332AD /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		960A7FBC29253497007332AD /* SaveRecordingModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecordingModalView.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 				960BA3E12925F63E00AEB58B /* SplashScreenView.swift */,
 				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
+				1FB1F868292AAC020064F338 /* SharedRecordView.swift */,
 				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
 				1F0A61FA2926E5B30094B426 /* FolderView.swift */,
 				1F4469542923964C0030C673 /* DeletedView.swift */,
@@ -272,6 +277,7 @@
 				96F9EF4628FD4BD400634CFB /* MicrophoneManager.swift */,
 				EA8E4D5A291E32EB00AB3B97 /* AudioPlayerManager.swift */,
 				EA8E4D5C291E354C00AB3B97 /* DictionaryManager.swift */,
+				1FB1F866292A96520064F338 /* MultipeerSessionManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				962B394A28FC1D63009F95D3 /* VizualizerView.swift in Sources */,
 				1F0A61FB2926E5B30094B426 /* FolderView.swift in Sources */,
 				EA8E4D5F291E35E300AB3B97 /* DictionaryModel.swift in Sources */,
+				1FB1F869292AAC020064F338 /* SharedRecordView.swift in Sources */,
 				1F0A61F12926BCB80094B426 /* EmojiTextField.swift in Sources */,
 				96F0926A28F568EE00EA7B49 /* LibraryView.swift in Sources */,
 				9605725A28F8911F0029C3A3 /* CustomList.swift in Sources */,
@@ -395,6 +402,7 @@
 				96B969AC292236190079A994 /* SliderView.swift in Sources */,
 				960BA3DF2925E9E100AEB58B /* NewFolderModalView.swift in Sources */,
 				960BA3E22925F63E00AEB58B /* SplashScreenView.swift in Sources */,
+				1FB1F867292A96520064F338 /* MultipeerSessionManager.swift in Sources */,
 				967E4B7A29015D74001C4CCE /* OverlayView.swift in Sources */,
 				1FB1F86129287D6E0064F338 /* MultipeerModalView.swift in Sources */,
 				EA8E4D61291E38ED00AB3B97 /* DictionaryModalView.swift in Sources */,
