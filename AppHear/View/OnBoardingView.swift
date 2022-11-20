@@ -71,7 +71,7 @@ struct OnBoardingContentView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
                 .padding(.bottom)
-                .frame(width: 314, height: 60)
+                .frame(width: 314, height: 100)
             
             Text(subtitle)
                 .font(.custom("Nunito-Regular", size: 18))

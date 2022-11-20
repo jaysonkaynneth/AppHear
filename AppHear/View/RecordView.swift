@@ -193,10 +193,10 @@ struct RecordView: View {
     private func soundLevel(level: Float) -> CGFloat {
         if isRecording == false{
             let level = 1
-            return CGFloat(level * 4)
+            return CGFloat(level * 10)
         } else {
             let level = max(0.2, CGFloat(level) + 25)
-            return CGFloat(level * 4)
+            return CGFloat(level * 10)
         }
         
     }
