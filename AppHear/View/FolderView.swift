@@ -56,7 +56,7 @@ struct FolderView: View {
                         }
                     }
                     
-                    List{
+                    List {
                         ForEach(files){ file in
                             if (file.isdeleted == false) && (file.folder == passedFolder.title){
                                 DisclosureGroup(

@@ -25,7 +25,7 @@ struct LibraryView: View {
                         .ignoresSafeArea(.all)
                     Spacer()
                 }
-                VStack{
+                VStack {
                     HStack {
                         Button{
                             self.presentationMode.wrappedValue.dismiss()
@@ -41,7 +41,7 @@ struct LibraryView: View {
                     }
                     
                     HStack {
-                        Text("All Recordings")
+                        Text("Sesuai Rekaman")
                             .font(.custom("Nunito-ExtraBold", size: 28))
                             .foregroundColor(.white)
                         Spacer()
@@ -55,50 +55,49 @@ struct LibraryView: View {
                             Spacer()
                         }
                     }
-                    
+                    VStack {
                     List {
                         ForEach(files){ file in
                             if file.isdeleted == false {
                                 DisclosureGroup(
-                                content: {
-                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file).alert(isPresented: $deleteAlert) {
-                                        Alert(title: Text("Are you sure you want to delete?"), message: Text(""))
+                                    content: {
+                                        CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                    },
+                                    label: {
+                                        CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
                                     }
-                                },
-                                label: {
-                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                }
-                            ).tint(.clear)
+                                ).tint(.clear)
                             }
                         }
                         .onDelete(perform: deleteItems)
                         .listRowSeparator(.hidden)
-//                        .swipeActions(allowsFullSwipe: false) {
-//                            Button(role: .destructive) {
-//                                print("Delete")
-//
-//                            } label: {
-//                                Image("library-trash")
-//                                    .resizable()
-//                                    .scaledToFit()
-//
-//                            }
-//                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
-//
-//                            Button {
-//                                print("Saved")
-//                            } label: {
-//                                    Image("library-folder").resizable()
-//                                        .frame(width: 100,height: 100)
-//                            }
-//                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
-//                        }
+                        //                        .swipeActions(allowsFullSwipe: false) {
+                        //                            Button {
+                        //                                print("Delete")
+                        //                                deleteAlert = true
+                        //                            } label: {
+                        //                                Image("library-trash")
+                        //                                    .resizable()
+                        //                                    .scaledToFit()
+                        //
+                        //                            }
+                        //                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
+                        //
+                        //                            Button {
+                        //                                print("Saved")
+                        //                            } label: {
+                        //                                    Image("library-folder").resizable()
+                        //                                        .frame(width: 100,height: 100)
+                        //                            }
+                        //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
+                        //                        }
                     }
                     .offset(y: -20)
                     .frame(maxWidth: .infinity)
                     .edgesIgnoringSafeArea(.all)
                     .listStyle(GroupedListStyle())
                     .scrollContentBackground(.hidden)
+                }
                 }
                 .padding(.trailing)
                 .padding(.leading)
@@ -109,9 +108,10 @@ struct LibraryView: View {
         .preferredColorScheme(.light)
     }
     
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { files[$0] }.forEach(moc.delete)
+            offsets.map { files[$0].isdeleted = true }
             do {
                 try moc.save()
             } catch {
@@ -121,3 +121,5 @@ struct LibraryView: View {
         }
     }
 }
+
+

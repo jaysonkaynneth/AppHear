@@ -194,7 +194,7 @@ struct PlaybackView: View {
                     Spacer()
                     
                     Button {
-                      
+                        self.audioPlayerManager.rewind()
                     } label: {
                         Image("backward")
                             .resizable()
@@ -209,11 +209,9 @@ struct PlaybackView: View {
                             if isPlaying == true{
                                 self.audioPlayerManager.play(audio: self.audioURL)
                                 self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                                
                             } else {
                                 self.audioPlayerManager.pause()
                             }
-                      
                         } label: {
                             Image(isPlaying ? "pause" : "play")
                                 .resizable()
@@ -224,9 +222,9 @@ struct PlaybackView: View {
                         .opacity(0.5)
                         .padding(.leading)
                         .padding(.trailing)
-                    }
-                    
-                    else{
+                        
+                    } else {
+        
                         Button {
                             isPlaying.toggle()
                             if isPlaying == true{
@@ -236,6 +234,8 @@ struct PlaybackView: View {
                             } else {
                                 self.audioPlayerManager.pause()
                             }
+                            
+                            
                       
                         } label: {
                             Image(isPlaying ? "pause" : "play")
@@ -248,7 +248,7 @@ struct PlaybackView: View {
                     }
                     
                     Button {
-                        //ACTION
+                        self.audioPlayerManager.forward()
                     } label: {
                         Image("forward")
                             .resizable()

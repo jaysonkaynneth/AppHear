@@ -71,19 +71,42 @@ class AudioPlayerManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
             isPlaying = false
         }
     }
+    
+    func rewind() {
+        if isPlaying == true {
+            audioPlayer?.currentTime = playValue - 10
+        }
+        
+        if isPlaying == false {
+            audioPlayer?.currentTime = playValue - 10
+        }
+    }
+    
+    func forward() {
+        if isPlaying == true {
+            audioPlayer?.currentTime = playValue + 10
+        }
+        
+        if isPlaying == false {
+            audioPlayer?.currentTime = playValue + 10
+        }
+    }
 
     func sliderValue() {
         if isPlaying == true {
-            pause()
             audioPlayer?.currentTime = playValue
-
         }
 
         if isPlaying == false {
-            audioPlayer?.play()
-            isPlaying = true
+            audioPlayer?.currentTime = playValue
         }
 
+    }
+    
+    func donePlaying() {
+        if audioPlayer?.currentTime == getAudioDuration() {
+            audioPlayer?.pause()
+        }
     }
 
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {

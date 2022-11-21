@@ -150,9 +150,15 @@ struct ContentView: View {
                                     overlay.toggle()
                                     recordButton = true
                                 } label: {
-                                    Image("record").resizable().frame(width: 84, height: 84, alignment: .center)
+                                    Image("record")
+                                        .resizable()
+                                        .frame(width: 84, height: 84, alignment: .center)
+                                        
                                 }
+                                .padding(.bottom, 5)
+                                .padding(.leading, 0.5)
 //                                .fullScreenCover(isPresented: $recordButton, content: RecordView.init)
+                                
                                 
                             }
                         }

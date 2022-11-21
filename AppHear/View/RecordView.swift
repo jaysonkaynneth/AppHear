@@ -84,7 +84,7 @@ struct RecordView: View {
                     .padding(.leading, 20)
                 
                 Button {
-//                    rpsSession = MultipeerSessionManager(username: UIDevice.current.name)
+                    //                    rpsSession = MultipeerSessionManager(username: UIDevice.current.name)
                     isSharing.toggle()
                 } label: {
                     Image("connection-icon")
@@ -93,7 +93,7 @@ struct RecordView: View {
                         .frame(width: 23, height: 21)
                         .clipped(antialiased: true)
                 }.sheet(isPresented: $isSharing){
-//                    MultipeerModalView().environmentObject(rpsSession!)
+                    //                    MultipeerModalView().environmentObject(rpsSession!)
                     MultipeerModalView().environmentObject(MultipeerSessionManager(username: UIDevice.current.name))
                 }
                 
@@ -124,16 +124,16 @@ struct RecordView: View {
                 .sheet(isPresented: $isPresented){
                     SaveRecordingModalView(fileName: recordTitle, fileTranscript: transcript, fileAudio: audioURL.absoluteString)
                 }
-//                .alert("Transcript Saved!", isPresented: $isAlerted) {
-//                    Button("Ok", role: .cancel)
-//                    {
-//                        transcript = ""
-//                        recordTitle = ""
-//                    }
-//                }
-
+                //                .alert("Transcript Saved!", isPresented: $isAlerted) {
+                //                    Button("Ok", role: .cancel)
+                //                    {
+                //                        transcript = ""
+                //                        recordTitle = ""
+                //                    }
+                //                }
+                
                 .disabled(audioURL == nil || recordTitle.isEmpty || isRecording == true)
-                        
+                
                 
                 
             }.padding(.top)
@@ -147,17 +147,22 @@ struct RecordView: View {
                     .padding()
                 
                 if (transcript == ""){
-                    Image("rec-empty")
-                        .resizable()
-                        .frame(width: 210, height: 268)
-                        .scaledToFit()
-                        .padding()
-                }
-                else{
+                    VStack {
+                        Image("rec-empty")
+                            .resizable()
+                            .frame(width: 210, height: 268)
+                            .scaledToFit()
+                            .padding()
+                        Text("Mulai Rekam")
+                            .font(.custom("Nunito-Bold", size: 20)).foregroundColor(Color(cgColor: .appHearBlue))
+                    }
+                    
+                } else {
                     ScrollView {
                         Text(transcript).font(.system(size: 16, weight: .regular, design: .default))
                     }.padding(.horizontal, 55).padding(.vertical, 40).lineSpacing(5.0)
                 }
+                
             }
             
             
@@ -182,7 +187,7 @@ struct RecordView: View {
         .navigationBarTitle("")
         .preferredColorScheme(.light)
         .ignoresSafeArea(.keyboard)
-//        .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
+        //        .partialSheet(isPresented: $isPresented, content: SaveRecordingModalView.init)
         .onTapGesture {
             self.endTextEditing()
         }

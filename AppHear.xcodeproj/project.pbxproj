@@ -258,12 +258,12 @@
 				960BA3E12925F63E00AEB58B /* SplashScreenView.swift */,
 				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
+				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
 				1FB1F868292AAC020064F338 /* SharedRecordView.swift */,
 				96F0926928F568EE00EA7B49 /* LibraryView.swift */,
 				1F0A61FA2926E5B30094B426 /* FolderView.swift */,
 				1F4469542923964C0030C673 /* DeletedView.swift */,
 				962B394928FC1D63009F95D3 /* VizualizerView.swift */,
-				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
 				96B969AB292236190079A994 /* SliderView.swift */,
 			);
 			path = View;
