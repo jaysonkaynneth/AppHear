@@ -37,6 +37,7 @@ struct RecordView: View {
     @State var isAlerted = false
     @State var notSaveAlert = false
     @State var isSharing = false
+    @State var namaTim = ["Alicia Audrey", "Piter Wongso", "Jason Kenneth", "Mega Govania", "Stefanny Sianturi", "Ganesh Ekatata Buana"]
     
     @State var rpsSession: MultipeerSessionManager?
     @Environment(\.managedObjectContext) private var viewContext
@@ -358,7 +359,8 @@ struct RecordView: View {
         }
         
         recognitionRequest.shouldReportPartialResults = true
-        //            recognitionRequest.taskHint.addsPunctuation = true
+        recognitionRequest.addsPunctuation = true
+        recognitionRequest.contextualStrings = namaTim
         
         //        let lang = UserDefaults.standard.string(forKey: "lang")
         //        if lang == "id"{
