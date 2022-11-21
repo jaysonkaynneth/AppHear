@@ -41,7 +41,7 @@ struct LibraryView: View {
                     }
                     
                     HStack {
-                        Text("Sesuai Rekaman")
+                        Text("Semua Rekaman")
                             .font(.custom("Nunito-ExtraBold", size: 28))
                             .foregroundColor(.white)
                         Spacer()
@@ -51,62 +51,76 @@ struct LibraryView: View {
                         SearchBarView(searchText: $searchText, containerText: "Search Recordings")
                             .offset(y:-10)
                     }
-                    VStack {
-                    List {
-                        ForEach(files){ file in
-                            let loweredText = searchText.lowercased()
-                            let loweredTitle = file.title!.lowercased()
-                            if file.isdeleted == false {
-                                if loweredTitle.contains(loweredText){
-                                    DisclosureGroup(
-                                        content: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                        },
-                                        label: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                        }
-                                    ).tint(.clear)
-                                }else if searchText.isEmpty{
-                                    DisclosureGroup(
-                                        content: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                        },
-                                        label: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                        }
-                                    ).tint(.clear)
-                                }
+                    Spacer()
+                        if files.isEmpty {
+                            VStack {
+                                Spacer()
+                                Image("no-rec")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 335, height: 335)
+                                Text("Tidak Ada Rekaman")
+                                    .font(.custom("Nunito-Bold", size: 24))
+                                    .foregroundColor(Color(cgColor: .appHearBlue))
+                                Spacer()
                             }
+                        } else {
+                            List {
+                                ForEach(files){ file in
+                                    let loweredText = searchText.lowercased()
+                                    let loweredTitle = file.title!.lowercased()
+                                    if file.isdeleted == false {
+                                        if loweredTitle.contains(loweredText){
+                                            DisclosureGroup(
+                                                content: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                },
+                                                label: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                }
+                                            ).tint(.clear)
+                                        }else if searchText.isEmpty{
+                                            DisclosureGroup(
+                                                content: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                },
+                                                label: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                }
+                                            ).tint(.clear)
+                                        }
+                                    }
+                                }
+                                .onDelete(perform: deleteItems)
+                                .listRowSeparator(.hidden)
+                                //                        .swipeActions(allowsFullSwipe: false) {
+                                //                            Button {
+                                //                                print("Delete")
+                                //                                deleteAlert = true
+                                //                            } label: {
+                                //                                Image("library-trash")
+                                //                                    .resizable()
+                                //                                    .scaledToFit()
+                                //
+                                //                            }
+                                //                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
+                                //
+                                //                            Button {
+                                //                                print("Saved")
+                                //                            } label: {
+                                //                                    Image("library-folder").resizable()
+                                //                                        .frame(width: 100,height: 100)
+                                //                            }
+                                //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
+                                //                        }
+                            }
+                            .offset(y: -20)
+                            .frame(maxWidth: .infinity)
+                            .edgesIgnoringSafeArea(.all)
+                            .listStyle(GroupedListStyle())
+                            .scrollContentBackground(.hidden)
                         }
-                        .onDelete(perform: deleteItems)
-                        .listRowSeparator(.hidden)
-                        //                        .swipeActions(allowsFullSwipe: false) {
-                        //                            Button {
-                        //                                print("Delete")
-                        //                                deleteAlert = true
-                        //                            } label: {
-                        //                                Image("library-trash")
-                        //                                    .resizable()
-                        //                                    .scaledToFit()
-                        //
-                        //                            }
-                        //                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
-                        //
-                        //                            Button {
-                        //                                print("Saved")
-                        //                            } label: {
-                        //                                    Image("library-folder").resizable()
-                        //                                        .frame(width: 100,height: 100)
-                        //                            }
-                        //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
-                        //                        }
-                    }
-                    .offset(y: -20)
-                    .frame(maxWidth: .infinity)
-                    .edgesIgnoringSafeArea(.all)
-                    .listStyle(GroupedListStyle())
-                    .scrollContentBackground(.hidden)
-                }
+                    
                 }
                 .padding(.trailing)
                 .padding(.leading)

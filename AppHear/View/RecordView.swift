@@ -200,7 +200,7 @@ struct RecordView: View {
             return CGFloat(level * 10)
         } else {
             let level = max(0.2, CGFloat(level) + 25)
-            return CGFloat(level * 10)
+            return CGFloat(level * 4)
         }
         
     }
