@@ -52,60 +52,64 @@ struct LibraryView: View {
                             .offset(y:-10)
                     }
                     VStack {
-                    List {
-                        ForEach(files){ file in
-                            let loweredText = searchText.lowercased()
-                            let loweredTitle = file.title!.lowercased()
-                            if file.isdeleted == false {
-                                if loweredTitle.contains(loweredText){
-                                    DisclosureGroup(
-                                        content: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                        },
-                                        label: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                        if files.isEmpty {
+                            
+                        } else {
+                            List {
+                                ForEach(files){ file in
+                                    let loweredText = searchText.lowercased()
+                                    let loweredTitle = file.title!.lowercased()
+                                    if file.isdeleted == false {
+                                        if loweredTitle.contains(loweredText){
+                                            DisclosureGroup(
+                                                content: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                },
+                                                label: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                }
+                                            ).tint(.clear)
+                                        }else if searchText.isEmpty{
+                                            DisclosureGroup(
+                                                content: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                },
+                                                label: {
+                                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                                }
+                                            ).tint(.clear)
                                         }
-                                    ).tint(.clear)
-                                }else if searchText.isEmpty{
-                                    DisclosureGroup(
-                                        content: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                        },
-                                        label: {
-                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                        }
-                                    ).tint(.clear)
+                                    }
                                 }
+                                .onDelete(perform: deleteItems)
+                                .listRowSeparator(.hidden)
+                                //                        .swipeActions(allowsFullSwipe: false) {
+                                //                            Button {
+                                //                                print("Delete")
+                                //                                deleteAlert = true
+                                //                            } label: {
+                                //                                Image("library-trash")
+                                //                                    .resizable()
+                                //                                    .scaledToFit()
+                                //
+                                //                            }
+                                //                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
+                                //
+                                //                            Button {
+                                //                                print("Saved")
+                                //                            } label: {
+                                //                                    Image("library-folder").resizable()
+                                //                                        .frame(width: 100,height: 100)
+                                //                            }
+                                //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
+                                //                        }
                             }
-                        }
-                        .onDelete(perform: deleteItems)
-                        .listRowSeparator(.hidden)
-                        //                        .swipeActions(allowsFullSwipe: false) {
-                        //                            Button {
-                        //                                print("Delete")
-                        //                                deleteAlert = true
-                        //                            } label: {
-                        //                                Image("library-trash")
-                        //                                    .resizable()
-                        //                                    .scaledToFit()
-                        //
-                        //                            }
-                        //                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
-                        //
-                        //                            Button {
-                        //                                print("Saved")
-                        //                            } label: {
-                        //                                    Image("library-folder").resizable()
-                        //                                        .frame(width: 100,height: 100)
-                        //                            }
-                        //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
-                        //                        }
+                            .offset(y: -20)
+                            .frame(maxWidth: .infinity)
+                            .edgesIgnoringSafeArea(.all)
+                            .listStyle(GroupedListStyle())
+                            .scrollContentBackground(.hidden)
                     }
-                    .offset(y: -20)
-                    .frame(maxWidth: .infinity)
-                    .edgesIgnoringSafeArea(.all)
-                    .listStyle(GroupedListStyle())
-                    .scrollContentBackground(.hidden)
                 }
                 }
                 .padding(.trailing)
