@@ -48,48 +48,58 @@ struct FolderView: View {
                         
                     }
                     ZStack {
-                        Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 354, height: 39).cornerRadius(19)
-                        HStack{
-                            Image(systemName: "magnifyingglass").foregroundColor(.white).padding(.leading)
-                            Text("Search File").font(.custom("Nunito-Regular", size: 15)).foregroundColor(.white)
-                            Spacer()
-                        }
+                        SearchBarView(searchText: $searchText, containerText: "Search Recordings")
+                            .offset(y:-10)
                     }
                     
                     List{
                         ForEach(files){ file in
-                            if (file.isdeleted == false) && (file.folder == passedFolder.title){
-                                DisclosureGroup(
-                                content: {
-                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
-                                },
-                                label: {
-                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
+                            let loweredText = searchText.lowercased()
+                            let loweredTitle = file.title!.lowercased()
+                            if (file.isdeleted == false) && (file.folder == passedFolder.title) {
+                                if loweredTitle.contains(loweredText){
+                                    DisclosureGroup(
+                                        content: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
+                                        },
+                                        label: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
+                                        }
+                                    ).tint(.clear)
+                                }else if searchText.isEmpty{
+                                    DisclosureGroup(
+                                        content: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
+                                        },
+                                        label: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: passedFolder.emoji ?? "❓", files: file)
+                                        }
+                                    ).tint(.clear)
                                 }
-                            ).tint(.clear)
                             }
+
                         }
                         .onDelete(perform: deleteItems)
                         .listRowSeparator(.hidden)
-//                        .swipeActions(allowsFullSwipe: false) {
-//                            Button {
-//                                print("Delete")
-//                            } label: {
-//                                Image("library-trash")
-//                                    .resizable()
-//                                    .scaledToFit()
-//
-//                            }
-//                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
-//
-//                            Button {
-//                                print("Saved")
-//                            } label: {
-//                                    Image("library-folder").resizable()
-//                                        .frame(width: 100,height: 100)
-//                            }
-//                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
-//                        }
+                        //                        .swipeActions(allowsFullSwipe: false) {
+                        //                            Button {
+                        //                                print("Delete")
+                        //                            } label: {
+                        //                                Image("library-trash")
+                        //                                    .resizable()
+                        //                                    .scaledToFit()
+                        //
+                        //                            }
+                        //                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
+                        //
+                        //                            Button {
+                        //                                print("Saved")
+                        //                            } label: {
+                        //                                    Image("library-folder").resizable()
+                        //                                        .frame(width: 100,height: 100)
+                        //                            }
+                        //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
+                        //                        }
                     }
                     .offset(y: -20)
                     .frame(maxWidth: .infinity)
@@ -101,8 +111,8 @@ struct FolderView: View {
                 .padding(.leading)
             }
         }.navigationBarHidden(true)
-        .navigationBarTitle("")
-        .preferredColorScheme(.light)
+            .navigationBarTitle("")
+            .preferredColorScheme(.light)
     }
     
     private func deleteItems(offsets: IndexSet) {
