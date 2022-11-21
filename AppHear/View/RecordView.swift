@@ -124,16 +124,7 @@ struct RecordView: View {
                 }
                 .sheet(isPresented: $isPresented){
                     SaveRecordingModalView(fileName: (recordTitle.isEmpty ? "ID \(getCurrentDay())" : recordTitle), fileTranscript: transcript, fileAudio: audioURL.absoluteString)
-                }
-//                .alert("Transcript Saved!", isPresented: $isAlerted) {
-//                    Button("Ok", role: .cancel)
-//                    {
-//                        transcript = ""
-//                        recordTitle = ""
-//                    }
-//                }
-
-                .disabled(audioURL == nil || isRecording == true)
+                }.disabled(audioURL == nil || isRecording == true)
                         
                 
                 
