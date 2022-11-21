@@ -203,24 +203,49 @@ struct PlaybackView: View {
                     }
                     .padding(.trailing)
                     
-                    Button {
-                        isPlaying.toggle()
-                        if isPlaying == true {
-                            self.audioPlayerManager.play(audio: self.audioURL)
-                            self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                        } else {
-                            self.audioPlayerManager.pause()
-                        }
-                        
-                  
-                    } label: {
+                    if audioURL.absoluteString == "hasil-share"{
+                        Button {
+                            isPlaying.toggle()
+                            if isPlaying == true{
+                                self.audioPlayerManager.play(audio: self.audioURL)
+                                self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                                
+                            } else {
+                                self.audioPlayerManager.pause()
+                            }
+                      
+                        } label: {
                             Image(isPlaying ? "pause" : "play")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 64, height: 64)
+                        }
+                        .disabled(true)
+                        .opacity(0.5)
+                        .padding(.leading)
+                        .padding(.trailing)
                     }
-                    .padding(.leading)
-                    .padding(.trailing)
+                    
+                    else{
+                        Button {
+                            isPlaying.toggle()
+                            if isPlaying == true{
+                                self.audioPlayerManager.play(audio: self.audioURL)
+                                self.audioPlayerManager.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                                
+                            } else {
+                                self.audioPlayerManager.pause()
+                            }
+                      
+                        } label: {
+                            Image(isPlaying ? "pause" : "play")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 64, height: 64)
+                        }
+                        .padding(.leading)
+                        .padding(.trailing)
+                    }
                     
                     Button {
                         //ACTION
