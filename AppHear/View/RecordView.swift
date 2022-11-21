@@ -74,7 +74,7 @@ struct RecordView: View {
                 }
                 
                 
-                TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("Insert Title"))
+                TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("ID \(getCurrentDay())").font(.custom("Nunito-ExtraBold", size: 22)).foregroundColor(Color(cgColor: .appHearBlue)))
                     .font(.custom("Nunito-ExtraBold", size: 22))
                     .foregroundColor(Color(cgColor: .appHearBlue))
                     .multilineTextAlignment(.center)
@@ -122,7 +122,7 @@ struct RecordView: View {
                         .clipped(antialiased: true)
                 }
                 .sheet(isPresented: $isPresented){
-                    SaveRecordingModalView(fileName: recordTitle, fileTranscript: transcript, fileAudio: audioURL.absoluteString)
+                    SaveRecordingModalView(fileName: (recordTitle.isEmpty ? "ID \(getCurrentDay())" : recordTitle), fileTranscript: transcript, fileAudio: audioURL.absoluteString)
                 }
 //                .alert("Transcript Saved!", isPresented: $isAlerted) {
 //                    Button("Ok", role: .cancel)
@@ -132,7 +132,7 @@ struct RecordView: View {
 //                    }
 //                }
 
-                .disabled(audioURL == nil || recordTitle.isEmpty || isRecording == true)
+                .disabled(audioURL == nil || isRecording == true)
                         
                 
                 
@@ -165,7 +165,7 @@ struct RecordView: View {
                 visualizerView()
                 Rectangle()
                     .fill(.white)
-                    .frame(width: 88, height: 150)
+                    .frame(width: 88, height: 100)
                 Button {
                     recording.toggle()
                     visualize()
@@ -243,7 +243,14 @@ struct RecordView: View {
         }
     }
     
-    
+    func getCurrentDay() -> String{
+            let time = Date()
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "dd/MM/yy HH:mm "
+            let stringDate = timeFormatter.string(from: time)
+            return stringDate
+        }
+
     
     
     func setupSpeech() {

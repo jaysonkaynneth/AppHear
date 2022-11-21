@@ -10,7 +10,7 @@ import MultipeerConnectivity
 import os
 
 class MultipeerSessionManager: NSObject, ObservableObject {
-    private let serviceType = "rps-service"
+    private let serviceType = "share-service"
     private var myPeerID: MCPeerID
     
     public let serviceAdvertiser: MCNearbyServiceAdvertiser
