@@ -41,7 +41,7 @@ struct LibraryView: View {
                     }
                     
                     HStack {
-                        Text("Sesuai Rekaman")
+                        Text("Semua Rekaman")
                             .font(.custom("Nunito-ExtraBold", size: 28))
                             .foregroundColor(.white)
                         Spacer()
