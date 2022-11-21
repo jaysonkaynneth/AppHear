@@ -48,25 +48,34 @@ struct LibraryView: View {
                         
                     }
                     ZStack {
-                        Rectangle().foregroundColor(.white).opacity(0.5).frame(width: 354, height: 39).cornerRadius(19)
-                        HStack{
-                            Image(systemName: "magnifyingglass").foregroundColor(.white).padding(.leading)
-                            Text("Search File").font(.custom("Nunito-Regular", size: 15)).foregroundColor(.white)
-                            Spacer()
-                        }
+                        SearchBarView(searchText: $searchText, containerText: "Search Recordings")
+                            .offset(y:-10)
                     }
                     VStack {
                     List {
                         ForEach(files){ file in
+                            let loweredText = searchText.lowercased()
+                            let loweredTitle = file.title!.lowercased()
                             if file.isdeleted == false {
-                                DisclosureGroup(
-                                    content: {
-                                        CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                    },
-                                    label: {
-                                        CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
-                                    }
-                                ).tint(.clear)
+                                if loweredTitle.contains(loweredText){
+                                    DisclosureGroup(
+                                        content: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                        },
+                                        label: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                        }
+                                    ).tint(.clear)
+                                }else if searchText.isEmpty{
+                                    DisclosureGroup(
+                                        content: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                        },
+                                        label: {
+                                            CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                        }
+                                    ).tint(.clear)
+                                }
                             }
                         }
                         .onDelete(perform: deleteItems)
