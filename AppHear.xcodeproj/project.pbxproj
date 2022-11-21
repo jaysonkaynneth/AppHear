@@ -544,10 +544,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = LDU59D27D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Access to the local network";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Permission;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -560,7 +561,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.campantechtech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -577,10 +578,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = RZWUV85Y3A;
+				DEVELOPMENT_TEAM = LDU59D27D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Access to the local network";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Permission;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -593,7 +595,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.campantechtech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

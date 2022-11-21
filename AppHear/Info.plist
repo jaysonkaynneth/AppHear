@@ -2,8 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>We need access to your local network to enable the local sharing session.</string>
 	<key>ATSApplicationFontsPath</key>
 	<string></string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_share-service._tcp</string>
+		<string>_share-service._udp</string>
+	</array>
 	<key>NSDocumentsFolderUsageDescription
 NSDocumentsFolderUsageDescription</key>
 	<string></string>
@@ -26,5 +33,9 @@ NSDocumentsFolderUsageDescription</key>
 		<string>Nunito-SemiBold.ttf</string>
 		<string>Nunito-SemiBoldItalic.ttf</string>
 	</array>
+	<key>_share-service._tcp</key>
+	<string></string>
+	<key>_share-service._udp</key>
+	<string></string>
 </dict>
 </plist>

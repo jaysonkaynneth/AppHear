@@ -67,4 +67,13 @@ public extension String {
             .trimmingCharacters(in: .punctuationCharacters)
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    
+    func getCurrentDay() -> String{
+            let time = Date()
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "dd/MM/yy HH:mm "
+            let stringDate = timeFormatter.string(from: time)
+            return stringDate
+        }
 }
+
