@@ -63,45 +63,6 @@ struct ContentView: View {
                                             }.frame(width: 165, height: 142)
                                         }.padding(.bottom, 4)
                                     
-                                    NavigationLink(destination: DeletedView()
-                                        .navigationBarHidden(true)
-                                        .navigationBarTitle("")) {
-                                            ZStack(){
-                                                Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
-                                                
-                                                VStack(alignment: .leading) {
-                                                    Image("delete-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
-                                                    Text("Baru Dihapus").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(deletedAmount) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                }.padding(.trailing, 40)
-                                            }.frame(width: 165, height: 142)
-                                        }.padding(.bottom, 4)
-                                    
-                                    ForEach(folders) { folders in
-                                        Button {
-                                            folderSelected(folder: folders)
-                                            showFolderView.toggle()
-                                        } label: {
-                                            ZStack{
-                                                Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
-                                                
-                                                VStack(alignment: .leading){
-                                                    Text(folders.emoji!)
-                                                        .font(.system(size: 46))
-                                                        .scaledToFit()
-                                                        .frame(width: 50, height: 50, alignment: .leading)
-                                                        .padding(.bottom, 16)
-                                                    Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(folders.count) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                }.padding(.trailing, 50)
-                                            }
-                                        }
-                                    }
-                                    
                                     Button(action: viewModel.createFolder) {
                                         ZStack{
                                             Rectangle().fill(LinearGradient(gradient: Gradient(colors: [Color(cgColor: .gradient1), Color(cgColor: .gradient2)]), startPoint: .bottomLeading, endPoint: .topTrailing)).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
@@ -144,7 +105,7 @@ struct ContentView: View {
                                                             .padding(.bottom, 16)
                                                     }
                                                     Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("\(folders.count) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                                 }.padding(.trailing, 50)
                                             }
                                         }
@@ -160,8 +121,8 @@ struct ContentView: View {
                                                 
                                                 VStack(alignment: .leading){
                                                     Image("delete-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
-                                                    Text("Recently Deleted").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(deletedAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("Baru Dihapus").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("\(deletedAmount) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                                 }
                                             }.frame(width: 165, height: 142)
                                         }.padding(.bottom, 4)

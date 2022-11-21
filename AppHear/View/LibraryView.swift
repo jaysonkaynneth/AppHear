@@ -51,9 +51,19 @@ struct LibraryView: View {
                         SearchBarView(searchText: $searchText, containerText: "Search Recordings")
                             .offset(y:-10)
                     }
-                    VStack {
+                    Spacer()
                         if files.isEmpty {
-                            
+                            VStack {
+                                Spacer()
+                                Image("no-rec")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 335, height: 335)
+                                Text("Tidak Ada Rekaman")
+                                    .font(.custom("Nunito-Bold", size: 24))
+                                    .foregroundColor(Color(cgColor: .appHearBlue))
+                                Spacer()
+                            }
                         } else {
                             List {
                                 ForEach(files){ file in
@@ -109,8 +119,8 @@ struct LibraryView: View {
                             .edgesIgnoringSafeArea(.all)
                             .listStyle(GroupedListStyle())
                             .scrollContentBackground(.hidden)
-                    }
-                }
+                        }
+                    
                 }
                 .padding(.trailing)
                 .padding(.leading)
