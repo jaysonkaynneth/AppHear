@@ -12,6 +12,8 @@ struct LibraryView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State private var searchText = ""
+    @State private var delete: IndexSet?
+    @State private var deleteAlert = false
     
     var body: some View {
         NavigationView {
@@ -54,12 +56,14 @@ struct LibraryView: View {
                         }
                     }
                     
-                    List{
+                    List {
                         ForEach(files){ file in
                             if file.isdeleted == false {
                                 DisclosureGroup(
                                 content: {
-                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
+                                    CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file).alert(isPresented: $deleteAlert) {
+                                        Alert(title: Text("Are you sure you want to delete?"), message: Text(""))
+                                    }
                                 },
                                 label: {
                                     CustomList(name: file.title ?? "Untitled", date: file.date ?? Date(), emoji: file.emoji ?? "💻", files: file)
@@ -70,8 +74,9 @@ struct LibraryView: View {
                         .onDelete(perform: deleteItems)
                         .listRowSeparator(.hidden)
 //                        .swipeActions(allowsFullSwipe: false) {
-//                            Button {
+//                            Button(role: .destructive) {
 //                                print("Delete")
+//
 //                            } label: {
 //                                Image("library-trash")
 //                                    .resizable()
@@ -106,7 +111,7 @@ struct LibraryView: View {
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { files[$0].isdeleted = true }
+            offsets.map { files[$0] }.forEach(moc.delete)
             do {
                 try moc.save()
             } catch {
