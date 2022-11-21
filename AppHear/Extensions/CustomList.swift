@@ -47,9 +47,19 @@ struct CustomList: View {
                             .font(.custom("Nunito-ExtraBold", size: 15))
                     }.padding(.leading, 20)
                     Spacer()
-                    Text(emoji)
-                        .foregroundColor(.black)
-                        .font(.system(size: 33))
+                    if emoji == "placeholder-emoji"{
+                        Image("placeholder-emoji")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 43, height: 43, alignment: .leading)
+                            .offset(x: 8)
+                            .padding(.top, 2)
+                    }
+                    else{
+                        Text(emoji)
+                            .foregroundColor(.black)
+                            .font(.system(size: 33))
+                    }
                 }.padding()
             }
             .padding(.leading)
