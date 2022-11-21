@@ -45,7 +45,9 @@ struct ContentView: View {
                     ZStack {
                         ScrollView {
                             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2)) {
+                                
                                 if searchText.isEmpty{
+                                    
                                     NavigationLink(destination: LibraryView() .navigationBarHidden(true)
                                         .navigationBarTitle("") ) {
                                             ZStack(){
@@ -60,6 +62,54 @@ struct ContentView: View {
                                                 }.padding(.trailing)
                                             }.frame(width: 165, height: 142)
                                         }.padding(.bottom, 4)
+                                    
+                                    Button(action: viewModel.createFolder) {
+                                        ZStack{
+                                            Rectangle().fill(LinearGradient(gradient: Gradient(colors: [Color(cgColor: .gradient1), Color(cgColor: .gradient2)]), startPoint: .bottomLeading, endPoint: .topTrailing)).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                                                RoundedRectangle(cornerRadius: 20)
+                                                    .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
+                                            VStack(alignment: .center){
+                                                Image("new-folder-icon")
+                                                    .resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
+                                                Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
+                                            }
+                                        }.frame(width: 165, height: 142)      .onTapGesture {
+                                            isPresented.toggle()
+                                        }  .sheet(isPresented: $isPresented, content: NewFolderModalView.init)
+                                    }
+                                    
+                                    ForEach(folders) { folders in
+                                        Button {
+                                            folderSelected(folder: folders)
+                                            showFolderView.toggle()
+                                        } label: {
+                                            ZStack{
+                                                Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                                                    RoundedRectangle(cornerRadius: 20)
+                                                        .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
+                                                
+                                                VStack(alignment: .leading){
+                                                    if folders.emoji == "placeholder-emoji"{
+                                                        Image("placeholder-emoji")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 60, height: 60, alignment: .leading)
+                                                            .padding(.bottom, 16)
+                                                            .offset(y: 8)
+                                                    }
+                                                    else{
+                                                        Text(folders.emoji!)
+                                                            .font(.system(size: 46))
+                                                            .scaledToFit()
+                                                            .frame(width: 50, height: 50, alignment: .leading)
+                                                            .padding(.bottom, 16)
+                                                    }
+                                                    Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                }.padding(.trailing, 50)
+                                            }
+                                        }
+                                    }
                                     
                                     NavigationLink(destination: DeletedView()
                                         .navigationBarHidden(true)
@@ -77,43 +127,6 @@ struct ContentView: View {
                                             }.frame(width: 165, height: 142)
                                         }.padding(.bottom, 4)
                                     
-                                    ForEach(folders) { folders in
-                                        Button {
-                                            folderSelected(folder: folders)
-                                            showFolderView.toggle()
-                                        } label: {
-                                            ZStack{
-                                                Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
-                                                
-                                                VStack(alignment: .leading){
-                                                    Text(folders.emoji!)
-                                                        .font(.system(size: 46))
-                                                        .scaledToFit()
-                                                        .frame(width: 50, height: 50, alignment: .leading)
-                                                        .padding(.bottom, 16)
-                                                    Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                }.padding(.trailing, 50)
-                                            }
-                                        }
-                                    }
-                                    
-                                    Button(action: viewModel.createFolder) {
-                                        ZStack{
-                                            Rectangle().fill(LinearGradient(gradient: Gradient(colors: [Color(cgColor: .gradient1), Color(cgColor: .gradient2)]), startPoint: .bottomLeading, endPoint: .topTrailing)).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
-                                                RoundedRectangle(cornerRadius: 20)
-                                                    .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
-                                            VStack(alignment: .center){
-                                                Image("new-folder-icon")
-                                                    .resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
-                                                Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
-                                            }
-                                        }.frame(width: 165, height: 142)      .onTapGesture {
-                                            isPresented.toggle()
-                                        }  .sheet(isPresented: $isPresented, content: NewFolderModalView.init)
-                                    }
                                 }
                                 else{
                                     ForEach(folders) { folders in
@@ -130,11 +143,21 @@ struct ContentView: View {
                                                             .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
                                                     
                                                     VStack(alignment: .leading){
-                                                        Text(folders.emoji!)
-                                                            .font(.system(size: 46))
-                                                            .scaledToFit()
-                                                            .frame(width: 50, height: 50, alignment: .leading)
-                                                            .padding(.bottom, 16)
+                                                        if folders.emoji == "placeholder-emoji"{
+                                                            Image("placeholder-emoji")
+                                                                .resizable()
+                                                                .scaledToFit()
+                                                                .frame(width: 60, height: 60, alignment: .leading)
+                                                                .padding(.bottom, 16)
+                                                                .offset(y: 8)
+                                                        }
+                                                        else{
+                                                            Text(folders.emoji!)
+                                                                .font(.system(size: 46))
+                                                                .scaledToFit()
+                                                                .frame(width: 50, height: 50, alignment: .leading)
+                                                                .padding(.bottom, 16)
+                                                        }
                                                         Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
                                                         Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                                     }.padding(.trailing, 50)
@@ -143,6 +166,56 @@ struct ContentView: View {
                                         }
                                     }
                                 }
+                                
+                                ForEach(folders) { folders in
+                                    Button {
+                                        folderSelected(folder: folders)
+                                        showFolderView.toggle()
+                                    } label: {
+                                        ZStack{
+                                            Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                                                RoundedRectangle(cornerRadius: 20)
+                                                    .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
+                                            
+                                            VStack(alignment: .leading){
+                                                if folders.emoji == "placeholder-emoji"{
+                                                    Image("placeholder-emoji")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 60, height: 60, alignment: .leading)
+                                                        .padding(.bottom, 16)
+                                                        .offset(y: 8)
+                                                }
+                                                else{
+                                                    Text(folders.emoji!)
+                                                        .font(.system(size: 46))
+                                                        .scaledToFit()
+                                                        .frame(width: 50, height: 50, alignment: .leading)
+                                                        .padding(.bottom, 16)
+                                                }
+                                                Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                            }.padding(.trailing, 50)
+                                        }
+                                    }
+                                }
+                                
+                                NavigationLink(destination: DeletedView()
+                                    .navigationBarHidden(true)
+                                    .navigationBarTitle("")) {
+                                        ZStack(){
+                                            Rectangle().foregroundColor(.white).frame(width: 165, height: 142).cornerRadius(20, antialiased: true).shadow(color: Color(cgColor: .buttonShadow), radius: 5.0).overlay(
+                                                RoundedRectangle(cornerRadius: 20)
+                                                    .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
+                                            
+                                            VStack(alignment: .leading){
+                                                Image("delete-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
+                                                Text("Recently Deleted").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                Text("\(deletedAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                            }
+                                        }.frame(width: 165, height: 142)
+                                    }.padding(.bottom, 4)
+                                
                                 if !folders.isEmpty {
                                     NavigationLink("", destination:  FolderView(passedFolder: selectedFolder ?? folders[0]), isActive: $showFolderView)
                                 }

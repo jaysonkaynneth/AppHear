@@ -13,6 +13,7 @@ struct SaveRecordingModalView: View {
     @Environment(\.managedObjectContext) var moc
     
     @State var fileName: String = ""
+    @State var nameEdited = false
     @State var fileTranscript: String = ""
     @State var fileAudio: String = ""
     @State var chosenFolder: RecordFolder?
@@ -41,6 +42,10 @@ struct SaveRecordingModalView: View {
                 .padding(.bottom)
                 .font(.custom("Nunito-Semibold", size: 17))
                 .foregroundColor(.gray)
+                .onTapGesture {
+                    nameEdited.toggle()
+                }
+                .autocorrectionDisabled()
             
             HStack{
                 Text("Folder Name")
@@ -86,18 +91,33 @@ struct SaveRecordingModalView: View {
                 presentationMode.wrappedValue.dismiss()
                 
             } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 40)
-                        .fill(Color(cgColor: .gradient2))
-                        .frame(width: 309,height: 45)
-                    
-                    Text("Save")
-                        .font(.custom("Nunito-Semibold", size: 15))
-                        .foregroundColor(.white)
+                if nameEdited == false {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 40)
+                            .fill(Color(cgColor: .gradient2))
+                            .frame(width: 309,height: 45)
+                        
+                        Text("Save")
+                            .font(.custom("Nunito-Semibold", size: 15))
+                            .foregroundColor(.white)
+                    }
                 }
+                
+                else {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 40)
+                            .fill(Color(cgColor: .appHearBlue))
+                            .frame(width: 309,height: 45)
+                        
+                        Text("Save")
+                            .font(.custom("Nunito-Semibold", size: 15))
+                            .foregroundColor(.white)
+                    }
+                }
+                
             }
             Spacer()
-        }.padding()
+        }.padding().onTapGesture(perform: endTextEditing)
     }
 }
 
