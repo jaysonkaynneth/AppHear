@@ -278,7 +278,7 @@ struct PlaybackView: View {
                 var attString = AttributedString(passedFile.transcript!)
                 var containerForAttString = AttributeContainer()
                 containerForAttString.font = .system(size: 16)
-                containerForAttString.foregroundColor = Color(CGColor.appHearBlue)
+                containerForAttString.foregroundColor = Color.black
                 attString.mergeAttributes(containerForAttString)
                 transcript = attString
                 dictionaryManager.highlightText(transcript: passedFile.transcript!)
