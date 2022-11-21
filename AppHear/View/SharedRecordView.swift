@@ -1,8 +1,8 @@
 //
-//  RecordView.swift
+//  SharedRecordView.swift
 //  AppHear
 //
-//  Created by Jason Kenneth on 16/10/22.
+//  Created by Ganesh Ekatata Buana on 21/11/22.
 //
 
 import SwiftUI
@@ -12,7 +12,7 @@ import AVFoundation
 import CloudKit
 import PartialSheet
 
-struct RecordView: View {
+struct SharedRecordView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
@@ -37,9 +37,13 @@ struct RecordView: View {
     @State var isAlerted = false
     @State var notSaveAlert = false
     @State var isSharing = false
+    @State var firstRecord = true
     
-    @State var rpsSession: MultipeerSessionManager?
+    @EnvironmentObject var rpsSession: MultipeerSessionManager
     @Environment(\.managedObjectContext) private var viewContext
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    @State private var counter = 0
+    @State var isShowing = false
     
     let audioEngine = AVAudioEngine()
     let searchWords = ["makan", "minum", "tendang", "buat", "guling", "lepas"]
@@ -93,72 +97,123 @@ struct RecordView: View {
                         .frame(width: 23, height: 21)
                         .clipped(antialiased: true)
                 }.sheet(isPresented: $isSharing){
-//                    MultipeerModalView().environmentObject(rpsSession!)
                     MultipeerModalView().environmentObject(MultipeerSessionManager(username: UIDevice.current.name))
                 }
                 
-                Button {
-                    let inputNode = audioEngine.inputNode
-                    
-                    self.audioEngine.stop()
-                    inputNode.removeTap(onBus: 0)
-                    self.recognitionRequest?.endAudio()
-                    self.recognitionRequest = nil
-                    self.recognitionTask = nil
-                    
-                    self.audioRecorder = nil
-                    
-                    recording = false
-                    isRecording = false
-                    isPresented = true
-                    isNotSaved = false
-                    isAlerted = true
-                    
-                } label: {
-                    Image("save-icon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 21)
-                        .clipped(antialiased: true)
+                if rpsSession.receivedMsg == ""{
+                    Button {
+                        let inputNode = audioEngine.inputNode
+                        
+                        self.audioEngine.stop()
+                        inputNode.removeTap(onBus: 0)
+                        self.recognitionRequest?.endAudio()
+                        self.recognitionRequest = nil
+                        self.recognitionTask = nil
+                        
+                        self.audioRecorder = nil
+                        
+                        recording = false
+                        isRecording = false
+                        isPresented = true
+                        isNotSaved = false
+                        isAlerted = true
+                        
+                    } label: {
+                        Image("save-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 21)
+                            .clipped(antialiased: true)
+                    }.disabled(audioURL == nil || recordTitle.isEmpty || isRecording == true)
+                    .sheet(isPresented: $isPresented){
+                        SaveRecordingModalView(fileName: recordTitle, fileTranscript: transcript, fileAudio: audioURL.absoluteString)
+                    }
                 }
-                .sheet(isPresented: $isPresented){
-                    SaveRecordingModalView(fileName: recordTitle, fileTranscript: transcript, fileAudio: audioURL.absoluteString)
+                
+                else{
+                    Button {
+                        let inputNode = audioEngine.inputNode
+                        
+                        self.audioEngine.stop()
+                        inputNode.removeTap(onBus: 0)
+                        self.recognitionRequest?.endAudio()
+                        self.recognitionRequest = nil
+                        self.recognitionTask = nil
+                        
+                        self.audioRecorder = nil
+                        
+                        recording = false
+                        isRecording = false
+                        isPresented = true
+                        isNotSaved = false
+                        isAlerted = true
+                        
+                    } label: {
+                        Image("save-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 21)
+                            .clipped(antialiased: true)
+                    }.disabled(recordTitle.isEmpty)
+                    .sheet(isPresented: $isPresented){
+                        SaveRecordingModalView(fileName: recordTitle, fileTranscript: rpsSession.receivedMsg, fileAudio: "hasil-share")
+                    }
                 }
-//                .alert("Transcript Saved!", isPresented: $isAlerted) {
-//                    Button("Ok", role: .cancel)
-//                    {
-//                        transcript = ""
-//                        recordTitle = ""
-//                    }
-//                }
-
-                .disabled(audioURL == nil || recordTitle.isEmpty || isRecording == true)
                         
                 
                 
             }.padding(.top)
             
-            ZStack{
-                
-                Image("rec-textbox")
-                    .resizable()
-                    .scaledToFit()
-                    .shadow(radius: 10)
-                    .padding()
-                
-                if (transcript == ""){
-                    Image("rec-empty")
+            if recording == true || firstRecord == false{
+                ZStack{
+                    
+                    Image("rec-textbox")
                         .resizable()
-                        .frame(width: 210, height: 268)
                         .scaledToFit()
+                        .shadow(radius: 10)
                         .padding()
-                }
-                else{
-                    ScrollView {
-                        Text(transcript).font(.system(size: 16, weight: .regular, design: .default))
-                    }.padding(.horizontal, 55).padding(.vertical, 40).lineSpacing(5.0)
+                    
+                    if (transcript == ""){
+                        Image("rec-empty")
+                            .resizable()
+                            .frame(width: 210, height: 268)
+                            .scaledToFit()
+                            .padding()
+                    }
+                    else{
+                        ScrollView {
+                            Text(transcript).font(.system(size: 16, weight: .regular, design: .default))
+                        }.padding(.horizontal, 55).padding(.vertical, 40).lineSpacing(5.0)
+                    }
                 }
             }
+            
+           else{
+                ZStack{
+                    
+                    Image("rec-textbox")
+                        .resizable()
+                        .scaledToFit()
+                        .shadow(radius: 10)
+                        .padding()
+                    
+                    if (rpsSession.receivedMsg == ""){
+                        Image("rec-empty")
+                            .resizable()
+                            .frame(width: 210, height: 268)
+                            .scaledToFit()
+                            .padding()
+                    }
+                    else{
+                        ScrollView {
+                            Text(rpsSession.receivedMsg).font(.system(size: 16, weight: .regular, design: .default))
+                        }.padding(.horizontal, 55).padding(.vertical, 40).lineSpacing(5.0)
+                    }
+                    
+                }
+            }
+            
+            
             
             
             ZStack {
@@ -166,17 +221,68 @@ struct RecordView: View {
                 Rectangle()
                     .fill(.white)
                     .frame(width: 88, height: 150)
-                Button {
-                    recording.toggle()
-                    visualize()
-                    buttonAction()
-                } label: {
-                    Image(recording ? "pause" : "purple-record")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 76, height: 76.5)
+                
+                if rpsSession.receivedMsg != ""{
+                    Button {
+                        if recording == false{
+                            self.rpsSession.send(text: transcript)
+                        }
+                        recording.toggle()
+                        visualize()
+                        buttonAction()
+                    } label: {
+                        Image(recording ? "pause" : "purple-record")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 76, height: 76.5)
+                    }.onReceive(timer) { time in
+                        if counter == 60 {
+                            timer.upstream.connect().cancel()
+                        } else {
+                            self.rpsSession.send(text: transcript)
+                        }
+                        counter += 1
+                    }.disabled(true).opacity(0.5)
+                }
+                
+                else {
+                    Button {
+                        if recording == false{
+                            self.rpsSession.send(text: transcript)
+                        }
+                        recording.toggle()
+                        visualize()
+                        buttonAction()
+                    } label: {
+                        Image(recording ? "pause" : "purple-record")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 76, height: 76.5)
+                    }.onReceive(timer) { time in
+                        if counter == 60 {
+                            timer.upstream.connect().cancel()
+                        } else {
+                            self.rpsSession.send(text: transcript)
+                        }
+                        counter += 1
+                    }
+                }
+                
+            }
+        }.alert("Received an invite from \(rpsSession.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $rpsSession.recvdInvite) {
+            Button("Accept") {
+                if (rpsSession.invitationHandler != nil) {
+                    rpsSession.invitationHandler!(true, rpsSession.session)
+                    isShowing.toggle()
                 }
             }
+            Button("Reject") {
+                if (rpsSession.invitationHandler != nil) {
+                    rpsSession.invitationHandler!(false, nil)
+                }
+            }
+        }.sheet(isPresented: $isShowing){
+            SharedRecordView().environmentObject(rpsSession)
         }
         .navigationBarHidden(true)
         .navigationBarTitle("")
@@ -232,6 +338,7 @@ struct RecordView: View {
     func buttonAction(){
         highlightText()
         setupSpeech()
+        firstRecord = false
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
@@ -242,9 +349,6 @@ struct RecordView: View {
             self.startRecording()
         }
     }
-    
-    
-    
     
     func setupSpeech() {
         
@@ -403,7 +507,7 @@ struct RecordView: View {
         //            print("audioEngine couldn't start because of an error.")
         //        }
         
-        transcript = "Recording speech.."
+        transcript = ""
     }
     
     func getDocumentsDirectory() -> URL {
@@ -449,7 +553,7 @@ struct RecordView: View {
 }
 
 
-struct RecordView_Previews: PreviewProvider {
+struct SharedRecordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             RecordView()
