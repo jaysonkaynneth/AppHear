@@ -25,7 +25,7 @@ struct FolderView: View {
                         .ignoresSafeArea(.all)
                     Spacer()
                 }
-                VStack{
+                VStack {
                     HStack {
                         Button{
                             self.presentationMode.wrappedValue.dismiss()
@@ -52,7 +52,7 @@ struct FolderView: View {
                             .offset(y:-10)
                     }
                     
-                    List{
+                    List {
                         ForEach(files){ file in
                             let loweredText = searchText.lowercased()
                             let loweredTitle = file.title!.lowercased()

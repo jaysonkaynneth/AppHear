@@ -12,6 +12,8 @@ struct LibraryView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     @State private var searchText = ""
+    @State private var delete: IndexSet?
+    @State private var deleteAlert = false
     
     var body: some View {
         NavigationView {
@@ -23,7 +25,7 @@ struct LibraryView: View {
                         .ignoresSafeArea(.all)
                     Spacer()
                 }
-                VStack{
+                VStack {
                     HStack {
                         Button{
                             self.presentationMode.wrappedValue.dismiss()
@@ -39,7 +41,7 @@ struct LibraryView: View {
                     }
                     
                     HStack {
-                        Text("All Recordings")
+                        Text("Sesuai Rekaman")
                             .font(.custom("Nunito-ExtraBold", size: 28))
                             .foregroundColor(.white)
                         Spacer()
@@ -49,8 +51,8 @@ struct LibraryView: View {
                         SearchBarView(searchText: $searchText, containerText: "Search Recordings")
                             .offset(y:-10)
                     }
-                    
-                    List{
+                    VStack {
+                    List {
                         ForEach(files){ file in
                             let loweredText = searchText.lowercased()
                             let loweredTitle = file.title!.lowercased()
@@ -78,31 +80,33 @@ struct LibraryView: View {
                         }
                         .onDelete(perform: deleteItems)
                         .listRowSeparator(.hidden)
-//                        .swipeActions(allowsFullSwipe: false) {
-//                            Button {
-//                                print("Delete")
-//                            } label: {
-//                                Image("library-trash")
-//                                    .resizable()
-//                                    .scaledToFit()
-//
-//                            }
-//                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
-//
-//                            Button {
-//                                print("Saved")
-//                            } label: {
-//                                    Image("library-folder").resizable()
-//                                        .frame(width: 100,height: 100)
-//                            }
-//                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
-//                        }
+                        //                        .swipeActions(allowsFullSwipe: false) {
+                        //                            Button {
+                        //                                print("Delete")
+                        //                                deleteAlert = true
+                        //                            } label: {
+                        //                                Image("library-trash")
+                        //                                    .resizable()
+                        //                                    .scaledToFit()
+                        //
+                        //                            }
+                        //                            .tint(Color(red: 255/255, green: 59/255, blue: 48/255, opacity: 1.0))
+                        //
+                        //                            Button {
+                        //                                print("Saved")
+                        //                            } label: {
+                        //                                    Image("library-folder").resizable()
+                        //                                        .frame(width: 100,height: 100)
+                        //                            }
+                        //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
+                        //                        }
                     }
                     .offset(y: -20)
                     .frame(maxWidth: .infinity)
                     .edgesIgnoringSafeArea(.all)
                     .listStyle(GroupedListStyle())
                     .scrollContentBackground(.hidden)
+                }
                 }
                 .padding(.trailing)
                 .padding(.leading)
@@ -112,6 +116,7 @@ struct LibraryView: View {
         }
         .preferredColorScheme(.light)
     }
+    
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
@@ -125,3 +130,5 @@ struct LibraryView: View {
         }
     }
 }
+
+
