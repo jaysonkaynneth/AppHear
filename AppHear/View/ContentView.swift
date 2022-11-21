@@ -55,8 +55,8 @@ struct ContentView: View {
                                                 
                                                 VStack(alignment: .leading) {
                                                     Image("recordings-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
-                                                    Text("All Recordings").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(recordAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("Semua Rekaman").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("\(recordAmount) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                                 }.padding(.trailing)
                                             }.frame(width: 165, height: 142)
                                         }.padding(.bottom, 4)
@@ -69,11 +69,11 @@ struct ContentView: View {
                                                     RoundedRectangle(cornerRadius: 20)
                                                         .stroke(Color(cgColor: .buttonBorder), lineWidth: 2))
                                                 
-                                                VStack(alignment: .leading){
+                                                VStack(alignment: .leading) {
                                                     Image("delete-icon").resizable().frame(width: 39, height: 44, alignment: .leading).padding(.bottom, 16)
-                                                    Text("Recently Deleted").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(deletedAmount) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                }
+                                                    Text("Baru Dihapus").font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("\(deletedAmount) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                }.padding(.trailing, 40)
                                             }.frame(width: 165, height: 142)
                                         }.padding(.bottom, 4)
                                     
@@ -94,7 +94,7 @@ struct ContentView: View {
                                                         .frame(width: 50, height: 50, alignment: .leading)
                                                         .padding(.bottom, 16)
                                                     Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                    Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                    Text("\(folders.count) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                                 }.padding(.trailing, 50)
                                             }
                                         }
@@ -108,7 +108,7 @@ struct ContentView: View {
                                             VStack(alignment: .center){
                                                 Image("new-folder-icon")
                                                     .resizable().frame(width: 44, height: 37, alignment: .leading).padding(.bottom, 16)
-                                                Text("Create New Folder").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
+                                                Text("Buat Folder Baru").font(.custom("Nunito-Bold", size: 15)).foregroundColor(.white)
                                             }
                                         }.frame(width: 165, height: 142)      .onTapGesture {
                                             isPresented.toggle()
@@ -136,7 +136,7 @@ struct ContentView: View {
                                                             .frame(width: 50, height: 50, alignment: .leading)
                                                             .padding(.bottom, 16)
                                                         Text(folders.title!).font(.custom("Nunito-Bold", size: 15)).foregroundColor(Color(cgColor: .appHearBlue))
-                                                        Text("\(folders.count) Recordings").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
+                                                        Text("\(folders.count) Rekaman").font(.custom("Nunito-Regular", size: 12)).foregroundColor(Color(cgColor: .appHearBlue))
                                                     }.padding(.trailing, 50)
                                                 }
                                             }
