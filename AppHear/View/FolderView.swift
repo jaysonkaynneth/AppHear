@@ -25,7 +25,7 @@ struct FolderView: View {
                         .ignoresSafeArea(.all)
                     Spacer()
                 }
-                VStack{
+                VStack {
                     HStack {
                         Button{
                             self.presentationMode.wrappedValue.dismiss()
