@@ -13,11 +13,12 @@ struct SaveRecordingModalView: View {
     @Environment(\.managedObjectContext) var moc
     
     @State var fileName: String = ""
-    @State var nameEdited = false
+    @State var newFileName: String = ""
     @State var fileTranscript: String = ""
     @State var fileAudio: String = ""
     @State var chosenFolder: RecordFolder?
     @State var showFolders = false
+    @State var isSaved = false
     
     
     var body: some View {
@@ -33,19 +34,30 @@ struct SaveRecordingModalView: View {
         
                 Spacer()
             }
-            
-            TextField("File Name", text: $fileName)
-                .padding()
-                .frame(width: 309, height: 39)
-                .background(RoundedRectangle(cornerRadius: 19.5)
-                    .stroke(Color(red: 217/255, green: 217/255, blue: 217/255)))
-                .padding(.bottom)
-                .font(.custom("Nunito-Semibold", size: 17))
-                .foregroundColor(.gray)
-                .onTapGesture {
-                    nameEdited.toggle()
+            ZStack(alignment: .leading){
+                if (fileName.starts(with: "ID") || fileName.starts(with: "EN")){
+                    if newFileName.isEmpty{
+                        Text(fileName)
+                            .foregroundColor(.gray)
+                            .padding(.leading)
+                    }
+                    TextField("", text: $newFileName)
+                        .padding()
+                        .foregroundColor(.black)
+                        .autocorrectionDisabled()
+                    
+                }else {
+                    TextField("", text: $newFileName)
+                        .padding()
+                        .autocorrectionDisabled()
                 }
-                .autocorrectionDisabled()
+            }
+            .frame(width: 309, height: 39).background(RoundedRectangle(cornerRadius: 19.5)
+            .stroke(Color(red: 217/255, green: 217/255, blue: 217/255)))
+            .padding(.bottom)
+            .font(.custom("Nunito-Semibold", size: 17))
+            .foregroundColor(.black)
+            .autocorrectionDisabled()
             
             HStack{
                 Text("Folder Name")
@@ -60,11 +72,18 @@ struct SaveRecordingModalView: View {
             } label: {
                 ZStack {
                     HStack{
-                        Text(chosenFolder?.title ?? "Choose Folder")
-                            .font(.custom("Nunito-Semibold", size: 17))
-                            .foregroundColor(.gray)
-                            
-                            .padding(.leading, 42)
+                        if chosenFolder != nil{
+                            Text((chosenFolder?.title)!)
+                                .font(.custom("Nunito-Semibold", size: 17))
+                                .foregroundColor(.black)
+                                .padding(.leading, 42)
+                        }
+                        else{
+                            Text("Choose Folder")
+                                .font(.custom("Nunito-Semibold", size: 17))
+                                .foregroundColor(.gray)
+                                .padding(.leading, 42)
+                        }
                         Spacer()
                     }
                     RoundedRectangle(cornerRadius: 19.5)
@@ -78,7 +97,13 @@ struct SaveRecordingModalView: View {
             Button {
                 
                 let file =  File(context: moc)
-                file.title = fileName
+                
+                if (newFileName != ""){
+                    file.title = newFileName
+                }
+                else{
+                    file.title = fileName
+                }
                 file.transcript = fileTranscript
                 file.audio = fileAudio
                 file.date = Date()
@@ -87,11 +112,10 @@ struct SaveRecordingModalView: View {
                 file.isdeleted = false
                 
                 try? moc.save()
-                
-                presentationMode.wrappedValue.dismiss()
+                isSaved.toggle()
                 
             } label: {
-                if nameEdited == false {
+                if (chosenFolder == nil) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 40)
                             .fill(Color(cgColor: .gradient2))
@@ -115,9 +139,18 @@ struct SaveRecordingModalView: View {
                     }
                 }
                 
+            }.alert("Rekaman berhasil disimpan!", isPresented: $isSaved) {
+                Button("Tutup", role: .cancel){
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
             Spacer()
         }.padding().onTapGesture(perform: endTextEditing)
+            .onAppear{
+                if !(fileName.starts(with: "ID") || fileName.starts(with: "EN")){
+                    newFileName = fileName
+                }
+            }
     }
 }
 
