@@ -48,7 +48,7 @@ struct FolderView: View {
                         
                     }
                     ZStack {
-                        SearchBarView(searchText: $searchText, containerText: "Search Recordings")
+                        SearchBarView(searchText: $searchText, containerText: "Cari Rekaman")
                             .offset(y:-10)
                     }
                     

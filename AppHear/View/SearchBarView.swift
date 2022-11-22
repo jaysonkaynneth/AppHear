@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchBarView: View {
     @Binding var searchText : String
-    var containerText : String = "Search Folder"
+    var containerText : String = "Cari Folder"
     var body: some View {
         HStack{
             Image(systemName: "magnifyingglass")
