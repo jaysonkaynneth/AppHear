@@ -129,7 +129,7 @@ struct ContentView: View {
                                     
                                 }
                                 
-                                else{
+                                else {
                                     ForEach(folders) { folders in
                                         let loweredText = searchText.lowercased()
                                         let loweredTitle = folders.title!.lowercased()
@@ -216,7 +216,7 @@ struct ContentView: View {
     @ViewBuilder private var secretOverlay: some View {
         ZStack{
             if overlay {
-                OverlayView().onTapGesture {
+                OverlayView(recordAmount: $recordAmount, deletedAmount: $deletedAmount).onTapGesture {
                     overlay.toggle()
                 }
                 

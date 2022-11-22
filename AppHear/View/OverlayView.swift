@@ -13,6 +13,9 @@ struct OverlayView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var files: FetchedResults<File>
     
+    @Binding var recordAmount: Int
+    @Binding var deletedAmount: Int
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
@@ -39,7 +42,12 @@ struct OverlayView: View {
                                 .padding(.leading)
                                 .padding(.bottom)
                         }
-                        .fullScreenCover(isPresented: $isPresented, content: RecordView.init)
+//                        .fullScreenCover(isPresented: $isPresented, content: RecordView.init)
+                        .fullScreenCover(isPresented: $isPresented, onDismiss: {
+                           countRecord()
+                          }, content: {
+                              RecordView()
+                          })
                         
                         Button {
                             isPresented.toggle()
@@ -64,11 +72,22 @@ struct OverlayView: View {
         .ignoresSafeArea()
         .preferredColorScheme(.light)
     }
-}
-
-
-struct OverlayView_Previews: PreviewProvider {
-    static var previews: some View {
-        OverlayView()
+    
+    private func countRecord(){
+        if files.count != 0{
+            let count = 0...(files.count-1)
+            var delTemp = 0
+            var recTemp = 0
+            for number in count {
+                if files[number].isdeleted == true{
+                    delTemp += 1
+                }
+                else if files[number].isdeleted == false{
+                    recTemp += 1
+                }
+            }
+            deletedAmount = delTemp
+            recordAmount = recTemp
+        }
     }
 }
