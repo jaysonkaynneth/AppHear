@@ -353,15 +353,15 @@ struct RecordView: View {
         recognitionRequest.addsPunctuation = true
         recognitionRequest.contextualStrings = namaTim
         
-        //        let lang = UserDefaults.standard.string(forKey: "lang")
-        //        if lang == "id"{
-        //            locale = Locale.init(identifier: "id-ID")
-        //        }
-        //        else if lang == "en"{
-        //            locale = Locale.init(identifier: "en-EN")
-        //        }
-        //
-        //        speechRecognizer = SFSpeechRecognizer(locale: locale!)
+        let lang = UserDefaults.standard.string(forKey: "lang")
+        if lang == "id"{
+            locale = Locale.init(identifier: "id-ID")
+        }
+        else if lang == "en"{
+            locale = Locale.init(identifier: "en-EN")
+        }
+        speechRecognizer = SFSpeechRecognizer(locale: locale!)
+        
         self.recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
