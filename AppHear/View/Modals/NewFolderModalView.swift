@@ -101,9 +101,12 @@ struct NewFolderModalView: View {
                     .background(RoundedRectangle(cornerRadius: 19.5)
                         .stroke(Color(red: 217/255, green: 217/255, blue: 217/255)))
                     .padding(.bottom)
+                    .autocorrectionDisabled(true)
                 Spacer()
             }.padding(.top)
-        }.background(Color(cgColor: .screenColor))
+        }.onTapGesture {
+            endTextEditing()
+        }
     }
 }
 

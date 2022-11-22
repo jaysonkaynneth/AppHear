@@ -130,6 +130,11 @@ struct LibraryView: View {
         }  .preferredColorScheme(.light)
             .navigationBarHidden(true)
             .navigationBarTitle("")
+        }
+        .onTapGesture(perform: {
+            endTextEditing()
+        })
+        .preferredColorScheme(.light)
     }
     
     

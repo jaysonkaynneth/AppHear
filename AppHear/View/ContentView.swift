@@ -206,6 +206,9 @@ struct ContentView: View {
             }
             .overlay(secretOverlay)
         }
+        .onTapGesture(perform: {
+            endTextEditing()
+        })
         .preferredColorScheme(.light)
         .fullScreenCover(isPresented: $showOnBoarding, content: {
             OnBoardingView(showOnBoarding: $showOnBoarding)
