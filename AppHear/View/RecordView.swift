@@ -142,7 +142,7 @@ struct RecordView: View {
                     VStack {
                         Image("rec-empty")
                             .resizable()
-                            .frame(width: 210, height: 268)
+                            .frame(width: 154, height: 218)
                             .scaledToFit()
                             .padding()
                         Text("Mulai Rekam")

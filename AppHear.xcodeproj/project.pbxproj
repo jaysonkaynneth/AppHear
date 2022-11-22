@@ -256,10 +256,10 @@
 			children = (
 				960BA3E02925F3C500AEB58B /* Modals */,
 				96F0925828F55BAB00EA7B49 /* ContentView.swift */,
+				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				EA6DB5AF292BBEE4005DD081 /* SearchBarView.swift */,
 				965CABC52929F2A400E26FFB /* OnBoardingView.swift */,
 				960BA3E12925F63E00AEB58B /* SplashScreenView.swift */,
-				967E4B7929015D74001C4CCE /* OverlayView.swift */,
 				962B394728FBBFFC009F95D3 /* RecordView.swift */,
 				96E75B6B28FFECB700B49EB8 /* PlaybackView.swift */,
 				1FB1F868292AAC020064F338 /* SharedRecordView.swift */,

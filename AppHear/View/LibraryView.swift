@@ -66,7 +66,7 @@ struct LibraryView: View {
                             }
                         } else {
                             List {
-                                ForEach(files){ file in
+                                ForEach(files) { file in
                                     let loweredText = searchText.lowercased()
                                     let loweredTitle = file.title!.lowercased()
                                     if file.isdeleted == false {
