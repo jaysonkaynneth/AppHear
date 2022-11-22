@@ -74,15 +74,26 @@ struct RecordView: View {
                     }
                 }
                 
-                
-                TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("ID \(getCurrentDay())").font(.custom("Nunito-ExtraBold", size: 22)).foregroundColor(Color(cgColor: .appHearBlue)))
-                    .font(.custom("Nunito-ExtraBold", size: 22))
-                    .foregroundColor(Color(cgColor: .appHearBlue))
-                    .multilineTextAlignment(.center)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .frame(width: 240, height: 38, alignment: .center)
-                    .padding(.leading, 20)
+                if (UserDefaults.standard.string(forKey: "lang") == "id"){
+                    TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("ID \(getCurrentDay())").font(.custom("Nunito-ExtraBold", size: 22)).foregroundColor(Color(cgColor: .appHearBlue)))
+                        .font(.custom("Nunito-ExtraBold", size: 22))
+                        .foregroundColor(Color(cgColor: .appHearBlue))
+                        .multilineTextAlignment(.center)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                        .frame(width: 240, height: 38, alignment: .center)
+                        .padding(.leading, 20)
+                }
+                else if(UserDefaults.standard.string(forKey: "lang") == "en"){
+                    TextField(SwiftUI.LocalizedStringKey("title"), text: $recordTitle, prompt: Text("EN \(getCurrentDay())").font(.custom("Nunito-ExtraBold", size: 22)).foregroundColor(Color(cgColor: .appHearBlue)))
+                        .font(.custom("Nunito-ExtraBold", size: 22))
+                        .foregroundColor(Color(cgColor: .appHearBlue))
+                        .multilineTextAlignment(.center)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                        .frame(width: 240, height: 38, alignment: .center)
+                        .padding(.leading, 20)
+                }
                 
                 Button {
                     //                    rpsSession = MultipeerSessionManager(username: UIDevice.current.name)
@@ -123,7 +134,12 @@ struct RecordView: View {
                         .clipped(antialiased: true)
                 }
                 .sheet(isPresented: $isPresented){
-                    SaveRecordingModalView(fileName: (recordTitle.isEmpty ? "ID \(getCurrentDay())" : recordTitle), fileTranscript: transcript, fileAudio: audioURL.absoluteString)
+                    if UserDefaults.standard.string(forKey: "lang") == "id"{
+                        SaveRecordingModalView(fileName: (recordTitle.isEmpty ? "ID \(getCurrentDay())" : recordTitle), fileTranscript: transcript, fileAudio: audioURL.absoluteString)
+                    }
+                    else {
+                        SaveRecordingModalView(fileName: (recordTitle.isEmpty ? "EN \(getCurrentDay())" : recordTitle), fileTranscript: transcript, fileAudio: audioURL.absoluteString)
+                    }
                 }.disabled(audioURL == nil || isRecording == true)
                         
                 
