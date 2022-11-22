@@ -93,6 +93,9 @@ struct DeletedView: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
+        .onTapGesture(perform: {
+            endTextEditing()
+        })
         .preferredColorScheme(.light)
     }
     
