@@ -27,7 +27,7 @@ struct DictionaryModalView: View {
                     Text("Loading contents")
                         .foregroundColor(Color(CGColor.appHearOrange))
                 }
-            }else{
+            } else {
                 ScrollView{
                     VStack(alignment: .leading){
                         Text(fetchedWord)
@@ -48,6 +48,7 @@ struct DictionaryModalView: View {
                 }
             }
         }
+        .background(Color(cgColor: .screenColor))
         .frame(height: dictionaryManager.isFetching ? 100 : 300)
         .onAppear{
             dictionaryManager.fetch(kata: fetchedWord)

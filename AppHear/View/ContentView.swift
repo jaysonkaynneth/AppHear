@@ -202,9 +202,12 @@ struct ContentView: View {
                         }
                     }
                     
-                }.ignoresSafeArea().background(Color(cgColor: .screenColor))
-            }.overlay(secretOverlay)
-        }
+                }.ignoresSafeArea()
+                .background(Color(cgColor: .screenColor))
+            }
+            .background(Color(cgColor: .screenColor))
+            .overlay(secretOverlay)
+        }.background(Color(cgColor: .screenColor))
         .preferredColorScheme(.light)
         .fullScreenCover(isPresented: $showOnBoarding, content: {
             OnBoardingView(showOnBoarding: $showOnBoarding)

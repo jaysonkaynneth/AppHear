@@ -269,7 +269,9 @@ struct SharedRecordView: View {
                 }
                 
             }
-        }.alert("Received an invite from \(rpsSession.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $rpsSession.recvdInvite) {
+        }
+        .background(Color(cgColor: .screenColor))
+        .alert("Received an invite from \(rpsSession.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $rpsSession.recvdInvite) {
             Button("Accept") {
                 if (rpsSession.invitationHandler != nil) {
                     rpsSession.invitationHandler!(true, rpsSession.session)

@@ -103,7 +103,7 @@ struct NewFolderModalView: View {
                     .padding(.bottom)
                 Spacer()
             }.padding(.top)
-        }
+        }.background(Color(cgColor: .screenColor))
     }
 }
 

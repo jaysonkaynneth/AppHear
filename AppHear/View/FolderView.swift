@@ -107,10 +107,14 @@ struct FolderView: View {
                     .listStyle(GroupedListStyle())
                     .scrollContentBackground(.hidden)
                 }
+                .background(Color(cgColor: .screenColor))
                 .padding(.trailing)
                 .padding(.leading)
             }
-        }.navigationBarHidden(true)
+            .background(Color(cgColor: .screenColor))
+        }
+        .background(Color(cgColor: .screenColor))
+        .navigationBarHidden(true)
             .navigationBarTitle("")
             .preferredColorScheme(.light)
     }

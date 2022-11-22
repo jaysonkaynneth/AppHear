@@ -82,8 +82,8 @@ struct PlaybackView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
-                HStack{
+            VStack {
+                HStack {
                     Button {
                         self.audioPlayerManager.audioPlayer?.stop()
                         self.presentationMode.wrappedValue.dismiss()
@@ -268,10 +268,13 @@ struct PlaybackView: View {
                     .padding(.trailing)
                 }
             }
+            .background(Color(cgColor: .screenColor))
             .navigationBarHidden(true)
             .navigationBarTitle("")
-        }.preferredColorScheme(.light)
-            .partialSheet(isPresented: $dictionaryManager.isSheetPresented, content: {
+        }
+        .background(Color(cgColor: .screenColor))
+        .preferredColorScheme(.light)
+        .partialSheet(isPresented: $dictionaryManager.isSheetPresented, content: {
                 DictionaryModalView(fetchedWord: dictionaryManager.tappedWord.trimTrailingPunctuation())
             })
             .onAppear{

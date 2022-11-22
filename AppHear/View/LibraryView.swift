@@ -64,6 +64,7 @@ struct LibraryView: View {
                                     .foregroundColor(Color(cgColor: .appHearBlue))
                                 Spacer()
                             }
+                            .background(Color(cgColor: .screenColor))
                         } else {
                             List {
                                 ForEach(files) { file in
@@ -114,6 +115,7 @@ struct LibraryView: View {
                                 //                            .tint(Color(red: 245/255, green: 193/255, blue: 66/255, opacity: 1.0))
                                 //                        }
                             }
+                            
                             .offset(y: -20)
                             .frame(maxWidth: .infinity)
                             .edgesIgnoringSafeArea(.all)
@@ -125,9 +127,11 @@ struct LibraryView: View {
                 .padding(.trailing)
                 .padding(.leading)
             }
+            .background(Color(cgColor: .screenColor))
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
+        .background(Color(cgColor: .screenColor))
         .preferredColorScheme(.light)
     }
     

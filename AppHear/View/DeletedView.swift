@@ -90,9 +90,11 @@ struct DeletedView: View {
                 .padding(.trailing)
                 .padding(.leading)
             }
+            .background(Color(cgColor: .screenColor))
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
+        .background(Color(cgColor: .screenColor))
         .preferredColorScheme(.light)
     }
     
