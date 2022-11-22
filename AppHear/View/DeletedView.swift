@@ -129,6 +129,11 @@ struct DeletedView: View {
         }  .preferredColorScheme(.light)
             .navigationBarHidden(true)
             .navigationBarTitle("")
+        }
+        .onTapGesture(perform: {
+            endTextEditing()
+        })
+        .preferredColorScheme(.light)
     }
     
     private func deleteItems(offsets: IndexSet) {
