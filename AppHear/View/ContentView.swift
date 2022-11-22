@@ -205,6 +205,9 @@ struct ContentView: View {
                 }.ignoresSafeArea().background(Color(cgColor: .screenColor))
             }.overlay(secretOverlay)
         }
+        .onTapGesture(perform: {
+            endTextEditing()
+        })
         .preferredColorScheme(.light)
         .fullScreenCover(isPresented: $showOnBoarding, content: {
             OnBoardingView(showOnBoarding: $showOnBoarding)

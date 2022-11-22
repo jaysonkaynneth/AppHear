@@ -110,7 +110,11 @@ struct FolderView: View {
                 .padding(.trailing)
                 .padding(.leading)
             }
-        }.navigationBarHidden(true)
+        }
+        .onTapGesture(perform: {
+            endTextEditing()
+        })
+        .navigationBarHidden(true)
             .navigationBarTitle("")
             .preferredColorScheme(.light)
     }
