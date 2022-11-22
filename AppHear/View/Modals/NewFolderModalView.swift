@@ -104,9 +104,7 @@ struct NewFolderModalView: View {
                     .autocorrectionDisabled(true)
                 Spacer()
             }.padding(.top)
-        }.onTapGesture {
-            endTextEditing()
-        }
+        }.background(Color(cgColor: .screenColor))
     }
 }
 

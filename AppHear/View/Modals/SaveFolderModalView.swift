@@ -88,7 +88,9 @@ struct SaveFolderModalView: View {
             }.frame(width: 360).offset(y: -20)
             
             Spacer()
-        }.padding()
+        }
+        .background(Color(cgColor: .screenColor))
+        .padding()
     }
 }
 

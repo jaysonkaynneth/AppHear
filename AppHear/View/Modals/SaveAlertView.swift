@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SaveAlertView: View {
     var body: some View {
-        VStack{
+        VStack {
             Text("Recording not saved!")
                 .font(.custom("Nunito-Regular", size: 15))
                 .foregroundColor(.black)
@@ -42,7 +42,7 @@ struct SaveAlertView: View {
                     .font(.custom("Nunito-Bold", size: 18))
                     .foregroundColor(Color(cgColor: .appHearBlue))
             }
-        }
+        }.background(Color(cgColor: .screenColor))
     }
 }
 

@@ -145,7 +145,9 @@ struct SaveRecordingModalView: View {
                 }
             }
             Spacer()
-        }.padding().onTapGesture(perform: endTextEditing)
+        }
+        .background(Color(cgColor: .screenColor))
+        .padding().onTapGesture(perform: endTextEditing)
             .onAppear{
                 if !(fileName.starts(with: "ID") || fileName.starts(with: "EN")){
                     newFileName = fileName

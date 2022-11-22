@@ -105,7 +105,9 @@ struct MultipeerModalView: View {
 
             }
             
-        }.padding()
+        }
+        .background(Color(cgColor: .screenColor))
+        .padding()
     }
 }
 

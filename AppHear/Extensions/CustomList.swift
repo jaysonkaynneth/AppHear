@@ -64,7 +64,7 @@ struct CustomList: View {
             }
             .padding(.leading)
             .padding(.trailing)
-        }
+        }.listRowBackground(Color(cgColor: .screenColor))
     }
     
 }
