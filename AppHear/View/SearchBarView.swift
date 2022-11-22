@@ -39,7 +39,7 @@ struct SearchBarView: View {
             )
             
         }
-        .padding(10)
+        .padding(8)
         .background(
             RoundedRectangle(cornerRadius: 25)
                 .foregroundColor(.white)

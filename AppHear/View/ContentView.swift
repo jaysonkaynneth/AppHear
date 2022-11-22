@@ -29,7 +29,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                
                 VStack{
                     ZStack{
                         Image("home-nav-bar").resizable().scaledToFit()
@@ -37,6 +36,7 @@ struct ContentView: View {
                             ZStack {
                                 SearchBarView(searchText: $searchText)
                             }.padding()
+                                .offset(y: 10)
                         }.onAppear(perform: initiateIndexCounter).onAppear(perform: countRecord)
                     }
                     
@@ -203,11 +203,9 @@ struct ContentView: View {
                     }
                     
                 }.ignoresSafeArea()
-                .background(Color(cgColor: .screenColor))
             }
-            .background(Color(cgColor: .screenColor))
             .overlay(secretOverlay)
-        }.background(Color(cgColor: .screenColor))
+        }
         .preferredColorScheme(.light)
         .fullScreenCover(isPresented: $showOnBoarding, content: {
             OnBoardingView(showOnBoarding: $showOnBoarding)

@@ -268,11 +268,9 @@ struct PlaybackView: View {
                     .padding(.trailing)
                 }
             }
-            .background(Color(cgColor: .screenColor))
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
-        .background(Color(cgColor: .screenColor))
         .preferredColorScheme(.light)
         .partialSheet(isPresented: $dictionaryManager.isSheetPresented, content: {
                 DictionaryModalView(fetchedWord: dictionaryManager.tappedWord.trimTrailingPunctuation())

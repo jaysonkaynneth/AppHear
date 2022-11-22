@@ -61,10 +61,10 @@ struct CustomList: View {
                             .font(.system(size: 33))
                     }
                 }.padding()
-            }.background(Color(cgColor: .screenColor))
+            }
             .padding(.leading)
             .padding(.trailing)
-        }.background(Color(cgColor: .screenColor))
+        }.listRowBackground(Color(cgColor: .screenColor))
     }
     
 }

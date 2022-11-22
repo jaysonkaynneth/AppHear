@@ -191,7 +191,6 @@ struct RecordView: View {
                 }
             }
         }
-        .background(Color(cgColor: .screenColor))
         .navigationBarHidden(true)
         .navigationBarTitle("")
         .preferredColorScheme(.light)
