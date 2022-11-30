@@ -546,13 +546,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppHear/AppHear.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = LDU59D27D5;
+				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Access to the local network";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "We need access to your local network to enable the local sharing session.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Permission;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -564,8 +564,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.campantechtech.AppHear;
+				MARKETING_VERSION = 1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -580,13 +580,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppHear/AppHear.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"AppHear/Preview Content\"";
-				DEVELOPMENT_TEAM = LDU59D27D5;
+				DEVELOPMENT_TEAM = RZWUV85Y3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppHear/Info.plist;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Access to the local network";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "We need access to your local network to enable the local sharing session.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Permission;
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permission to use speech recognition";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -598,8 +598,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.campantechtech.AppHear;
+				MARKETING_VERSION = 1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = campantech.AppHear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
