@@ -15,13 +15,6 @@
   <li>Clean and distraction-free reading mode</li>
 </ul>
 
-<h2>Requirements</h2>
-<ul>
-  <li>iOS 16.0+</li>
-  <li>Xcode 15+</li>
-  <li>Swift 5.9+</li>
-</ul>
-
 <h2>Installation</h2>
 <ol>
   <li>Clone the repository:
