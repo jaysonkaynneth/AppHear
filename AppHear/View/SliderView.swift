@@ -11,7 +11,7 @@ fileprivate let labelColor = Color(red: 66/255, green: 84/255, blue: 182/255)
 
 struct SliderView: View
 {
-    var totalTime: CGFloat = 65
+    var totalTime: CGFloat = 67
     
     @State var currentProgress: CGFloat = 0
     @State var progressState: CGFloat = 0
